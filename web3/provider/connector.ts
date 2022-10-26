@@ -15,5 +15,8 @@ export const walletConnect = new WalletConnectConnector({
         71:RPC_URL[71]
     },
     qrcode:true,
-    pollingInterval:pollingInterval
+    // pollingInterval:pollingInterval
 })
+
+
+// Arguemeny of type {rpc:{71:string}} is not assignable to parameter of type 'WalletConnectorArguement' object literal may only specify known properties and pollingIntervals does not exist in type WalletConnectConnectorArguemnt

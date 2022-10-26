@@ -166,11 +166,7 @@ export const socials = [
   {
     value: "youtube",
     link: "#",
-  },
-  {
-    value: "github",
-    link: "#",
-  },
+  }
 ];
 
 export const dropdownItem = [

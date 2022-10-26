@@ -4,17 +4,14 @@ import React from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import Link from "next/link";
 import LayOut from "../../layout/LayOut";
+import HeaderMetaData from "../../components/MetaData/HeaderMetaData";
 
 
 function upcomingEvents() {
   return (
     <LayOut>
     <section className="container  mx-auto mt-24 mb-48 p-4 md:p-0 lg:p-0">
-      <Head>
-        <title>Attendify</title>
-        <meta name="description" content="Poap Platform Built On Conflux" />
-        <link rel="icon" href="/attendify.svg" />
-      </Head>
+      <HeaderMetaData/>
       <h2 className="text-gray-200 capitalize text-jakarta font-bold mb-4 text-4xl">
         upcoming events
       </h2>

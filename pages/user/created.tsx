@@ -5,16 +5,13 @@ import "rc-dropdown/assets/index.css";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import Link from "next/link";
 import LayOut from "../../layout/LayOut";
+import HeaderMetaData from "../../components/MetaData/HeaderMetaData";
 
 function CreatedEvent() {
   return (
     <LayOut>
     <section className="container mx-auto mt-24 mb-48 p-4 sm:p-0 md:p-0 lg:p-0">
-      <Head>
-        <title>Attendify</title>
-        <meta name="description" content="Poap Platform Built On Conflux" />
-        <link rel="icon" href="/attendify.svg" />
-      </Head>
+     <HeaderMetaData/>
 
       <h2 className="text-gray-200 capitalize text-jakarta mb-4 font-bold mb-4 text-4xl">
         your created events
