@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,700;1,400;1,600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,15 +16,26 @@ html,
 body {
   box-sizing: inherit;
   font-family: "Plus Jakarta Sans", sans-serif;
-  /* background: #14082E; */
-  background: rgb(20, 8, 46);
-  background: linear-gradient(
+  background:#010A20;
+  background-position: 5% 5%;
+  /* background: linear-gradient(
     90deg,
     rgba(20, 8, 46, 1) 0%,
     rgba(20, 8, 46, 1) 100%,
     rgba(0, 212, 255, 1) 100%
-  );
+  ); */
+  background-image: url("/assets/prezent.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+
   /* color: #f9f9f9; */
+}
+
+.text-linear{
+  background: -webkit-linear-gradient(262.71deg, #EA9119 2.72%, #833EF1 70.34%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* text-decoration-color:#B5179E; */
 }
 
 @media only screen and (min-width: 1024px) {

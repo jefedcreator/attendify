@@ -1,38 +1,34 @@
 import React from "react";
 import Link from "next/link";
+import Button from "@common/Button";
 
 function Jumbotron() {
   return (
     <React.Fragment>
-      <div className=" items-center md:grid md:grid-cols-2 md:gap-x-16 lg:grid lg:grid-cols-2 lg:gap-x-16 lg:mt-12 ">
-        <div>
-          <h2 className="text-white sm-height text-small   font-bold font-jarkata  lg:text-7xl lg:custom-height">
-            Attendify &ndash; The web3 event hub
+      {/* <div className=" items-center md:grid md:grid-cols-2 md:gap-x-16 lg:grid lg:grid-cols-2 lg:gap-x-16 lg:mt-12 "> */}
+      <section className="">
+        <div className="text-center">
+          <h2 className="font-syne text-white text-smallx leading-sm-small md:text-hero-text md:leading-custom-leading lg:text-hero-text lg:leading-custom-leading font-bold">
+            Attendify,
+            <br /> The <span className="text-linear">web3</span> event hub{" "}
+            <span className="font-bold text-[#8D70EC]">.</span>
           </h2>
-          <p className="text-[#BEC9DA] text-minimal font-normal leading-7 my-5">
-            Discover events that match your passion, Create events and issue POA
-            tokens easily on Attendify.
+          <p className="font-jakarta text-base text-[#D1C6F7]">
+            Discover community events that match your passion. Create
+            <br /> events and issue NFTs for attendees easily on Attendify.
           </p>
-
-          <div className="flex flex-col md:grid md:grid-cols-2 md:gap-x-6 md:mt-4 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:mt-4">
-            <Link href="/upcoming/upcomingEvents">
-            
-              <button className="p-4 md:p-2 lg:p-4 bg-[#B5179E]  rounded-lg text-white">
-                Explore event
-              </button>
-            </Link>
-
-            <Link href="/event/Create">
-              <button className="p-4 md:p-2 lg:p-4 bg-[#440E59] mt-4 md:mt-0 lg:mt-0 rounded-lg text-white">
-                Create an event
-              </button>
-            </Link>
+          <div className="w-full md:flex md:justify-center lg:flex lg:justify-center my-12 space-x-0 md:space-x-8 lg:space-x-8 space-y-8 md:space-y-0 lg:space-y-0">
+            <Button
+              label="Create Event"
+              className="w-full md:w-[50%] lg:w-[25%] border-solid border-2 border-[#bba9f4]  bg-[#6E4AE7] text-white"
+            />
+            <Button
+              label="Explore Events"
+              className="w-full md:w-[50%] lg:w-[25%] border-solid border-2 bg-cta border-[#bba9f4]  text-white"
+            />
           </div>
         </div>
-        <div className="mt-12">
-          <img src="/assets/jumbo.png" alt="caesar-logo" />
-        </div>
-      </div>
+      </section>
     </React.Fragment>
   );
 }

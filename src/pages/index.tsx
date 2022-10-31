@@ -18,12 +18,12 @@ const Home: NextPage = () => {
       <div className="container mx-auto p-8">
         <Header />
         <Jumbotron />
-        <Participant />
+        {/* <Participant />
         <UpcomingEvents />
         <Sponsors />
         <About />
         <JoinUs />
-        <Register />
+        <Register /> */}
       </div>
       <Footer />
     </section>
