@@ -1,1 +1,1 @@
-export * from "./JoinUs"
+export * from "./organisers"
