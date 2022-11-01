@@ -1,5 +1,5 @@
 import React from "react";
-import { company, socials, headerIcon } from "../../../static/data";
+import { company, headerIcon } from "../../../static/data";
 
 function Footer() {
   return (
@@ -8,6 +8,9 @@ function Footer() {
         <a href="/">
           <img src="/assets/attendify.svg" alt="attendify-logo" />
         </a>
+        <p className="text-gray-400 font-jarkata my-2">
+        Discover events and communities that match your<br/> passion. Create events and issue NFTs for<br/> attendees easily on Attendify.
+        </p>
         <p className="text-gray-400 font-jarkata font-semibold my-2">
           Reach out for partnership
         </p>
@@ -30,7 +33,7 @@ function Footer() {
         </ul>
       </div>
 
-      <div className="hidden md:block lg:block my-4">
+      {/* <div className="hidden md:block lg:block my-4">
         <p className="text-gray-400 font-jarkata font-semibold mb-2">Socials</p>
         <ul>
           {socials.map((item, idx) => {
@@ -41,7 +44,7 @@ function Footer() {
             );
           })}
         </ul>
-      </div>
+      </div> */}
       <div className="hidden md:block lg:block">
         <p className="text-gray-400 font-jarkata font-semibold mb-2">
           Contact

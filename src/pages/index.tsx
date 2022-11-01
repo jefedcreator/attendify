@@ -9,6 +9,7 @@ import Sponsors from "@components/landing/Sponsor/Sponsors";
 import UpcomingEvents from "@components/landing/UpcomingEvent/UpcomingEvents";
 import Footer from "@layout/Footer/Footer";
 import Header from "@layout/Header/Header";
+import Features from "@components/landing/Features/Features";
 
 // import styles from '../styles/Home.module.css'
 const Home: NextPage = () => {
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
       <div className="container mx-auto p-8">
         <Header />
         <Jumbotron />
+        <Features/>
         {/* <Participant />
         <UpcomingEvents />
         <Sponsors />

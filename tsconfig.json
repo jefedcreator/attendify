@@ -20,6 +20,7 @@
       "@layout/*":["src/layout/*"],
       "@styles/*":["styles/*"],
       "@utils/*":["utils/*"],
+      "@public/*":["public/*"],
       "@common/*":["src/common/*"],
       "@pages/*":["src/pages/*"]
     }
