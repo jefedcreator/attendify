@@ -1,64 +1,69 @@
-import React, { useState } from "react";
-import Wallet from "../components/walletPopUp/wallet";
-import Modal from "react-modal";
+import Connect from "@components/walletConnect/Connect/connect";
+import React from "react";
 import LayOut from "../layout/LayOut";
-import { useWeb3React } from "@web3-react/core";
-
-Modal.setAppElement("#root");
+import { Tab } from "@headlessui/react";
+import Explore from "@components/walletConnect/Explore/explore";
 
 function WalletConnect() {
-  const { active } = useWeb3React();
-  const customStyles = {
-    overlay: {
-      background: "rgba(3, 4, 41, 0.7)",
-    },
-    content: {
-      borderRadius: "8px",
-      backdropFilter: "blur(32px)",
-      border: "1px solid rgba(125, 146, 181, 0.2)",
-      backgroundColor: "background: rgba(3, 4, 41, 0.7)",
-    },
-  };
-
-  const [show, setShow] = useState(false);
-
-  const toggleModal = () => {
-    setShow(true);
-    console.log("Open modal");
-  };
-  const closeModal = () => {
-    setShow(false);
-  };
   return (
     <LayOut>
       <section className="container mx-auto mb-48 p-4 md:p-12">
-        <div className="lg:w-1/2 mx-auto">
-          <h3 className="text-white text-center font-bold font-jakarta text-3xl">
-            Welcome
-          </h3>
-          <p className="text-gray-400 text-center font-medium font-jakarta text-xs md:text-base lg:text-base">
-            Welcome to Attendify. Use this website for browsing your collection
-            of POAPs.
-          </p>
-          <div className="flex justify-center my-4">
-            <img src="/assets/wallet.svg" alt="wallet.svg" />
-          </div>
-          {!active && (
-            <button
-              onClick={toggleModal}
-              className="text-white bg-[#B5179E] font-jakarta font-medium w-full px-12 py-2 rounded-lg text-center mb-4"
-            >
-              Connect wallet
-            </button>
-          )}
+        <div className="flex justify-center my-4">
+          <img src="/assets/wallets.png" alt="wallet" />
         </div>
-        <Modal
-          isOpen={show}
-          className="border border-[#7d92b5] rounded-lg top-1/4 p-4  w-11/12 left-4 md:w-6/12 md:left-1/4 md:top-1/4 md:p-8 lg:w-3/12 lg:mx-auto absolute lg:left-[41%] lg:top-1/4 lg:p-4"
-          style={customStyles}
-        >
-          <Wallet closeModal={closeModal} />
-        </Modal>
+        <h3 className="text-white text-center font-bold font-syne text-medium leading-sm-medium">
+          Welcome
+        </h3>
+        <p className="text-[#9D94B8] text-center font-medium font-jakarta text-minimal leading-sm-xx">
+          Welcome to Attendify. You can mint Preznts,
+          <br /> browse through your collection of Preznts.
+        </p>
+        <div className="flex justify-center my-6">
+          <div>
+            <Tab.Group>
+              <Tab.List className={"text-center space-x-6 my-4"}>
+                <Tab>
+                  {({ selected }) => (
+                    /* Use the `selected` state to conditionally style the selected tab. */
+                    <button
+                      className={
+                        selected
+                          ? "underline underline-offset-8 decoration-2 decoration-[#B5179E] text-white"
+                          : "underline underline-offset-8 decoration-2 decoration-[#5E547F] text-[#BDB7CF]"
+                      }
+                    >
+                      Connect Wallet
+                    </button>
+                  )}
+                </Tab>
+                <Tab>
+                  {({ selected }) => (
+                    /* Use the `selected` state to conditionally style the selected tab. */
+                    <button
+                      className={
+                        selected
+                          ? "underline underline-offset-8 decoration-2 decoration-[#B5179E] text-white"
+                          : "underline underline-offset-8 decoration-2 decoration-[#5E547F] text-[#BDB7CF]"
+                      }
+                    >
+                      Explore Wallet
+                    </button>
+                  )}
+                </Tab>
+                {/* ...  */}
+              </Tab.List>
+              <Tab.Panels>
+                <Tab.Panel>
+                  <Connect />
+                </Tab.Panel>
+                <Tab.Panel>
+                  <Explore/>
+                </Tab.Panel>
+                {/* ... */}
+              </Tab.Panels>
+            </Tab.Group>
+          </div>
+        </div>
       </section>
     </LayOut>
   );
