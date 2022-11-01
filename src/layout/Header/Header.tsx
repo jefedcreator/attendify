@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function Header() {
   return (
-    <header className="p-2">
+    <header className="p-12">
       <div className="hidden md:justify-end md:space-x-6 mb-4 md:flex lg:flex justify-end space-x-2">
         {headerIcon.map((icon, index) => {
           return (

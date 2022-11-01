@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import HeaderMetaData from "@common/MetaData/HeaderMetaData";
 import About from "@components/landing/About/About";
-import JoinUs from "@components/landing/JoinUs/JoinUs";
+import Organisers from "@components/landing/JoinUs/organisers";
 import Jumbotron from "@components/landing/Jumbotron/Jumbotron";
 import Participant from "@components/landing/Participant/Participant";
-import Register from "@components/landing/Register/Register";
+import Attendee from "@components/landing/Attendee/Attendee";
 import Sponsors from "@components/landing/Sponsor/Sponsors";
 import UpcomingEvents from "@components/landing/UpcomingEvent/UpcomingEvents";
 import Footer from "@layout/Footer/Footer";
@@ -16,16 +16,14 @@ const Home: NextPage = () => {
   return (
     <section>
       <HeaderMetaData />
-      <div className="container mx-auto p-8">
+      <div className="">
         <Header />
         <Jumbotron />
-        <Features/>
-        {/* <Participant />
-        <UpcomingEvents />
-        <Sponsors />
+        <Features />
         <About />
-        <JoinUs />
-        <Register /> */}
+        <Organisers />
+        <Attendee />
+        <Sponsors />
       </div>
       <Footer />
     </section>

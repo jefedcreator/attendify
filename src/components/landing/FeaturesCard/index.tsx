@@ -11,7 +11,7 @@ type FeaturesCardProps = {
 function FeaturesCard({src, title, description,alt}:FeaturesCardProps) {
   return (
     <div>
-      <div className='flex justify-center my-2'>
+      <div className='flex justify-center items-center my-2'>
         <img src={src.src} alt={alt} />
         </div>
         <h4 className='text-center font-bold text-[#F9F8FB] lg:text-smallxx md:leading-sm-x lg:text-smallxx lg:leading-sm-x my-2'>{title}</h4>

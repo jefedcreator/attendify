@@ -53,6 +53,9 @@ module.exports = {
         "medium":"42px",
         "28":"28px"
       },
+      textUnderlineOffset:{
+        "12":"1.5rem"
+      }
     },
   },
   plugins: [],
