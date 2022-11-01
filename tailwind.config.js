@@ -16,6 +16,9 @@ module.exports = {
         card: "linear-gradient(117.29deg, rgba(234, 255, 254, 0.08) 2.63%, rgba(234, 255, 254, 0) 100%);",
         cta: " linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.056) 100%);",
       },
+      backgroundPosition:{
+        'top-4': 'center top 11rem',
+      },
       fontFamily: {
         jarkata: ["Plus Jakarta Sans", "sans-serif"],
         syne: ["Syne", "sans-serif"],
@@ -34,14 +37,21 @@ module.exports = {
         "custom-leading": "72px",
         "custom-height": "66px",
         "sm-height": "45px",
-        "sm-small":"40px"
+        "sm-small":"40px",
+        "sm-medium":"56px",
+        "sm-xx":"28px",
+        "sm-x":"32px",
+        "36":"36px"
       },
       fontSize: {
         "7xl": "60px",
         small: "30px",
+        smallxx:"22px",
         smallx:"34px",
         minimal: "16px",
         "hero-text": "66px",
+        "medium":"42px",
+        "28":"28px"
       },
     },
   },

@@ -144,30 +144,30 @@ export const company = [
   },
 ];
 
-export const socials = [
-  {
-    value: "twitter",
-    link: "#",
-  },
+// export const socials = [
+//   {
+//     value: "twitter",
+//     link: "#",
+//   },
 
-  {
-    value: "instagram",
-    link: "#",
-  },
-  {
-    value: "telegram",
-    link: "#",
-  },
-  {
-    value: "discord",
-    link: "#",
-  },
+//   {
+//     value: "instagram",
+//     link: "#",
+//   },
+//   {
+//     value: "telegram",
+//     link: "#",
+//   },
+//   {
+//     value: "discord",
+//     link: "#",
+//   },
 
-  {
-    value: "youtube",
-    link: "#",
-  }
-];
+//   {
+//     value: "youtube",
+//     link: "#",
+//   }
+// ];
 
 export const dropdownItem = [
   {

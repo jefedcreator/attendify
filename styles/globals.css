@@ -17,16 +17,16 @@ body {
   box-sizing: inherit;
   font-family: "Plus Jakarta Sans", sans-serif;
   background:#010A20;
-  background-position: 5% 5%;
+  /* background-position: center; */
   /* background: linear-gradient(
     90deg,
     rgba(20, 8, 46, 1) 0%,
     rgba(20, 8, 46, 1) 100%,
     rgba(0, 212, 255, 1) 100%
   ); */
-  background-image: url("/assets/prezent.png");
-  background-repeat: no-repeat;
-  background-size: contain;
+  /* background-image: url("/assets/prezent.png"); */
+  /* background-repeat: no-repeat; */
+  /* background-size: contain; */
 
   /* color: #f9f9f9; */
 }
