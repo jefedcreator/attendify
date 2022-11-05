@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
-import img from "../../../../public/assets/InfoCircle.png";
+// import img from "../../../../public/assets/InfoCircle.png";
 import { useCreateEventContext } from "../../../../../context/eventContext/event";
 import { isPositiveInt } from "../../../../../utils/helper";
 // import { useWeb3React } from "@web3-react/core";
@@ -571,7 +571,7 @@ const EventForm = () => {
         <div className="event__banner">
           <div className="flex items-center flex-row w-80 space-between my-3">
             <p className="text-[#BEC9DA] mr-7">Upload Event Banner</p>
-            <Image src={img} width={14} height={14} />
+            {/* <Image src={img} width={14} height={14} /> */}
           </div>
 
           <div className="h-48 bg-[#100624] border-dashed cursor-pointer grid place-items-center border-2 border-slate-400 rounded-md">

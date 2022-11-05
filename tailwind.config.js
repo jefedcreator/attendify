@@ -15,6 +15,7 @@ module.exports = {
           "linear-gradient(101.24deg, rgba(45, 51, 71, 0.9) -1.38%, rgba(45, 51, 71, 0) 105.06%)",
         card: "linear-gradient(117.29deg, rgba(234, 255, 254, 0.08) 2.63%, rgba(234, 255, 254, 0) 100%);",
         cta: " linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.056) 100%);",
+        "banner":"url('/assets/people.png')"
       },
       backgroundPosition:{
         'top-4': 'center top 11rem',
@@ -41,7 +42,9 @@ module.exports = {
         "sm-medium":"56px",
         "sm-xx":"28px",
         "sm-x":"32px",
-        "36":"36px"
+        "36":"36px",
+        "48":"48px",
+        "sm-smallxxx":"10"
       },
       fontSize: {
         "7xl": "60px",
@@ -51,7 +54,8 @@ module.exports = {
         minimal: "16px",
         "hero-text": "66px",
         "medium":"42px",
-        "28":"28px"
+        "28":"28px",
+        "smallxxx":"12px"
       },
       textUnderlineOffset:{
         "12":"1.5rem"

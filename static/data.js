@@ -5,7 +5,7 @@ export const headerNav = [
   },
   {
     value: "Explore",
-    link: "/upcoming/upcomingEvents",
+    link: "/recentEvent",
   },
   {
     value: "About",

@@ -14,8 +14,8 @@ function Connected({ account }:accountProp) {
   };
   return (
     <div className="flex  items-center justify-end space-x-2 flex-grow lg:space-x-4">
-      <div className="border w-40 border-gray-500 border-[#BEC9DA] rounded-lg flex space-x-2 p-1">
-        <img src="/assets/walletIcon.svg" alt="connectWallet_icon" />
+      <div className="border w-40 border-gray-500 bg-[#6E4AE7] border-[#BEC9DA] rounded-lg flex space-x-2 p-1">
+        {/* <img src="/assets/walletIcon.svg" alt="connectWallet_icon" /> */}
         <p className="text-gray-300 font-jakarta">{shortenAddress(account)}</p>
       </div>
       <div className="relative">
