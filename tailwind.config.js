@@ -19,6 +19,7 @@ module.exports = {
       },
       backgroundPosition:{
         'top-4': 'center top 11rem',
+        'bottom-4':"95%"
       },
       fontFamily: {
         jarkata: ["Plus Jakarta Sans", "sans-serif"],

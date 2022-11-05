@@ -176,7 +176,7 @@ export const dropdownItem = [
   },
   {
     value: "Browse Event",
-    link: "/upcoming/upcomingEvents",
+    link: "/recentEvent",
   },
   {
     value: "Favourites",
