@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from "next/image"
 
 function Sponsors() {
   return (
@@ -10,13 +11,13 @@ function Sponsors() {
         </div>
         <div className='flex items-center justify-center space-x-32 my-12 '>
             <div>
-            <img src="/assets/ether.png" alt="ethereum_logo" />
+            <Image width={205} height={72} src="/assets/ether.png" alt="ethereum_logo" />
             </div>
             <div>
-            <img src="/assets/web3.png" alt="web3_logo" />
+            <Image width={205} height={72} src="/assets/web3.png" alt="web3_logo" />
             </div>
             <div>
-            <img src="/assets/Polygon.png" alt="polygon_logo" />
+            <Image width={205} height={72} src="/assets/Polygon.png" alt="polygon_logo" />
             </div>
         </div>
     </div>
