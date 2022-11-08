@@ -14,19 +14,7 @@ import { useCallback } from "react";
 // import {NFTStorage, File} from "nft.storage"
 import PoapHooks from "../../../../../web3/hooks/index";
 // Modal.setAppElement("#root");
-// const auth =
-//   "Basic " +
-//   Buffer.from(
-//     process.env.NEXT_PUBLIC_PROJECT_ID + ":" + process.env.NEXT_PUBLIC_API_KEY
-//   ).toString("base64");
-// const client = ipfsHttpClient({
-//   host: "ipfs.infura.io",
-//   port: 5001,
-//   protocol: "https",
-//   headers: {
-//     authorization: auth,
-//   },
-// });
+
 
 // const client = new NFTStorage({token:process.env.NEXT_PUBLIC_NFT_KEY})
 const EventForm = () => {
