@@ -1,4 +1,4 @@
 export const RPC_URL = {
-    71: `https://evmtestnet.confluxrpc.com`,
-    1030:` https://evm.confluxrpc.com`
+    80001: `https://polygon-mumbai.g.alchemy.com/v2/-9bizVb52J5chyhNzoM_OhgRL_Fp7WEv`,
+    137:``
 }
