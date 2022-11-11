@@ -26,9 +26,6 @@ const PoapHooks = () => {
 
   poap.current = getPoap(address, signer.current || provider.current);
 
-  console.log(poap.current);
-  console.log('SIgner', signer.current)
-  console.log('provider', provider.current)
 
   const CreateEvent = useCallback(
     async (name, symbol, uri, callback) => {

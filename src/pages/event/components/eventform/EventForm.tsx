@@ -4,410 +4,346 @@ import React, { useEffect, useState, useRef } from "react";
 // import img from "../../../../public/assets/InfoCircle.png";
 import { useCreateEventContext } from "../../../../../context/eventContext/event";
 import { isPositiveInt } from "../../../../../utils/helper";
-// import { useWeb3React } from "@web3-react/core";
+import { useWeb3React } from "@web3-react/core";
 // import Modal from "react-modal";
 import axios from "axios";
 import { useToasts } from "react-toast-notifications";
 import { useCallback } from "react";
-// import { create as ipfsHttpClient } from "ipfs-http-client";
-// import { Buffer } from "buffer";
-// import {NFTStorage, File} from "nft.storage"
+import { Buffer } from "buffer";
+import {NFTStorage, File} from "nft.storage"
 import PoapHooks from "../../../../../web3/hooks/index";
-// Modal.setAppElement("#root");
 
 
-// const client = new NFTStorage({token:process.env.NEXT_PUBLIC_NFT_KEY})
+
+const client = new NFTStorage({token:process.env.NEXT_PUBLIC_NFT_KEY!})
 const EventForm = () => {
-  // const { addToast } = useToasts();
-  // const { CreateEvent } = PoapHooks();
-  const customStyles = {
-    overlay: {
-      background: "rgba(3, 4, 41, 0.7)",
-    },
-    content: {
-      backgroundColor: "#1E0D45",
-      borderRadius: "8px",
-    },
+  const { addToast } = useToasts();
+  const { CreateEvent } = PoapHooks();
+
+  const { account, active } = useWeb3React();
+  const [status, setStatus] = useState(false);
+  const [creating, setCreating] = useState(false);
+
+
+
+
+
+  const {
+    data,
+    loading,
+    setLoading,
+    setData,
+    preview,
+    setPreview,
+    prevBanner,
+    setPrevBanner,
+  } = useCreateEventContext();
+
+  const {
+    title,
+    description,
+    type,
+    category,
+    symbol,
+    location,
+    url,
+    startDate,
+    endDate,
+    numLink,
+    banner,
+    image,
+  } = data;
+
+
+  const fetchUserStatus = useCallback(async () => {
+    if (!active) return setLoading(true);
+    try {
+      const response = await axios.get(
+        `https://api.attendify.xyz/users/${account}`
+      );
+
+      setStatus(response.data.email);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error(error);
+    }
+  }, [active, account]);
+
+
+  useEffect(() => {
+    fetchUserStatus();
+  }, [active, account]);
+
+  const onInputChange = ({ target }:any) => {
+    const elementName = target.name;
+    const value = target.value;
+    const file = target?.files?.[0];
+
+    switch (elementName) {
+      case "title":
+        if (value == "")
+          return setData((prev:any) => ({
+            ...prev,
+            title: "",
+          }));
+        else if (value)
+          return setData((prev:any) => ({
+            ...prev,
+            title: value,
+          }));
+        break;
+      case "symbol":
+        if (value == "")
+          return setData((prev:any) => ({
+            ...prev,
+            symbol: "",
+          }));
+        else if (value)
+          return setData((prev:any) => ({
+            ...prev,
+            symbol: value,
+          }));
+        break;
+      case "description":
+        if (value == "")
+          return setData((prev:any) => ({
+            ...prev,
+            description: "",
+          }));
+        else if (value)
+          return setData((prev:any) => ({
+            ...prev,
+            description: value,
+          }));
+        break;
+      case "type":
+        if (value == "")
+          return setData((prev:any) => ({
+            ...prev,
+            type: "",
+          }));
+        else if (value)
+          return setData((prev:any) => ({
+            ...prev,
+            type: value,
+          }));
+        break;
+      case "category":
+        if (value == "")
+          return setData((prev:any) => ({
+            ...prev,
+            category: "",
+          }));
+        else if (value)
+          return setData((prev:any) => ({
+            ...prev,
+            category: value,
+          }));
+        break;
+      case "location":
+        if (value == "")
+          return setData((prev:any) => ({
+            ...prev,
+            location: "",
+          }));
+        else if (value)
+          return setData((prev:any) => ({
+            ...prev,
+            location: value,
+          }));
+        break;
+      case "links":
+        if (value == "")
+          return setData((prev:any) => ({
+            ...prev,
+            url: "",
+          }));
+        else if (value)
+          return setData((prev:any) => ({
+            ...prev,
+            url: value,
+          }));
+        break;
+      case "startDate":
+        if (value == "")
+          return setData((prev:any) => ({
+            ...prev,
+            startDate: "",
+          }));
+        else if (value)
+          return setData((prev:any) => ({
+            ...prev,
+            startDate: value,
+          }));
+        break;
+
+      case "endDate":
+        if (value == "")
+          return setData((prev:any) => ({
+            ...prev,
+            endDate: "",
+          }));
+        else if (value)
+          return setData((prev:any) => ({
+            ...prev,
+            endDate: value,
+          }));
+        break;
+      case "amount":
+        if (value == "")
+          return setData((prev:any) => ({
+            ...prev,
+            numLink: 0,
+          }));
+        else if (isPositiveInt(value))
+          return setData((prev:any) => ({
+            ...prev,
+            numLink: value,
+          }));
+        break;
+      case "banner":
+        if (file == "")
+          return setData((prev:any) => ({
+            ...prev,
+            banner: "",
+          }));
+        else if (file)
+          return setData((prev:any) => ({
+            ...prev,
+            banner: file,
+          }));
+        break;
+      case "image":
+        if (file == "")
+          return setData((prev:any) => ({
+            ...prev,
+            image: "",
+          }));
+        else if (file)
+          return setData((prev:any) => ({
+            ...prev,
+            image: file,
+          }));
+        break;
+
+      default:
+        break;
+    }
   };
-  // const { account, active } = useWeb3React();
-  // const [status, setStatus] = useState(false);
-  // const [creating, setCreating] = useState(false);
 
-  // const [show, setShow] = useState(true);
-
-  // const closeEmailModal = () => {
-  //   setShow(false);
-  // };
-
-  // const emailRef = useRef();
-
-  // const {
-  //   data,
-  //   loading,
-  //   setLoading,
-  //   setData,
-  //   preview,
-  //   setPreview,
-  //   prevBanner,
-  //   setPrevBanner,
-  // } = useCreateEventContext();
-
-  // const {
-  //   title,
-  //   description,
-  //   type,
-  //   category,
-  //   symbol,
-  //   location,
-  //   url,
-  //   startDate,
-  //   endDate,
-  //   numLink,
-  //   banner,
-  //   image,
-  // } = data;
-  // console.log(`${startDate}:${startTime}`);
-
-//   const fetchUserStatus = useCallback(async () => {
-//     if (!active) return setLoading(true);
-//     try {
-//       const response = await axios.get(
-//         `https://api.attendify.xyz/users/${account}`
-//       );
-
-//       setStatus(response.data.email);
-//       setLoading(false);
-//     } catch (error) {
-//       setLoading(false);
-//       console.error(error);
-//     }
-//   }, [active, account]);
-//   const postUserEmail = useCallback(
-//     async (event) => {
-//       event.preventDefault();
-//       const emailInput = emailRef.current.value;
-//       setLoading(true);
-//       try {
-//         console.log("account", account);
-//         const request = await axios.patch(
-//           `https://api.attendify.xyz/users/${account}`,
-//           JSON.stringify(emailInput)
-//         );
-//         emailInput = "";
-//         if (request.status === 200) {
-//           addToast("Email added successfully", { appearance: "success" });
-//           closeEmailModal();
-//           setLoading(false);
-//         }
-//       } catch (error) {
-//         console.log(error);
-//         setLoading(false);
-//       }
-//     },
-//     [account, active]
-//   );
-
-//   useEffect(() => {
-//     fetchUserStatus();
-//   }, [active, account]);
-
-//   const onInputChange = ({ target }) => {
-//     const elementName = target.name;
-//     const value = target.value;
-//     const file = target?.files?.[0];
-
-//     switch (elementName) {
-//       case "title":
-//         if (value == "")
-//           return setData((prev) => ({
-//             ...prev,
-//             title: "",
-//           }));
-//         else if (value)
-//           return setData((prev) => ({
-//             ...prev,
-//             title: value,
-//           }));
-//         break;
-//       case "symbol":
-//         if (value == "")
-//           return setData((prev) => ({
-//             ...prev,
-//             symbol: "",
-//           }));
-//         else if (value)
-//           return setData((prev) => ({
-//             ...prev,
-//             symbol: value,
-//           }));
-//         break;
-//       case "description":
-//         if (value == "")
-//           return setData((prev) => ({
-//             ...prev,
-//             description: "",
-//           }));
-//         else if (value)
-//           return setData((prev) => ({
-//             ...prev,
-//             description: value,
-//           }));
-//         break;
-//       case "type":
-//         if (value == "")
-//           return setData((prev) => ({
-//             ...prev,
-//             type: "",
-//           }));
-//         else if (value)
-//           return setData((prev) => ({
-//             ...prev,
-//             type: value,
-//           }));
-//         break;
-//       case "category":
-//         if (value == "")
-//           return setData((prev) => ({
-//             ...prev,
-//             category: "",
-//           }));
-//         else if (value)
-//           return setData((prev) => ({
-//             ...prev,
-//             category: value,
-//           }));
-//         break;
-//       case "location":
-//         if (value == "")
-//           return setData((prev) => ({
-//             ...prev,
-//             location: "",
-//           }));
-//         else if (value)
-//           return setData((prev) => ({
-//             ...prev,
-//             location: value,
-//           }));
-//         break;
-//       case "links":
-//         if (value == "")
-//           return setData((prev) => ({
-//             ...prev,
-//             url: "",
-//           }));
-//         else if (value)
-//           return setData((prev) => ({
-//             ...prev,
-//             url: value,
-//           }));
-//         break;
-//       case "startDate":
-//         if (value == "")
-//           return setData((prev) => ({
-//             ...prev,
-//             startDate: "",
-//           }));
-//         else if (value)
-//           return setData((prev) => ({
-//             ...prev,
-//             startDate: value,
-//           }));
-//         break;
-
-//       case "endDate":
-//         if (value == "")
-//           return setData((prev) => ({
-//             ...prev,
-//             endDate: "",
-//           }));
-//         else if (value)
-//           return setData((prev) => ({
-//             ...prev,
-//             endDate: value,
-//           }));
-//         break;
-//       case "amount":
-//         if (value == "")
-//           return setData((prev) => ({
-//             ...prev,
-//             numLink: 0,
-//           }));
-//         else if (isPositiveInt(value))
-//           return setData((prev) => ({
-//             ...prev,
-//             numLink: value,
-//           }));
-//         break;
-//       case "banner":
-//         if (file == "")
-//           return setData((prev) => ({
-//             ...prev,
-//             banner: "",
-//           }));
-//         else if (file)
-//           return setData((prev) => ({
-//             ...prev,
-//             banner: file,
-//           }));
-//         break;
-//       case "image":
-//         if (file == "")
-//           return setData((prev) => ({
-//             ...prev,
-//             image: "",
-//           }));
-//         else if (file)
-//           return setData((prev) => ({
-//             ...prev,
-//             image: file,
-//           }));
-//         break;
-
-//       default:
-//         break;
-//     }
-//   };
-
-//   // const [fileUrl, setFileUrl] = useState("");
-//   // console.log(fileUrl);
-//   // const onFileInputChange = async (e) => {
-//   //   const file = e.target.value;
-//   //   try {
-//   //     const added = await client.add(file, {
-//   //       progress: (prog) => console.log(`received ${prog}`),
-//   //     });
-//   //     // const url = `https://ipfs.infura.io/ipfs/${added.path}`
-//   //     setFileUrl(added.path);
-//   //   } catch (error) {
-//   //     console.error(error);
-//   //   }
-//   // };
-// console.log(data)
+  const [fileUrl, setFileUrl] = useState("");
+  console.log(fileUrl);
 
 
 
 
-  // useEffect(() => {
-  //   if (!banner) {
-  //     setPrevBanner(undefined);
-  //   }
 
-  //   if (!image) {
-  //     setPreview(undefined);
-  //   }
+  useEffect(() => {
+    if (!banner) {
+      setPrevBanner(undefined);
+    }
 
-  //   if (banner.length !== 0) {
-  //     const objectUrl = window.URL.createObjectURL(banner);
-  //     setPrevBanner(objectUrl);
-  //   }
-  //   if (image.length !== 0) {
-  //     const objectUrl = window.URL.createObjectURL(image);
-  //     setPreview(objectUrl);
-  //   }
-  // }, [banner,image]);
-  // const uploadToIpfs = async () => {
-  //   if (!title || !description || !type || !category || !fileUrl) return;
-  //   const data = JSON.stringify({
-  //     title,
-  //     description,
-  //     type,
-  //     category,
-  //     image: fileUrl,
-  //   });
-  //   try {
-  //     const added = await client.add(data);
-  //     const url = `https://ipfs.infura.io/ipfs/${added.path}`;
-  //     return url;
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+    if (!image) {
+      setPreview(undefined);
+    }
 
-  // const uploadToNftStorage = async() =>{
-  //   const bannerUrl = new File([ banner ], `${title}.jpg`, { type: 'image/jpg' })
-  //   const nftUrl = new File([ image ], `${symbol}.jpg`, { type: 'image/jpg' })
-  // const metadata = await client.store({
-  //   name:title,
-  //   description:description,
-  //   symbol:symbol,
-  //   banner:bannerUrl,
-  //   image:nftUrl,
-  // })
-  //     return  metadata
-  // }
+    if (banner.length !== 0) {
+      const objectUrl = window.URL.createObjectURL(banner);
+      setPrevBanner(objectUrl);
+    }
+    if (image.length !== 0) {
+      const objectUrl = window.URL.createObjectURL(image);
+      setPreview(objectUrl);
+    }
+  }, [banner,image]);
 
 
-  // const fetchImageAndBanner = async() =>{
-  //   const url = await uploadToNftStorage()
-  //   console.log(url.ipnft)
-  //   const request = await axios.get(`${`https://ipfs.io/ipfs/${url.ipnft}/metadata.json`}`)
-  //   if(request.status !== 200)return;
-  //   return request.data
-  // }
+  const uploadToNftStorage = async() =>{
+    const bannerUrl = new File([ banner ], `${title}.jpg`, { type: 'image/jpg' })
+    const nftUrl = new File([ image ], `${symbol}.jpg`, { type: 'image/jpg' })
+  const metadata = await client.store({
+    name:title,
+    description:description,
+    symbol:symbol,
+    banner:bannerUrl,
+    image:nftUrl,
+  })
+      return  metadata
+  }
 
 
-  // const createPoapEvent = async (event) => {
-  //   setCreating(true);
-  //   event.preventDefault();
-  //   if (
-  //     !title ||
-  //     !description ||
-  //     !type ||
-  //     !category ||
-  //     !symbol ||
-  //     !location ||
-  //     !url ||
-  //     !startDate ||
-  //     !endDate ||
-  //     !numLink ||
-  //     !banner
-  //   )
-  //     return addToast("Fields cannot be empty!", { appearance: "error" });
-  //     try {
-  //     let upload = await uploadToNftStorage();
-  //     let {banner, image} = await fetchImageAndBanner()
+  const fetchImageAndBanner = async() =>{
+    const url = await uploadToNftStorage()
+    console.log(url.ipnft)
+    const request = await axios.get(`${`https://ipfs.io/ipfs/${url.ipnft}/metadata.json`}`)
+    if(request.status !== 200)return;
+    return request.data
+  }
 
 
-  //     await CreateEvent(title, symbol, upload.url, async (res) => {
-  //       if (!res.hash) {
-  //         return addToast(res.message, { appearance: "error" });
-  //       }
-  //       const result = await res.wait();
+  const createPoapEvent = async (event:any) => {
+    setCreating(true);
+    event.preventDefault();
+    if (
+      !title ||
+      !description ||
+      !type ||
+      !category ||
+      !symbol ||
+      !location ||
+      !url ||
+      !startDate ||
+      !endDate ||
+      !numLink ||
+      !banner
+    )
+      return addToast("Fields cannot be empty!", { appearance: "error" });
+      try {
+      let upload = await uploadToNftStorage();
+      let {banner, image} = await fetchImageAndBanner()
 
-  //       if (!result)
-  //         return addToast("An error occured", { appearance: "error" });
+
+      await CreateEvent(title, symbol, upload.url, async (res:any) => {
+        if (!res.hash) {
+          return addToast(res.message, { appearance: "error" });
+        }
+        const result = await res.wait();
+
+        if (!result)
+          return addToast("An error occured", { appearance: "error" });
           
-  //       let info = {
-  //         title: title,
-  //         type: type,
-  //         category: category,
-  //         location: location,
-  //         link: url,
-  //         start_datetime: startDate,
-  //         end_datetime: endDate,
-  //         mints_needed: numLink,
-  //         banner_url: banner,
-  //         nft_url: image,
-  //         attendees: [],
-  //         host_wallet: account,
-  //         event_address: result.to,
-  //       };
-  //       console.log("I am data",info)
-  //       // const requestOption = {
-  //       //   headers:{"Content-Type":"application/json"},
-  //       //   body:data
-  //       // }
-  //       const serverResponse = axios.post("https://api.attendify.xyz/events/",info);
+        let info = {
+          title: title,
+          type: type,
+          category: category,
+          location: location,
+          link: url,
+          start_datetime: startDate,
+          end_datetime: endDate,
+          mints_needed: numLink,
+          banner_url: banner,
+          nft_url: image,
+          attendees: [],
+          host_wallet: account,
+          event_address: result.to,
+        };
+        console.log("I am data",info)
+        // const requestOption = {
+        //   headers:{"Content-Type":"application/json"},
+        //   body:data
+        // }
+        const serverResponse = axios.post("https://api.attendify.xyz/events/",info);
 
-  //       if (serverResponse.status !== 201)
-  //         return addToast("Something went wrong", { appearance: "error" });
-  //       addToast("Event successfully created", { appearance: "success" });
-  //       setCreating(false);
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+        if (serverResponse.status !== 201)
+          return addToast("Something went wrong", { appearance: "error" });
+        addToast("Event successfully created", { appearance: "success" });
+        setCreating(false);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     // <div className="p-4 w-full md:w-1/2 md:m-auto sm:m-6 text-[#BEC9DA]">
@@ -431,7 +367,7 @@ const EventForm = () => {
               <input
                 type="text"
                 name="title"
-                // onChange={onInputChange}
+                onChange={onInputChange}
                 className="bg-[#180A38] border border-gray-400 rounded-md p-2 mt-2"
               />
             </div>
@@ -440,7 +376,7 @@ const EventForm = () => {
               <input
                 type="text"
                 name="symbol"
-                // onChange={onInputChange}
+                onChange={onInputChange}
                 className="bg-[#180A38] border border-gray-400 rounded-md p-2 mt-2"
               />
             </div>
@@ -449,7 +385,7 @@ const EventForm = () => {
           <div className="flex flex-col py-3 text-gray-400">
             <label htmlFor="description">Description</label>
             <textarea
-              // onChange={onInputChange}
+              onChange={onInputChange}
               name="description"
               className="bg-[#180A38] border border-gray-400 rounded-md p-2 mt-2 h-40"
             />
@@ -461,7 +397,7 @@ const EventForm = () => {
               <select
                 name="type"
                 id="type"
-                // onChange={onInputChange}
+                onChange={onInputChange}
                 className="rounded py-3 mt-5 p-2 bg-[#180A38]"
                 required
               >
@@ -476,7 +412,7 @@ const EventForm = () => {
               <select
                 name="category"
                 id="category"
-                // onChange={onInputChange}
+                onChange={onInputChange}
                 className="rounded py-3 mt-5 p-2 bg-[#180A38] border-1 border-solid border-red-100 "
                 required
               >
@@ -494,7 +430,7 @@ const EventForm = () => {
               <input
                 type="text"
                 name="location"
-                // onChange={onInputChange}
+                onChange={onInputChange}
                 className="bg-[#180A38] border border-gray-400 rounded-md p-2 mt-2"
                 placeholder="add a location."
               />
@@ -504,7 +440,7 @@ const EventForm = () => {
               <input
                 type="text"
                 name="links"
-                // onChange={onInputChange}
+                onChange={onInputChange}
                 className="bg-[#180A38] border border-gray-400 rounded-md p-2 mt-2 "
                 placeholder="add event registration link"
               />
@@ -520,7 +456,7 @@ const EventForm = () => {
               <input
                 type="datetime-local"
                 name="startDate"
-                // onChange={onInputChange}
+                onChange={onInputChange}
                 className="bg-[#180A38] border border-gray-400 rounded-md p-2 mt-2"
                 placeholder="Pick date"
               />
@@ -530,7 +466,7 @@ const EventForm = () => {
               <input
                  type="datetime-local"
                 name="endDate"
-                // onChange={onInputChange}
+                onChange={onInputChange}
                 className="bg-[#180A38] border border-gray-400 rounded-md p-2 mt-2"
                 placeholder="Pick date"
               />
@@ -548,7 +484,7 @@ const EventForm = () => {
               <input
                 type="number"
                 name="amount"
-                // onChange={onInputChange}
+                onChange={onInputChange}
                 className="bg-[#180A38] border border-gray-400 rounded-md p-2 mt-2"
               />
             </div>
@@ -565,13 +501,13 @@ const EventForm = () => {
           <div className="h-48 bg-[#100624] border-dashed cursor-pointer grid place-items-center border-2 border-slate-400 rounded-md">
             <input
               type="file"
-              // onChange={onInputChange}
+              onChange={onInputChange}
               name="banner"
               multiple={false}
             />
             <p className="text-[#9EAEC7]">Upload</p>
           </div>
-          {/* <div className="my-4">
+          <div className="my-4">
             {banner && (
               <img
                 className="text-gray-400"
@@ -581,7 +517,7 @@ const EventForm = () => {
                 height={200}
               />
             )}
-          </div> */}
+          </div>
           <div className="require_details my-3.5">
             <p className="text-sm tracking-wider text-gray-400 font-bold">
               Image requirements:
@@ -601,14 +537,14 @@ const EventForm = () => {
           <div className="h-48 bg-[#100624] cursor-pointer border-dashed grid place-items-center border-2 border-slate-400 rounded-md">
             <input
               type="file"
-              // onChange={onInputChange}
+              onChange={onInputChange}
               name="image"
               multiple={false}
             />
             <p className="text-[#9EAEC7]">Upload</p>
           </div>
 
-          {/* <div className="my-4">
+          <div className="my-4">
             {preview && (
               <img
                 className="text-gray-400"
@@ -618,7 +554,7 @@ const EventForm = () => {
                 height={200}
               />
             )}
-          </div> */}
+          </div>
 
           <div className="require_details my-3.5">
             <p className="text-sm tracking-wider text-gray-300 font-bold">
@@ -637,7 +573,7 @@ const EventForm = () => {
             <p>Creating Event</p>
           ) : ( */}
             <button
-              // onClick={createPoapEvent}
+              onClick={createPoapEvent}
               className="px-8 py-2  mx-auto w-full sm:w-1/2 font-medium font-jarkata bg-[#B5179E] rounded-lg text-gray-200"
             >
               Create an Event
