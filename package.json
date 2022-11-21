@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ethersproject/providers": "^5.7.2",
     "@headlessui/react": "^1.7.3",
     "@types/react-modal": "^3.13.1",
     "@web3-react/core": "^6.1.9",

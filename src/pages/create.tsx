@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-import EventForm from "@pages/event/components/eventform/EventForm";
+import EventForm from "@components/event/components/EventForm";
 import LayOut from "@layout/LayOut";
 import HeaderMetaData from "@common/MetaData/HeaderMetaData";
 

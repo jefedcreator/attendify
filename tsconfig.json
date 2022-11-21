@@ -22,7 +22,8 @@
       "@utils/*":["utils/*"],
       "@public/*":["public/*"],
       "@common/*":["src/common/*"],
-      "@pages/*":["src/pages/*"]
+      "@pages/*":["src/pages/*"],
+      "@context/*":["context/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

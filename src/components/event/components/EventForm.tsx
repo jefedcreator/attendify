@@ -2,31 +2,26 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
 // import img from "../../../../public/assets/InfoCircle.png";
-import { useCreateEventContext } from "../../../../../context/eventContext/event";
-import { isPositiveInt } from "../../../../../utils/helper";
+import { useCreateEventContext } from "@context/eventContext/event";
+import { isPositiveInt } from "@utils/helper";
 import { useWeb3React } from "@web3-react/core";
 // import Modal from "react-modal";
 import axios from "axios";
 import { useToasts } from "react-toast-notifications";
 import { useCallback } from "react";
 import { Buffer } from "buffer";
-import {NFTStorage, File} from "nft.storage"
-import PoapHooks from "../../../../../web3/hooks/index";
+import { NFTStorage, File } from "nft.storage";
+import { usePrezent } from "web3/hooks/index";
 
-
-
-const client = new NFTStorage({token:process.env.NEXT_PUBLIC_NFT_KEY!})
+const client = new NFTStorage({ token: process.env.NEXT_PUBLIC_NFT_KEY! });
 const EventForm = () => {
   const { addToast } = useToasts();
-  const { CreateEvent } = PoapHooks();
+  const { contract, CreateEvent } = usePrezent();
+
+  console.log("I am contract:", contract);
 
   const { account, active } = useWeb3React();
-  const [status, setStatus] = useState(false);
   const [creating, setCreating] = useState(false);
-
-
-
-
 
   const {
     data,
@@ -54,28 +49,7 @@ const EventForm = () => {
     image,
   } = data;
 
-
-  const fetchUserStatus = useCallback(async () => {
-    if (!active) return setLoading(true);
-    try {
-      const response = await axios.get(
-        `https://api.attendify.xyz/users/${account}`
-      );
-
-      setStatus(response.data.email);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.error(error);
-    }
-  }, [active, account]);
-
-
-  useEffect(() => {
-    fetchUserStatus();
-  }, [active, account]);
-
-  const onInputChange = ({ target }:any) => {
+  const onInputChange = ({ target }: any) => {
     const elementName = target.name;
     const value = target.value;
     const file = target?.files?.[0];
@@ -83,96 +57,96 @@ const EventForm = () => {
     switch (elementName) {
       case "title":
         if (value == "")
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             title: "",
           }));
         else if (value)
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             title: value,
           }));
         break;
       case "symbol":
         if (value == "")
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             symbol: "",
           }));
         else if (value)
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             symbol: value,
           }));
         break;
       case "description":
         if (value == "")
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             description: "",
           }));
         else if (value)
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             description: value,
           }));
         break;
       case "type":
         if (value == "")
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             type: "",
           }));
         else if (value)
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             type: value,
           }));
         break;
       case "category":
         if (value == "")
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             category: "",
           }));
         else if (value)
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             category: value,
           }));
         break;
       case "location":
         if (value == "")
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             location: "",
           }));
         else if (value)
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             location: value,
           }));
         break;
       case "links":
         if (value == "")
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             url: "",
           }));
         else if (value)
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             url: value,
           }));
         break;
       case "startDate":
         if (value == "")
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             startDate: "",
           }));
         else if (value)
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             startDate: value,
           }));
@@ -180,48 +154,48 @@ const EventForm = () => {
 
       case "endDate":
         if (value == "")
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             endDate: "",
           }));
         else if (value)
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             endDate: value,
           }));
         break;
       case "amount":
         if (value == "")
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             numLink: 0,
           }));
         else if (isPositiveInt(value))
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             numLink: value,
           }));
         break;
       case "banner":
         if (file == "")
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             banner: "",
           }));
         else if (file)
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             banner: file,
           }));
         break;
       case "image":
         if (file == "")
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             image: "",
           }));
         else if (file)
-          return setData((prev:any) => ({
+          return setData((prev: any) => ({
             ...prev,
             image: file,
           }));
@@ -234,10 +208,6 @@ const EventForm = () => {
 
   const [fileUrl, setFileUrl] = useState("");
   console.log(fileUrl);
-
-
-
-
 
   useEffect(() => {
     if (!banner) {
@@ -256,33 +226,32 @@ const EventForm = () => {
       const objectUrl = window.URL.createObjectURL(image);
       setPreview(objectUrl);
     }
-  }, [banner,image]);
+  }, [banner, image]);
 
+  const uploadToNftStorage = async () => {
+    const bannerUrl = new File([banner], `${title}.jpg`, { type: "image/jpg" });
+    const nftUrl = new File([image], `${symbol}.jpg`, { type: "image/jpg" });
+    const metadata = await client.store({
+      name: title,
+      description: description,
+      symbol: symbol,
+      banner: bannerUrl,
+      image: nftUrl,
+    });
+    return metadata;
+  };
 
-  const uploadToNftStorage = async() =>{
-    const bannerUrl = new File([ banner ], `${title}.jpg`, { type: 'image/jpg' })
-    const nftUrl = new File([ image ], `${symbol}.jpg`, { type: 'image/jpg' })
-  const metadata = await client.store({
-    name:title,
-    description:description,
-    symbol:symbol,
-    banner:bannerUrl,
-    image:nftUrl,
-  })
-      return  metadata
-  }
+  const fetchImageAndBanner = async () => {
+    const url = await uploadToNftStorage();
+    console.log(url.ipnft);
+    const request = await axios.get(
+      `${`https://ipfs.io/ipfs/${url.ipnft}/metadata.json`}`
+    );
+    if (request.status !== 200) return;
+    return request.data;
+  };
 
-
-  const fetchImageAndBanner = async() =>{
-    const url = await uploadToNftStorage()
-    console.log(url.ipnft)
-    const request = await axios.get(`${`https://ipfs.io/ipfs/${url.ipnft}/metadata.json`}`)
-    if(request.status !== 200)return;
-    return request.data
-  }
-
-
-  const createPoapEvent = async (event:any) => {
+  const createPoapEvent = async (event: any) => {
     setCreating(true);
     event.preventDefault();
     if (
@@ -299,12 +268,11 @@ const EventForm = () => {
       !banner
     )
       return addToast("Fields cannot be empty!", { appearance: "error" });
-      try {
+    try {
       let upload = await uploadToNftStorage();
-      let {banner, image} = await fetchImageAndBanner()
+      let { banner, image } = await fetchImageAndBanner();
 
-
-      await CreateEvent(title, symbol, upload.url, async (res:any) => {
+      await CreateEvent(title, symbol, upload.url, async (res: any) => {
         if (!res.hash) {
           return addToast(res.message, { appearance: "error" });
         }
@@ -312,7 +280,7 @@ const EventForm = () => {
 
         if (!result)
           return addToast("An error occured", { appearance: "error" });
-          
+
         let info = {
           title: title,
           type: type,
@@ -328,12 +296,15 @@ const EventForm = () => {
           host_wallet: account,
           event_address: result.to,
         };
-        console.log("I am data",info)
+        console.log("I am data", info);
         // const requestOption = {
         //   headers:{"Content-Type":"application/json"},
         //   body:data
         // }
-        const serverResponse = axios.post("https://api.attendify.xyz/events/",info);
+        const serverResponse: any = axios.post(
+          "https://attendifyapi.herokuapp.com/api/v1.0/create",
+          info
+        );
 
         if (serverResponse.status !== 201)
           return addToast("Something went wrong", { appearance: "error" });
@@ -464,7 +435,7 @@ const EventForm = () => {
             <div className="flex flex-col py-3 flex-1 mr-5 relative">
               <label htmlFor="endDate">Event End Date and Time</label>
               <input
-                 type="datetime-local"
+                type="datetime-local"
                 name="endDate"
                 onChange={onInputChange}
                 className="bg-[#180A38] border border-gray-400 rounded-md p-2 mt-2"
@@ -472,8 +443,6 @@ const EventForm = () => {
               />
             </div>
           </div>
-
-          
         </div>
 
         <div className="event-details">
@@ -568,66 +537,14 @@ const EventForm = () => {
         </div>
 
         <div className="mb-36 flex item-center mt-16">
-          {/* <Link href="/user/created"> */}
-          {/* {creating === true ? (
-            <p>Creating Event</p>
-          ) : ( */}
-            <button
-              onClick={createPoapEvent}
-              className="px-8 py-2  mx-auto w-full sm:w-1/2 font-medium font-jarkata bg-[#B5179E] rounded-lg text-gray-200"
-            >
-              Create an Event
-            </button>
-          {/* )} */}
-
-          {/* </Link> */}
+          <button
+            className="px-8 py-2  mx-auto w-full sm:w-1/2 font-medium font-jarkata bg-[#B5179E] rounded-lg text-gray-200"
+            onClick={createPoapEvent}
+          >
+            Create an Event
+          </button>
         </div>
       </form>
-      {/* {loading === true ? (
-        <p>Loading</p>
-      ) : (
-        <>
-          {status === null && (
-            <Modal
-              isOpen={show}
-              style={customStyles}
-              className=" top-1/4  w-11/12 left-4 md:w-1/2 md:left-1/4 md:top-1/4 md:p-8 lg:w-1/2 lg:mx-auto absolute lg:left-1/4 lg:top-1/4 lg:p-4"
-            >
-              <div className="p-4 ">
-                <form>
-                  <p className="text-gray-300">
-                    Do not fill the form if you already registered with before{" "}
-                  </p>
-                  <div>
-                    <label
-                      className="text-gray-300 block text-sm my-4"
-                      htmlFor="email"
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      className="outline-none border-none mx-auto w-full sm:w-1/2 p-2 rounded-sm"
-                      name="email"
-                      ref={emailRef}
-                      placeholder="enter your email"
-                    />
-                  </div>
-
-                  <button
-                    onClick={postUserEmail}
-                    disabled={loading}
-                    className="px-8 py-2  mx-auto w-full sm:w-1/2 my-8 font-medium font-jarkata bg-[#B5179E] cursor-pointer rounded-lg text-gray-200"
-                  >
-                    Submit Email
-                  </button>
-                </form>
-              </div>
-            </Modal>
-          )}
-        </>
-      )} */}
     </div>
   );
 };
