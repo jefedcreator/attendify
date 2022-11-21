@@ -20,6 +20,7 @@ function Jumbotron() {
           </p>
           <div className="w-full md:flex md:justify-center lg:flex lg:justify-center my-12 space-x-0 md:space-x-8 lg:space-x-8 space-y-8 md:space-y-0 lg:space-y-0">
             <Button
+              href={`/create`}
               label="Create Event"
               className="w-full md:w-[50%] lg:w-[25%] border-solid border-2 border-[#bba9f4]  bg-[#6E4AE7] text-white"
             />
