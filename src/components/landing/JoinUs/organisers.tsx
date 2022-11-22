@@ -5,14 +5,15 @@ import Button from "@common/Button";
 
 function Organisers() {
   return (
-    <section className="mt-32 md:my-56 lg:my-56 container mx-auto"  id="about">
-      <div className="grid grid-cols-2 items-center justify-center">
+    <section className="mt-32 md:my-56 lg:my-56 container mx-auto" id="about">
+      <div className="grid lg:grid-cols-2 mx-6  items-center justify-center">
         <div>
           <Image src={cart} className="w-full" alt="image" />
         </div>
         <div>
           <h3 className="leading-sm-medium text-[#F9F8FB] font-bold font-syne text-medium my-6">
-            Attendify for Event<br/> Organizers
+            Attendify for Event
+            <br /> Organizers
           </h3>
           <div className="flex my-4">
             <hr className="w-[30%] border-[#E326C8]" />
@@ -22,7 +23,11 @@ function Organisers() {
             <br /> information about the event and preznts to be presented to
             <br /> attendees.
           </p>
-          <Button  className="w-[25%] border-solid border-2 border-[#bba9f4]  bg-[#6E4AE7] text-white p-2" label="Create Event"/>
+          <Button
+            href={"/create"}
+            className="w-[100%] lg:w-[25%]  border-solid border-2 border-[#bba9f4]  bg-[#6E4AE7] text-white p-2"
+            label="Create Event"
+          />
         </div>
       </div>
     </section>

@@ -5,8 +5,8 @@ import Button from "@common/Button";
 
 function About() {
   return (
-    <section className="mt-32 md:my-56 lg:my-56 container mx-auto"  id="about">
-      <div className="grid grid-cols-2 items-center justify-center">
+    <section className="mt-32 md:my-56 lg:my-56 container mx-auto" id="about">
+      <div className="grid lg:grid-cols-2 mx-6 items-center justify-center">
         <div>
           <h3 className="leading-sm-medium text-[#F9F8FB] font-syne text-medium">
             What is <span className="text-linear">Attendify?</span>
@@ -23,11 +23,12 @@ function About() {
             <br /> record of their participation.
           </p>
           <Button
-            className="w-[25%] border-solid border-2 border-[#bba9f4]  bg-[#6E4AE7] text-white p-2"
+            className="w-[100%] lg:w-[25%] border-solid border-2 border-[#bba9f4]  bg-[#6E4AE7] text-white p-2"
             label="Open App"
+            href={"/walletConnect"}
           />
         </div>
-        <div>
+        <div className="mt-12">
           <Image src={poap} className="w-full" alt="image" />
         </div>
       </div>
