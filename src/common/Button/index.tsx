@@ -6,16 +6,16 @@ type ButtonProps = {
   label: string;
   className: string;
   onClick?: () => void;
-  href?:string
+  href?: string;
 };
-function Button({ label, className,href, onClick, ...props }: ButtonProps) {
+function Button({ label, className, href, onClick, ...props }: ButtonProps) {
   return (
     <button
       onClick={onClick}
       className={`outline-none border-opacity-30 p-4 rounded-lg ${className}`}
       {...props}
     >
-     <a href={href}>{label}</a>
+      <a href={href}>{label}</a>
     </button>
   );
 }
