@@ -20,3 +20,8 @@ export function getProviderOrSigner(library: Web3Provider, account?: string): We
   }
 
   export const RpcProvider = new StaticJsonRpcProvider(RPC_URL[80001])
+
+ export enum ChainId {
+    Mumbai_TestNet=80001,
+    Mainnet =137
+}

@@ -1,15 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
-import React, { useEffect, useState, useRef } from "react";
-// import img from "../../../../public/assets/InfoCircle.png";
+import React, { useEffect, useState } from "react";
 import { useCreateEventContext } from "@context/eventContext/event";
 import { isPositiveInt } from "@utils/helper";
 import { useWeb3React } from "@web3-react/core";
-// import Modal from "react-modal";
 import axios from "axios";
 import { useToasts } from "react-toast-notifications";
-import { useCallback } from "react";
-import { Buffer } from "buffer";
 import { NFTStorage, File } from "nft.storage";
 import { usePrezent } from "web3/hooks/index";
 
@@ -20,13 +14,11 @@ const EventForm = () => {
 
   console.log("I am contract:", contract);
 
-  const { account, active } = useWeb3React();
+  const { account } = useWeb3React();
   const [creating, setCreating] = useState(false);
 
   const {
     data,
-    loading,
-    setLoading,
     setData,
     preview,
     setPreview,
@@ -48,6 +40,8 @@ const EventForm = () => {
     banner,
     image,
   } = data;
+
+  console.log("I am data:",data)
 
   const onInputChange = ({ target }: any) => {
     const elementName = target.name;
@@ -206,8 +200,8 @@ const EventForm = () => {
     }
   };
 
-  const [fileUrl, setFileUrl] = useState("");
-  console.log(fileUrl);
+  // const [fileUrl, setFileUrl] = useState("");
+
 
   useEffect(() => {
     if (!banner) {
@@ -243,8 +237,9 @@ const EventForm = () => {
 
   const fetchImageAndBanner = async () => {
     const url = await uploadToNftStorage();
-    console.log(url.ipnft);
+    console.log("I am url:",url)
     const request = await axios.get(
+      // /bafyreibe5vld2enofsuy55xq4oeuhkokxk2knnp2b5r7au5pijnqlublj4/metadata.json
       `${`https://ipfs.io/ipfs/${url.ipnft}/metadata.json`}`
     );
     if (request.status !== 200) return;
@@ -296,11 +291,6 @@ const EventForm = () => {
           host_wallet: account,
           event_address: result.to,
         };
-        console.log("I am data", info);
-        // const requestOption = {
-        //   headers:{"Content-Type":"application/json"},
-        //   body:data
-        // }
         const serverResponse: any = axios.post(
           "https://attendifyapi.herokuapp.com/api/v1.0/create",
           info
@@ -539,9 +529,10 @@ const EventForm = () => {
         <div className="mb-36 flex item-center mt-16">
           <button
             className="px-8 py-2  mx-auto w-full sm:w-1/2 font-medium font-jarkata bg-[#B5179E] rounded-lg text-gray-200"
+            disabled={creating === true}
             onClick={createPoapEvent}
           >
-            Create an Event
+          {creating? "creating": "Create an Event"} 
           </button>
         </div>
       </form>
