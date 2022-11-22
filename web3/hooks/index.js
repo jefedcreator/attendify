@@ -59,7 +59,11 @@ export const usePrezent = () => {
 
   const CreateEvent = async (title, symbol, url, callback) => {
     if (!active) throw Error("You're not active");
-    await contract.createEvent(title, symbol, url).then(callback);
+    try {
+      await contract.createEvent(title, symbol, url).then(callback);
+    } catch (error) {
+      throw error;
+    }
   };
 
   return {
