@@ -25,3 +25,7 @@ export function getProviderOrSigner(library: Web3Provider, account?: string): We
     Mumbai_TestNet=80001,
     Mainnet =137
 }
+
+export const epoch = (data:any) =>{
+    return Date.parse(data)
+}

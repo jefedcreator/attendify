@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCreateEventContext } from "@context/eventContext/event";
-import { isPositiveInt } from "@utils/helper";
+import { epoch, isPositiveInt } from "@utils/helper";
 import { useWeb3React } from "@web3-react/core";
 import axios from "axios";
 import { useToasts } from "react-toast-notifications";
@@ -10,21 +10,13 @@ import { usePrezent } from "web3/hooks/index";
 const client = new NFTStorage({ token: process.env.NEXT_PUBLIC_NFT_KEY! });
 const EventForm = () => {
   const { addToast } = useToasts();
-  const { contract, CreateEvent } = usePrezent();
-
-  console.log("I am contract:", contract);
+  const { CreateEvent } = usePrezent();
 
   const { account } = useWeb3React();
   const [creating, setCreating] = useState(false);
 
-  const {
-    data,
-    setData,
-    preview,
-    setPreview,
-    prevBanner,
-    setPrevBanner,
-  } = useCreateEventContext();
+  const { data, setData, preview, setPreview, prevBanner, setPrevBanner } =
+    useCreateEventContext();
 
   const {
     title,
@@ -40,8 +32,6 @@ const EventForm = () => {
     banner,
     image,
   } = data;
-
-  console.log("I am data:",data)
 
   const onInputChange = ({ target }: any) => {
     const elementName = target.name;
@@ -202,7 +192,6 @@ const EventForm = () => {
 
   // const [fileUrl, setFileUrl] = useState("");
 
-
   useEffect(() => {
     if (!banner) {
       setPrevBanner(undefined);
@@ -234,12 +223,10 @@ const EventForm = () => {
     });
     return metadata;
   };
-
   const fetchImageAndBanner = async () => {
     const url = await uploadToNftStorage();
-    console.log("I am url:",url)
+    console.log("I am url:", url);
     const request = await axios.get(
-      // /bafyreibe5vld2enofsuy55xq4oeuhkokxk2knnp2b5r7au5pijnqlublj4/metadata.json
       `${`https://ipfs.io/ipfs/${url.ipnft}/metadata.json`}`
     );
     if (request.status !== 200) return;
@@ -275,34 +262,37 @@ const EventForm = () => {
 
         if (!result)
           return addToast("An error occured", { appearance: "error" });
-
+        const start = epoch(startDate);
+        const end = epoch(endDate);
         let info = {
           title: title,
+          description: description,
           type: type,
           category: category,
           location: location,
           link: url,
-          start_datetime: startDate,
-          end_datetime: endDate,
-          mints_needed: numLink,
-          banner_url: banner,
-          nft_url: image,
-          attendees: [],
-          host_wallet: account,
-          event_address: result.to,
+          start_time: start,
+          end_time: end,
+          banner: banner,
+          nft: image,
+          creator: account,
+          attendify: result.to,
         };
         const serverResponse: any = axios.post(
-          "https://attendifyapi.herokuapp.com/api/v1.0/create",
+          "https://attendifyapi.herokuapp.com/create",
           info
         );
-
-        if (serverResponse.status !== 201)
-          return addToast("Something went wrong", { appearance: "error" });
+        if (serverResponse.status !== 200) {
+          addToast("Something went wrong", { appearance: "error" });
+          setCreating(false)
+        }
         addToast("Event successfully created", { appearance: "success" });
         setCreating(false);
       });
     } catch (error) {
+      setCreating(false);
       console.log(error);
+      throw error;
     }
   };
 
@@ -532,7 +522,7 @@ const EventForm = () => {
             disabled={creating === true}
             onClick={createPoapEvent}
           >
-          {creating? "creating": "Create an Event"} 
+            {creating ? "creating" : "Create an Event"}
           </button>
         </div>
       </form>

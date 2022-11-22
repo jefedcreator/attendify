@@ -1,12 +1,11 @@
 import React from "react";
-import Link from "next/link";
 import Button from "@common/Button";
 
 function Jumbotron() {
   return (
     <React.Fragment>
       {/* <div className=" items-center md:grid md:grid-cols-2 md:gap-x-16 lg:grid lg:grid-cols-2 lg:gap-x-16 lg:mt-12 "> */}
-      <section className="bg-hero-pattern bg-no-repeat  bg-top-4 w-full mt-24 md:h-screen lg:h-screen">
+      <section className="bg-hero-pattern bg-no-repeat p-4 md:p-4 lg:p-0 bg-top-4 w-full mt-24 md:h-screen lg:h-screen">
         {/* <section className="mt-24"> */}
         <div className="text-center">
           <h2 className="font-syne text-white text-smallx leading-sm-small md:text-hero-text md:leading-custom-leading lg:text-hero-text lg:leading-custom-leading font-bold">
