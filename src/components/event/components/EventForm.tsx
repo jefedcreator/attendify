@@ -276,13 +276,13 @@ const EventForm = () => {
           banner: banner,
           nft: image,
           creator: account,
-          attendify: result.to,
+          attendify: result?.events[0]?.address,
         };
         const serverResponse: any = axios.post(
           "https://attendifyapi.herokuapp.com/create",
           info
         );
-        if (serverResponse.status !== 200) {
+        if (!serverResponse) {
           addToast("Something went wrong", { appearance: "error" });
           setCreating(false)
         }
