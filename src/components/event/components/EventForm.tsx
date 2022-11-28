@@ -314,7 +314,7 @@ const EventForm = () => {
           setCreating(false)
         }
         addToast("Event successfully created", { appearance: "success" });
-        await router.push(`http://localhost:3000/mint/${result?.events[0]?.address}`)
+        await router.push(`/mint/${result?.events[0]?.address}`)
         setCreating(false);
       });
     } catch (error) {
