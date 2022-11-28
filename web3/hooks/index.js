@@ -66,8 +66,18 @@ export const usePrezent = () => {
     }
   };
 
+  const claim = async (creator,callback) => {
+    if (!active) throw Error("You're not connected!");
+    try {
+      await contract.claimPoap(creator).then(callback);
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return {
     contract,
     CreateEvent,
+    claim
   };
 };
