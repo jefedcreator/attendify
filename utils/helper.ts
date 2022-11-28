@@ -1,5 +1,8 @@
+
+import * as ipfsClient from "ipfs-http-client"
 import { JsonRpcSigner, Web3Provider,StaticJsonRpcProvider } from "@ethersproject/providers";
 import { RPC_URL } from "web3/provider/rpc_url";
+import axios from "axios";
 
 export const shortenAddress = (address:string) => {
     if (!address) return null;
@@ -29,3 +32,29 @@ export function getProviderOrSigner(library: Web3Provider, account?: string): We
 export const epoch = (data:any) =>{
     return Date.parse(data)
 }
+
+
+const IPFS_BASE_URL = "https://gateway.pinata.cloud/ipfs/"
+
+export async function useIPFS(hash: string) {
+    const res = await axios.get(`${IPFS_BASE_URL}${hash}`)
+    return res.data
+
+}
+
+
+
+const auth =
+  "Basic " +
+  Buffer.from(
+    `${process.env.NEXT_PUBLIC_INFURA_IFPS_PROJECT_ID}:${process.env.NEXT_PUBLIC_INFURA_IPFS_PROJECT_SECRET}`,
+  ).toString("base64")
+
+export const ipfs = ipfsClient.create({
+  host: "ipfs.infura.io",
+  port: 5001,
+  protocol: "https",
+  headers: {
+    authorization: auth,
+  },
+})

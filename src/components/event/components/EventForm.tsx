@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useCreateEventContext } from "@context/eventContext/event";
-import { epoch, isPositiveInt } from "@utils/helper";
+import { epoch, ipfs, isPositiveInt, useIPFS } from "@utils/helper";
 import { useWeb3React } from "@web3-react/core";
 import axios from "axios";
 import { useToasts } from "react-toast-notifications";
 import { NFTStorage, File } from "nft.storage";
 import { usePrezent } from "web3/hooks/index";
+import { useRouter } from "next/router";
 
 const client = new NFTStorage({ token: process.env.NEXT_PUBLIC_NFT_KEY! });
 const EventForm = () => {
+   const router =  useRouter()
+
   const { addToast } = useToasts();
   const { CreateEvent } = usePrezent();
 
   const { account } = useWeb3React();
   const [creating, setCreating] = useState(false);
+  
 
   const { data, setData, preview, setPreview, prevBanner, setPrevBanner } =
     useCreateEventContext();
@@ -211,27 +215,49 @@ const EventForm = () => {
     }
   }, [banner, image]);
 
-  const uploadToNftStorage = async () => {
-    const bannerUrl = new File([banner], `${title}.jpg`, { type: "image/jpg" });
-    const nftUrl = new File([image], `${symbol}.jpg`, { type: "image/jpg" });
-    const metadata = await client.store({
-      name: title,
-      description: description,
-      symbol: symbol,
-      banner: bannerUrl,
-      image: nftUrl,
-    });
-    return metadata;
-  };
-  const fetchImageAndBanner = async () => {
-    const url = await uploadToNftStorage();
-    console.log("I am url:", url);
-    const request = await axios.get(
-      `${`https://ipfs.io/ipfs/${url.ipnft}/metadata.json`}`
-    );
-    if (request.status !== 200) return;
-    return request.data;
-  };
+  const uploadToIpfs = async() =>{
+    const thumbnailCID = ipfs.add(image)
+    const cover = await `https://gateway.pinata.cloud/ipfs/${(await thumbnailCID).path}`
+    const metadata= {
+      name:title,
+      description:description,
+      symbol:symbol,
+      image:cover
+    }
+    const format =await JSON.stringify(metadata)
+    const response =await ipfs.add(format)
+    return (`${(await response.path)}`)
+  }
+
+  const fetchFromIpfs = async () =>{
+    let cid =await uploadToIpfs()
+    let result = await useIPFS(cid)
+    console.log("result:",result)
+    return  result
+
+  }
+
+  // const uploadToNftStorage = async () => {
+  //   // const bannerUrl = new File([banner], `${title}.jpg`, { type: "image/jpg" });
+  //   const nftUrl = new File([image], `${symbol}.jpg`, { type: "image/jpg" });
+  //   const metadata = await client.store({
+  //     name: title,
+  //     description: description,
+  //     symbol: symbol,
+  //     // banner: bannerUrl,
+  //     image: nftUrl,
+  //   });
+  //   return metadata;
+  // };
+  // const fetchImageAndBanner = async () => {
+  //   const url = await uploadToNftStorage();
+  //   console.log("I am url:", url);
+  //   const request = await axios.get(
+  //     `${`https://ipfs.io/ipfs/${url.ipnft}/metadata.json`}`
+  //   );
+  //   if (request.status !== 200) return;
+  //   return request.data;
+  // };
 
   const createPoapEvent = async (event: any) => {
     setCreating(true);
@@ -251,10 +277,11 @@ const EventForm = () => {
     )
       return addToast("Fields cannot be empty!", { appearance: "error" });
     try {
-      let upload = await uploadToNftStorage();
-      let { banner, image } = await fetchImageAndBanner();
+      let upload = await uploadToIpfs();
+      let tokenUri = `ipfs://${upload}`
+      let {  image } = await fetchFromIpfs();
 
-      await CreateEvent(title, symbol, upload.url, async (res: any) => {
+      await CreateEvent(title, symbol, tokenUri, async (res: any) => {
         if (!res.hash) {
           return addToast(res.message, { appearance: "error" });
         }
@@ -273,7 +300,7 @@ const EventForm = () => {
           link: url,
           start_time: start,
           end_time: end,
-          banner: banner,
+          banner: "a",
           nft: image,
           creator: account,
           attendify: result?.events[0]?.address,
@@ -287,6 +314,7 @@ const EventForm = () => {
           setCreating(false)
         }
         addToast("Event successfully created", { appearance: "success" });
+        await router.push(`http://localhost:3000/mint/${result?.events[0]?.address}`)
         setCreating(false);
       });
     } catch (error) {
