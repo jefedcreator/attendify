@@ -7,17 +7,41 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import { usePrezent } from "web3/hooks";
+import Modal from "react-modal";
+import Wallet from "@components/walletPopUp/wallet";
 
+Modal.setAppElement("#root");
 function Mint() {
   const router = useRouter();
   const mint = router.query.mint;
   const { active, account } = useWeb3React();
-  const { claim,contract } = usePrezent();
+  const { claim, contract } = usePrezent();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
-       const {addToast} =   useToasts()
+  const { addToast } = useToasts();
 
-       console.log(contract)
+  const customStyles = {
+    overlay: {
+      background: "rgba(3, 4, 41, 0.7)",
+    },
+    content: {
+      borderRadius: "8px",
+      backdropFilter: "blur(32px)",
+      border: "1px solid rgba(125, 146, 181, 0.2)",
+      backgroundColor: "background: rgba(3, 4, 41, 0.7)",
+    },
+  };
+
+  const [show, setShow] = useState(false);
+
+  const toggleModal = () => {
+    setShow(true);
+    console.log("Open modal");
+  };
+  const closeModal = () => {
+    setShow(false);
+  };
+
   const fetchData = async () => {
     setLoading(true);
     try {
@@ -31,23 +55,20 @@ function Mint() {
       throw error;
     }
   };
-  const address = data?.["creator"]
+  const address = data?.["creator"];
 
-  const claimNFT = async () =>{
-    console.log("hellp")
+  const claimNFT = async () => {
     try {
-      console.log("hi")
-      await claim(address, async(res:any) =>{
-        if(!res.hash){
-          addToast(res.message, {appearance:"error"})
+
+      await claim(address, async (res: any) => {
+        if (!res.hash) {
+          addToast(res.message, { appearance: "error" });
         }
-        await res.wait()
-        addToast("You have successfully minted", {appearance:"success"})
-      })
-    } catch (error) {
-      
-    }
-  }
+        await res.wait();
+        addToast("You have successfully minted", { appearance: "success" });
+      });
+    } catch (error) {}
+  };
 
   useEffect(() => {
     router.isReady ? fetchData() : null;
@@ -71,7 +92,9 @@ function Mint() {
             {active ? (
               <>
                 {loading ? (
-                  <p className="text-white font-bold text-2xl text-center">Loading</p>
+                  <p className="text-white font-bold text-2xl text-center">
+                    Loading
+                  </p>
                 ) : (
                   <>
                     <Button
@@ -88,6 +111,7 @@ function Mint() {
             ) : (
               <>
                 <Button
+                  onClick={toggleModal}
                   className="text-white w-full bg-[#6E4AE7] font-jakarta font-medium w-full px-12 py-2 rounded-lg text-center mb-4"
                   label="Connect Wallet"
                 />
@@ -100,6 +124,13 @@ function Mint() {
             {/* </div> */}
           </div>
         </div>
+        <Modal
+          isOpen={show}
+          className="border border-[#7d92b5] rounded-lg top-1/4 p-4  w-11/12 left-4 md:w-6/12 md:left-1/4 md:top-1/4 md:p-8 lg:w-3/12 lg:mx-auto absolute lg:left-[41%] lg:top-1/4 lg:p-4"
+          style={customStyles}
+        >
+          <Wallet closeModal={closeModal} />
+        </Modal>
       </section>
     </LayOut>
   );

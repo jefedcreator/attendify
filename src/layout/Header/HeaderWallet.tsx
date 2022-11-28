@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { headerIcon, headerNav } from "../../../static/data";
 import Connected from "./Connected";
 import Image from "next/image";
 import { useWeb3React } from "@web3-react/core";
+import { useSwitchNetwork } from "web3/provider/connector";
 
 function HeaderWallet() {
-  const { active, account } = useWeb3React()
+  const { active, account,chainId } = useWeb3React()
+
+//   const {handleNetworkSwitch}  =  useSwitchNetwork()
+// const transformChainId = `0x${Number(chainId).toString(16)}` 
+// console.log(transformChainId)
+//   useEffect(()=>{
+//     if(transformChainId !== '0x13881'){
+//       handleNetworkSwitch('polygon')
+//     }
+//   },[transformChainId])
+
+
   return (
     <header className="container mx-auto mb-8 p-2 md:p-4 lg:p-6">
       <div className="flex items-center justify-between ">
