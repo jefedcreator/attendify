@@ -4,6 +4,9 @@ const nextConfig = {
   swcMinify: true,
   eslint:{
     ignoreDuringBuilds: true,
+  },
+  typescript:{
+    ignoreBuildErrors: true,
   }
 }
 
