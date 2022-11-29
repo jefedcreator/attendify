@@ -1,11 +1,11 @@
 export const headerNav = [
   {
     value: "Create an Event",
-    link: "/event/Create",
+    link: "create",
   },
   {
     value: "Explore",
-    link: "/recentEvent",
+    link: "/explore",
   },
   {
     value: "About",

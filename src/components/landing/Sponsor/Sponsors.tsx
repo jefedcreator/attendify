@@ -12,6 +12,14 @@ function Sponsors() {
           <hr className="w-[15%] border-[#A48DF0]" />
         </div>
         <div className="flex flex-col lg:flex-row items-center justify-center lg:space-x-32 ] my-12 ">
+        <div>
+            <Image
+              width={205}
+              height={52}
+              src="/assets/Polygon.png"
+              alt="polygon_logo"
+            />
+          </div>
           <div>
             <Image
               width={205}
@@ -26,14 +34,6 @@ function Sponsors() {
               height={72}
               src="/assets/web3.png"
               alt="web3_logo"
-            />
-          </div>
-          <div>
-            <Image
-              width={205}
-              height={72}
-              src="/assets/Polygon.png"
-              alt="polygon_logo"
             />
           </div>
         </div>
