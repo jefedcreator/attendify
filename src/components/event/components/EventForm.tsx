@@ -437,7 +437,7 @@ const EventForm = () => {
 
         <div className="event-details">
           <p className="text-xl text-white my-3 font-bold">Event date & time</p>
-          <div className="flex flex-row text-gray-400">
+          <div className="block md:flex md:flex-col lg:flex lg:flex-col text-gray-400">
             <div className="flex flex-col py-3 flex-1 mr-5 relative">
               <label htmlFor="startDate">Event Start Date and Time</label>
               <input
@@ -483,14 +483,14 @@ const EventForm = () => {
             {/* <Image src={img} width={14} height={14} /> */}
           </div>
 
-          <div className="h-48 bg-[#100624] border-dashed cursor-pointer grid place-items-center border-2 border-slate-400 rounded-md">
+          <div className="h-48 bg-[#100624] border-dashed inp cursor-pointer grid place-items-center border-2 border-slate-400 rounded-md">
             <input
               type="file"
               onChange={onInputChange}
+              className="inpt text-[#DEDBE7]"
               name="banner"
               multiple={false}
             />
-            {/* <p className="text-[#9EAEC7]">Upload</p> */}
           </div>
           <div className="my-4">
             {banner && (
@@ -519,11 +519,13 @@ const EventForm = () => {
             <p className="text-[#BEC9DA] mr-7">Upload NFT</p>
           </div>
 
-          <div className="h-48 bg-[#100624] cursor-pointer border-dashed grid place-items-center border-2 border-slate-400 rounded-md">
+          <div className="h-48 bg-[#100624] cursor-pointer inp border-dashed grid place-items-center border-2 border-slate-400 rounded-md">
             <input
               type="file"
               onChange={onInputChange}
               name="image"
+              className="inpt text-[#DEDBE7]"
+              // className="absolute left-[20%] md:left-[45%] lg:left-[45%] text-[#9EAEC7]"
               multiple={false}
             />
             {/* <p className="text-[#9EAEC7]">Upload</p> */}
