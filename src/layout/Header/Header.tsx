@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function Header() {
   return (
-    <header className="p-12">
+    <header className="p-6 md:p-12 lg:p-12">
       <div className="hidden md:justify-end md:space-x-6 mb-4 md:flex lg:flex justify-end space-x-2">
         {headerIcon.map((icon, index) => {
           return (
@@ -39,6 +39,13 @@ function Header() {
             </button>
           </Link>
         </div>
+        <div className="block md:hidden lg:hidden">
+          <Link href="/walletConnect">
+            <button className="bg-white font-medium text-[#23154C] py-2 jarkata	capitalize p-2 rounded-lg">
+              open app
+            </button>
+          </Link>
+          </div>
       </div>
     </header>
   );
