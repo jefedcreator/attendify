@@ -31,6 +31,18 @@ body {
   /* color: #f9f9f9; */
 }
 
+.inp {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.inpt {
+  text-align: center;
+  margin: auto;
+}
+
 .text-linear{
   background: -webkit-linear-gradient(262.71deg, #EA9119 2.72%, #833EF1 70.34%);
   -webkit-background-clip: text;
