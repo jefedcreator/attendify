@@ -1,23 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { useCreateEventContext } from "@context/eventContext/event";
-import { epoch, ipfs, isPositiveInt, useIPFS } from "@utils/helper";
+import {
+  customStyles,
+  epoch,
+  ipfs,
+  useIPFS,
+} from "@utils/helper";
 import { useWeb3React } from "@web3-react/core";
 import axios from "axios";
 import { useToasts } from "react-toast-notifications";
 import { NFTStorage, File } from "nft.storage";
 import { usePrezent } from "web3/hooks/index";
 import { useRouter } from "next/router";
+import Modal from "react-modal";
+import SuccessModal from "./success";
 
 const client = new NFTStorage({ token: process.env.NEXT_PUBLIC_NFT_KEY! });
 const EventForm = () => {
-   const router =  useRouter()
+  const [show, setShow] = useState(false);
+  const [mintLink, setMintLink] = useState("");
+
+  const toggleModal = () => {
+    setShow(true);
+    console.log("Open modal");
+  };
+  const closeModal = () => {
+    setShow(false);
+  };
+
 
   const { addToast } = useToasts();
   const { CreateEvent } = usePrezent();
 
   const { account } = useWeb3React();
   const [creating, setCreating] = useState(false);
-  
 
   const { data, setData, preview, setPreview, prevBanner, setPrevBanner } =
     useCreateEventContext();
@@ -32,7 +48,6 @@ const EventForm = () => {
     url,
     startDate,
     endDate,
-    numLink,
     banner,
     image,
   } = data;
@@ -152,18 +167,6 @@ const EventForm = () => {
             endDate: value,
           }));
         break;
-      case "amount":
-        if (value == "")
-          return setData((prev: any) => ({
-            ...prev,
-            numLink: 0,
-          }));
-        else if (isPositiveInt(value))
-          return setData((prev: any) => ({
-            ...prev,
-            numLink: value,
-          }));
-        break;
       case "banner":
         if (file == "")
           return setData((prev: any) => ({
@@ -215,27 +218,30 @@ const EventForm = () => {
     }
   }, [banner, image]);
 
-  const uploadToIpfs = async() =>{
-    const thumbnailCID = ipfs.add(image)
-    const cover = await `https://gateway.pinata.cloud/ipfs/${(await thumbnailCID).path}`
-    const metadata= {
-      name:title,
-      description:description,
-      symbol:symbol,
-      image:cover
-    }
-    const format =await JSON.stringify(metadata)
-    const response =await ipfs.add(format)
-    return (`${(await response.path)}`)
-  }
+  const uploadToIpfs = async () => {
+    const thumbnailCID = ipfs.add(image);
+    const cover = await `https://gateway.pinata.cloud/ipfs/${
+      (
+        await thumbnailCID
+      ).path
+    }`;
+    const metadata = {
+      name: title,
+      description: description,
+      symbol: symbol,
+      image: cover,
+    };
+    const format = await JSON.stringify(metadata);
+    const response = await ipfs.add(format);
+    return `${await response.path}`;
+  };
 
-  const fetchFromIpfs = async () =>{
-    let cid =await uploadToIpfs()
-    let result = await useIPFS(cid)
-    console.log("result:",result)
-    return  result
-
-  }
+  const fetchFromIpfs = async () => {
+    let cid = await uploadToIpfs();
+    let result = await useIPFS(cid);
+    console.log("result:", result);
+    return result;
+  };
 
   // const uploadToNftStorage = async () => {
   //   // const bannerUrl = new File([banner], `${title}.jpg`, { type: "image/jpg" });
@@ -272,14 +278,14 @@ const EventForm = () => {
       !url ||
       !startDate ||
       !endDate ||
-      !numLink ||
+      // !numLink ||
       !banner
     )
       return addToast("Fields cannot be empty!", { appearance: "error" });
     try {
       let upload = await uploadToIpfs();
-      let tokenUri = `ipfs://${upload}`
-      let {  image } = await fetchFromIpfs();
+      let tokenUri = `ipfs://${upload}`;
+      let { image } = await fetchFromIpfs();
 
       await CreateEvent(title, symbol, tokenUri, async (res: any) => {
         if (!res.hash) {
@@ -300,7 +306,7 @@ const EventForm = () => {
           link: url,
           start_time: start,
           end_time: end,
-          banner: "a",
+          banner: "",
           nft: image,
           creator: account,
           attendify: result?.events[0]?.address,
@@ -311,10 +317,12 @@ const EventForm = () => {
         );
         if (!serverResponse) {
           addToast("Something went wrong", { appearance: "error" });
-          setCreating(false)
+          setCreating(false);
         }
         addToast("Event successfully created", { appearance: "success" });
-        await router.push(`/mint/${result?.events[0]?.address}`)
+        setMintLink(result?.events[0]?.address);
+        // await router.push(`/mint/${result?.events[0]?.address}`);
+        setShow(true);
         setCreating(false);
       });
     } catch (error) {
@@ -453,7 +461,7 @@ const EventForm = () => {
           </div>
         </div>
 
-        <div className="event-details">
+        {/* <div className="event-details">
           <p className="text-xl text-white my-3 font-bold">Minting</p>
           <div className="flex flex-row text-gray-400">
             <div className="flex flex-col py-3 flex-1 mr-5">
@@ -467,7 +475,7 @@ const EventForm = () => {
             </div>
             <div className="flex flex-col py-3 flex-1"></div>
           </div>
-        </div>
+        </div> */}
 
         <div className="event__banner">
           <div className="flex items-center flex-row w-80 space-between my-3">
@@ -482,7 +490,7 @@ const EventForm = () => {
               name="banner"
               multiple={false}
             />
-            <p className="text-[#9EAEC7]">Upload</p>
+            {/* <p className="text-[#9EAEC7]">Upload</p> */}
           </div>
           <div className="my-4">
             {banner && (
@@ -518,7 +526,7 @@ const EventForm = () => {
               name="image"
               multiple={false}
             />
-            <p className="text-[#9EAEC7]">Upload</p>
+            {/* <p className="text-[#9EAEC7]">Upload</p> */}
           </div>
 
           <div className="my-4">
@@ -554,6 +562,15 @@ const EventForm = () => {
           </button>
         </div>
       </form>
+      {show && (
+        <Modal
+          isOpen={show}
+          className="border border-[#7d92b5] rounded-lg top-1/4 p-4  w-11/12 left-4 md:w-6/12 md:left-1/4 md:top-1/4 md:p-8 lg:w-3/12 lg:mx-auto absolute lg:left-[41%] lg:top-1/4 lg:p-4"
+          style={customStyles}
+        >
+          <SuccessModal path={mintLink} />
+        </Modal>
+      )}
     </div>
   );
 };

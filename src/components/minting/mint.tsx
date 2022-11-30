@@ -56,6 +56,8 @@ function Mint() {
     }
   };
   const address = data?.["creator"];
+  const image = data?.["image_nft"]
+  const name = data?.["title"]
 
   const claimNFT = async () => {
     try {
@@ -86,8 +88,11 @@ function Mint() {
         <div className="w-full md:w-[50%] lg:w-[30%] my-12 mx-auto">
           {/* <div> */}
           <div>
+            <p className="font-bold my-2 text-[#9D94B8] text-center text-2xl">{name}</p>
+          </div>
+          <div>
             <div className="flex justify-center my-6">
-              <Image src="/assets/mint.png" width={192} height={192} />
+              <img src={image} width={192} height={192} />
             </div>
             {active ? (
               <>

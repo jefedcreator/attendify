@@ -18,7 +18,7 @@ function Features() {
           </p>
         </div>
 
-        <div className="grid gap-12 md:grid md:grid-cols-3 items-center md:gap-8 lg:grid lg:grid-cols-3 lg:gap-8 my-8">
+        <div className="grid gap-12 md:grid md:grid-cols-3  md:gap-8 lg:grid lg:grid-cols-3 lg:gap-8 my-8">
           <FeaturesCard
             src={idea}
             title={"Create your event on Attendify"}

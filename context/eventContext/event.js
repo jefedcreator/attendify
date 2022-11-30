@@ -13,7 +13,6 @@ export const CreateEventProvider = ({ children }) => {
     url: "",
     startDate: "",
     endDate: "",
-    numLink: 0,
     banner: "",
     image: "",
   };
