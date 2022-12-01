@@ -2,7 +2,7 @@
 ## ATTENDIFY
 <!-- <img="attendify" alt="Attendify" src="https://drive.google.com/file/d/1ETMfzD7HK33Wi5Ih2XQ4AiTc7CBo2U-h/view?usp=share_link"> -->
 
-[![attendify](https://drive.google.com/file/d/1ETMfzD7HK33Wi5Ih2XQ4AiTc7CBo2U-h/view?usp=share_link)](https://digitalocean.com)
+![attendify](https://drive.google.com/file/d/1ETMfzD7HK33Wi5Ih2XQ4AiTc7CBo2U-h/view?usp=share_link)
 --------------
 ### Why Attendify
 
@@ -26,6 +26,7 @@ This product allows for easy minting of NFTs from just a click. This form of min
 - flask python 
 - postgres
 - ipfs
+- Website [here](https://main--rad-malasada-8928b1.netlify.app/)
 
 ### ATTENDIFY FOR EVENT ORGANISERS
 Event organisers, often a time, are marvelled when their anticipated events happen. Hosting events requires much more effort to thrive; the time to plan, the ideation period, the tension that follows each day as the date of the event approaches, and the unfolding heat of the D-day. Every time and moment, for the event organisers, are precious and for this reason, having Attendify’ prezents gives event organisers the feel of accomplishment.
