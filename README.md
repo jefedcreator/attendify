@@ -1,6 +1,7 @@
 
 ## ATTENDIFY
-<img="attendify" alt="Attendify" src="https://drive.google.com/file/d/1ETMfzD7HK33Wi5Ih2XQ4AiTc7CBo2U-h/view?usp=share_link">
+<!-- <img="attendify" alt="Attendify" src="https://drive.google.com/file/d/1ETMfzD7HK33Wi5Ih2XQ4AiTc7CBo2U-h/view?usp=share_link"> -->
+
 [![Alt text](https://assets.digitalocean.com/articles/alligator/boo.svg)](https://digitalocean.com)
 --------------
 ### Why Attendify
