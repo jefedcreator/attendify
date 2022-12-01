@@ -29,7 +29,7 @@ This product allows for easy minting of NFTs from just a click. This form of min
 - ipfs
 - Website [here](https://main--rad-malasada-8928b1.netlify.app/)
 
-### ATTENDIFY FOR EVENT ORGANISERS
+
 Event organisers, often a time, are marvelled when their anticipated events happen. Hosting events requires much more effort to thrive; the time to plan, the ideation period, the tension that follows each day as the date of the event approaches, and the unfolding heat of the D-day. Every time and moment, for the event organisers, are precious and for this reason, having Attendify’ prezents gives event organisers the feel of accomplishment.
 Attendify hopes to serve as an identity of one’s presence in an occasion. This, for event planners and organisers, is a certification of accomplishment. The prezents issued through the form of a minted NFT, authenticates that their sleepless nights and unflinching efforts for the success of the events will not easily slide off their minds. It also does establish the abilities of the event organisers to hold more successful events with high hopes and less fears.
 
