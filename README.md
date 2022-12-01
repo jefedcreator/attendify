@@ -2,7 +2,7 @@
 ## ATTENDIFY
 <!-- <img="attendify" alt="Attendify" src="https://drive.google.com/file/d/1ETMfzD7HK33Wi5Ih2XQ4AiTc7CBo2U-h/view?usp=share_link"> -->
 
-![attendify](https://drive.google.com/file/d/1ETMfzD7HK33Wi5Ih2XQ4AiTc7CBo2U-h/view?usp=share_link)
+![attendify](https://drive.google.com/file/d/1ETMfzD7HK33Wi5Ih2XQ4AiTc7CBo2U-h/view?usp=share_link "title")
 --------------
 ### Why Attendify
 
