@@ -19,7 +19,7 @@ This product allows for easy minting of NFTs from just a click. This form of min
 - Nextjs
 - Etherjs
 - web3React
-- solidity ((Deployed on Polygon Mumbai Testnet)[https://mumbai.polygonscan.com/address/0x6e2E47B107701C9BCdCa003f8B7e70A75BCF385e#code]) 
+- solidity ([Deployed on Polygon Mumbai Testnet](https://mumbai.polygonscan.com/address/0x6e2E47B107701C9BCdCa003f8B7e70A75BCF385e#code)) 
 - flask python 
 - postgres
 - ipfs
