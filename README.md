@@ -1,34 +1,9 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## ATTENDIFY
+--------------
+### Why Attendify
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Attendify has developed a Proof of Attendance Protocol (POAP).
+Proof of Attendance Protocol are modern badges or identifiers known as **Prezents** that authenticate the participatory actions of a person at an event or activity. After the closure of events, some form of badges, identity cards, or certificates are issued to people for their participation in that event. All of these identifiers go well to show the zeal committed by individuals to the success of that event.
+With the Attendify system coming to the fore, this proof of attendance brought into the blockchain ecosystem makes it easier to issue certificates or badges to individuals who participate in events such as hackathons, summits, and livestreams. For instance, in 2019, the POA system was used at ETHDenver. This issuance gives a long-lasting memory of peoples' participation in an event that redefines the dignity of man.
+This product allows for easy minting of NFTs from just a click. This form of minting is thereafter confirmable on the Polygon network. The process of minting begins with users identifying the images, videos, or other media content to have on the network. After it has been uploaded to the IPFS which is going to be integrated into the web application, Attendify allows one click for successful mint.
