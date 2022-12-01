@@ -1,5 +1,5 @@
 
-## ATTENDIFY
+## ATTENDIFY | [DEPLOYED ON POLYGON TESTNET](https://mumbai.polygonscan.com/address/0x6e2E47B107701C9BCdCa003f8B7e70A75BCF385e#code) | [WEBSITE](https://main--rad-malasada-8928b1.netlify.app/)
 <!-- <img="attendify" alt="Attendify" src="https://drive.google.com/file/d/1ETMfzD7HK33Wi5Ih2XQ4AiTc7CBo2U-h/view?usp=share_link"> -->
 
 ![attendify](https://github.com/attendify-poap/prezent-frontend/blob/main/Frame%2010451.png "img")
@@ -17,6 +17,7 @@ This product allows for easy minting of NFTs from just a click. This form of min
 - Attendify is designed to address problems with attendance, reliable records and distribution of rewards
 - Encourage learners/ participants to attend more often, thus resulting in an improved retention rates for such organisation
 - Allows event organisers to track progress and attendees easily, such information useful for marketing and promotions.
+- Community members benefit from reputation and incentive reward by taking part in communities with a track record. 
 
 ### Built with These Tech Stack
 - Nextjs
