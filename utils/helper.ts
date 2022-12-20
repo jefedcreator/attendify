@@ -34,7 +34,7 @@ export const epoch = (data:any) =>{
 }
 
 
-const IPFS_BASE_URL = "https://gateway.pinata.cloud/ipfs/"
+const IPFS_BASE_URL = "https://attendify.infura-ipfs.io/ipfs/"
 
 export async function useIPFS(hash: string) {
     const res = await axios.get(`${IPFS_BASE_URL}${hash}`)
