@@ -220,7 +220,7 @@ const EventForm = () => {
 
   const uploadToIpfs = async () => {
     const thumbnailCID = ipfs.add(image);
-    const cover = await `https://gateway.pinata.cloud/ipfs/${
+    const cover = await `https://attendify.infura-ipfs.io/ipfs/${
       (
         await thumbnailCID
       ).path
@@ -312,7 +312,7 @@ const EventForm = () => {
           attendify: result?.events[0]?.address,
         };
         const serverResponse: any = axios.post(
-          "https://attendifyapi.herokuapp.com/create",
+          "https://attendify.onrender.com/create",
           info
         );
         if (!serverResponse) {

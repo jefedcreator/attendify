@@ -46,7 +46,7 @@ function Mint() {
     setLoading(true);
     try {
       const result: any = await axios.get(
-        `https://attendifyapi.herokuapp.com/${mint}`
+        `https://attendify.onrender.com/${mint}`
       );
       setData(result?.data?.event);
       setLoading(false);
