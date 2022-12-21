@@ -10,13 +10,15 @@ type ButtonProps = {
 };
 function Button({ label, className, href, onClick, ...props }: ButtonProps) {
   return (
+    <a href={href}>
     <button
       onClick={onClick}
       className={`outline-none border-opacity-30 p-4 rounded-lg ${className}`}
       {...props}
     >
-      <a href={href}>{label}</a>
+      {label}
     </button>
+    </a>
   );
 }
 

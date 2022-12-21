@@ -21,12 +21,12 @@ function Jumbotron() {
             <Button
               href={`/create`}
               label="Create Event"
-              className="w-full md:w-[50%] lg:w-[25%] border-solid border-2 border-[#bba9f4]  bg-[#6E4AE7] text-white"
+              className="w-full md:w-[100%] lg:w-[100%] border-solid border-2 border-[#bba9f4]  bg-[#6E4AE7] text-white"
             />
             <Button
               href={"/explore"}
               label="Explore Events"
-              className="w-full md:w-[50%] lg:w-[25%] border-solid border-2 bg-cta border-[#bba9f4]  text-white"
+              className="w-full md:w-[100%] my-4 md:my-0 lg:my-0 lg:w-[100%] border-solid border-2 bg-cta border-[#bba9f4]  text-white"
             />
           </div>
         </div>
