@@ -15,7 +15,7 @@ function Mint() {
   const router = useRouter();
   const mint = router.query.mint;
   const { active, account } = useWeb3React();
-  const { claim, contract } = usePrezent();
+  const { claim} = usePrezent();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const { addToast } = useToasts();
@@ -55,6 +55,7 @@ function Mint() {
       throw error;
     }
   };
+  console.log(data)
   const address = data?.["creator"];
   const image = data?.["image_nft"]
   const name = data?.["title"]
