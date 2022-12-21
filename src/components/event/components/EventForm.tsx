@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCreateEventContext } from "@context/eventContext/event";
-import {
-  customStyles,
-  epoch,
-  ipfs,
-  useIPFS,
-} from "@utils/helper";
+import { customStyles, epoch, ipfs, useIPFS } from "@utils/helper";
 import { useWeb3React } from "@web3-react/core";
 import axios from "axios";
 import { useToasts } from "react-toast-notifications";
@@ -27,7 +22,6 @@ const EventForm = () => {
   const closeModal = () => {
     setShow(false);
   };
-
 
   const { addToast } = useToasts();
   const { CreateEvent } = usePrezent();
@@ -266,7 +260,6 @@ const EventForm = () => {
   // };
 
   const createPoapEvent = async (event: any) => {
-    setCreating(true);
     event.preventDefault();
     if (
       !title ||
@@ -281,8 +274,9 @@ const EventForm = () => {
       // !numLink ||
       !banner
     )
-      return addToast("Fields cannot be empty!", { appearance: "error" });
+    return  addToast("Fields cannot be empty!", { appearance: "error" }) 
     try {
+      setCreating(true);
       let upload = await uploadToIpfs();
       let tokenUri = `ipfs://${upload}`;
       let { image } = await fetchFromIpfs();
