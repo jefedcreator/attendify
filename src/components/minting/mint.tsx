@@ -69,6 +69,7 @@ function Mint() {
         }
         await res.wait();
         addToast("You have successfully minted", { appearance: "success" });
+        router.push(`https://testnets.opensea.io/${account}`)
       });
     } catch (error) {}
   };
