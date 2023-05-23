@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import poap from "@public/assets/POAPs.png";
-import Button from "@common/Button";
+// import poap from "@public/assets/POAPs.png";
+import poap from "../../../../public/assets/POAPs.png";
+// import Button from "@common/Button";
 
 function About() {
   return (
@@ -22,11 +23,11 @@ function About() {
             lifelong
             <br /> record of their participation.
           </p>
-          <Button
+          {/* <Button
             className="w-[100%] lg:w-[25%] border-solid border-2 border-[#bba9f4]  bg-[#6E4AE7] text-white p-2"
             label="Open App"
             href={"/walletConnect"}
-          />
+          /> */}
         </div>
         <div className="mt-12">
           <Image src={poap} className="w-full" alt="image" />

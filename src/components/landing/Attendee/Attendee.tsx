@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-import Button from "@common/Button";
+// import Button from "@common/Button";
 import event from "@public/assets/event.png";
 
 function Attendee() {
@@ -22,11 +22,11 @@ function Attendee() {
             mint
             <br /> their preznts which is stored in their collection forever.
           </p>
-          <Button
+          {/* <Button
             href={"/explore"}
             className="w-[100%] lg:w-[25%]  border-solid border-2 border-[#bba9f4]  bg-[#B5179E] text-white p-2"
             label="Attend Event"
-          />
+          /> */}
         </div>
         <div className="lg:ml-24">
           <Image src={event} className="w-full" alt="image" />
