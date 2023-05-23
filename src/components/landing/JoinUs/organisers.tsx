@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import cart from "@public/assets/cart.png";
-import Button from "@common/Button";
+// import Button from "@common/Button";
 
 function Organisers() {
   return (
@@ -23,11 +23,11 @@ function Organisers() {
             <br /> information about the event and preznts to be presented to
             <br /> attendees.
           </p>
-          <Button
+          {/* <Button
             href={"/create"}
             className="w-[100%] lg:w-[25%]  border-solid border-2 border-[#bba9f4]  bg-[#6E4AE7] text-white p-2"
             label="Create Event"
-          />
+          /> */}
         </div>
       </div>
     </section>

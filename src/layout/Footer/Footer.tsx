@@ -1,5 +1,5 @@
 import React from "react";
-import { company, headerIcon } from "../../../static/data";
+// import { company, headerIcon } from "../../../static/data";
 
 function Footer() {
   return (
@@ -22,7 +22,7 @@ function Footer() {
       </div>
       <div className="my-4">
         <p className="text-gray-400 font-jarkata font-semibold mb-2">Company</p>
-        <ul>
+        {/* <ul>
           {company.map((item, idx) => {
             return (
               <li key={idx} className="list-none text-gray-400 mb-4 capitalize">
@@ -30,7 +30,7 @@ function Footer() {
               </li>
             );
           })}
-        </ul>
+        </ul> */}
       </div>
 
       {/* <div className="hidden md:block lg:block my-4">
@@ -55,13 +55,13 @@ function Footer() {
           </a>
         </span>
         <div className=" md:hidden lg:hidden flex lg:justify-end space-x-2">
-          {headerIcon.map((icon, index) => {
+          {/* {headerIcon.map((icon, index) => {
             return (
               <a href={icon.link} key={index}>
                 {icon.icon}
               </a>
             );
-          })}
+          })} */}
         </div>
       </div>
       <div className="block md:hidden mt-12 lg:hidden">
@@ -69,13 +69,13 @@ function Footer() {
           Join Our Online Communities
         </p>
         <div className="flex lg:justify-end my-4 space-x-6">
-          {headerIcon.map((icon, index) => {
+          {/* {headerIcon.map((icon, index) => {
             return (
               <a href={icon.link} key={index}>
                 {icon.icon}
               </a>
             );
-          })}
+          })} */}
         </div>
       </div>
     </footer>

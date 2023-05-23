@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "@common/Button";
+// import Button from "@common/Button";
 
 function Jumbotron() {
   return (
@@ -18,7 +18,7 @@ function Jumbotron() {
             <br /> events and issue NFTs for attendees easily on Attendify.
           </p>
           <div className="w-full md:flex md:justify-center lg:flex lg:justify-center my-12 space-x-0 md:space-x-8 lg:space-x-8 space-y-8 md:space-y-0 lg:space-y-0">
-            <Button
+            {/* <Button
               href={`/create`}
               label="Create Event"
               className="w-full md:w-[100%] lg:w-[100%] border-solid border-2 border-[#bba9f4]  bg-[#6E4AE7] text-white"
@@ -27,7 +27,7 @@ function Jumbotron() {
               href={"/explore"}
               label="Explore Events"
               className="w-full md:w-[100%] my-4 md:my-0 lg:my-0 lg:w-[100%] border-solid border-2 bg-cta border-[#bba9f4]  text-white"
-            />
+            /> */}
           </div>
         </div>
       </section>
