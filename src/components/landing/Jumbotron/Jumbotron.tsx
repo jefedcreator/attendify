@@ -1,9 +1,8 @@
-import React from "react";
 // import Button from "@common/Button";
 
 function Jumbotron() {
   return (
-    <React.Fragment>
+    <>
       {/* <div className=" items-center md:grid md:grid-cols-2 md:gap-x-16 lg:grid lg:grid-cols-2 lg:gap-x-16 lg:mt-12 "> */}
       <section className="bg-hero-pattern bg-no-repeat p-4 md:p-4 lg:p-0 bg-top-4 w-full mt-24 md:h-screen lg:h-screen">
         {/* <section className="mt-24"> */}
@@ -31,7 +30,7 @@ function Jumbotron() {
           </div>
         </div>
       </section>
-    </React.Fragment>
+    </>
   );
 }
 

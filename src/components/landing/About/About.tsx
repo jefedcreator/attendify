@@ -17,7 +17,7 @@ function About() {
           </div>
           <p className="text-[#9D94B8] font-jakarta text-minimal leading-sm-xx my-6">
             Attendify is a digital Non Fungible Token (NFT) memento platform, in
-            <br /> celebration of life's remarkable moments these unique badges
+            <br /> celebration of life’s remarkable moments – these unique badges
             or
             <br /> collectibles (preznts) are minted by attendees creating a
             lifelong
