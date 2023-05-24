@@ -1,7 +1,6 @@
-// import Connect from "@components/walletConnect/Connect/connect";
-import { Tab } from "@headlessui/react";
 import Image from "next/image";
 import connect from "@public/assets/wallets.png";
+import Switch from "@components/switch/Switch";
 
 function WalletConnect() {
   return (
@@ -17,50 +16,7 @@ function WalletConnect() {
         <br /> browse through your collection of Preznts.
       </p>
       <div className="flex justify-center my-6">
-        <div>
-          {/*           <Tab.Group>
-              <Tab.List className={"text-center space-x-6 my-4"}>
-                <Tab>
-                  {({ selected }) => (
-                    /* Use the `selected` state to conditionally style the selected tab. 
-                    <button
-                      className={
-                        selected
-                          ? "underline underline-offset-8 decoration-2 decoration-[#B5179E] text-white"
-                          : "underline underline-offset-8 decoration-2 decoration-[#5E547F] text-[#BDB7CF]"
-                      }
-                    >
-                      Connect Wallet
-                    </button>
-                  )}
-                </Tab>
-                <Tab>
-                  {({ selected }) => (
-                    /* Use the `selected` state to conditionally style the selected tab. 
-                    <button
-                      className={
-                        selected
-                          ? "underline underline-offset-8 decoration-2 decoration-[#B5179E] text-white"
-                          : "underline underline-offset-8 decoration-2 decoration-[#5E547F] text-[#BDB7CF]"
-                      }
-                    >
-                      Explore Wallet
-                    </button>
-                  )}
-                </Tab>
-                ... 
-              </Tab.List>
-              <Tab.Panels>
-                <Tab.Panel>
-
-                </Tab.Panel>
-                <Tab.Panel>
-                  <Explore/>
-                </Tab.Panel>
-                ...
-              </Tab.Panels>
-            </Tab.Group> */}
-        </div>
+          <Switch />
       </div>
     </section>
   );
