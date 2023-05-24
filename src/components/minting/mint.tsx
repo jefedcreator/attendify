@@ -4,7 +4,7 @@ import { useWeb3React } from "@web3-react/core";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import { usePrezent } from "web3/hooks";
 import Modal from "react-modal";
@@ -94,7 +94,7 @@ function Mint() {
           </div>
           <div>
             <div className="flex justify-center my-6">
-              <img src={image} width={192} height={192} />
+              <Image src={image} width={192} height={192} />
             </div>
             {active ? (
               <>

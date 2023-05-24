@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";

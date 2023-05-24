@@ -1,9 +1,12 @@
 import Button from "@common/Button";
 import { copyToClipBoard } from "@utils/helper";
 import useRouter from "next/router";
-import React, { useState } from "react";
+import { useState } from "react";
 import QRCode from "react-qr-code";
 import { useToasts } from "react-toast-notifications";
+import Image from "next/image";
+import Cheers from '@public/assets/cheers.svg'
+import copy from '@public/assets/copy.svg'
 
 function SuccessModal({ path }: any) {
   const { addToast } = useToasts();
@@ -29,7 +32,7 @@ function SuccessModal({ path }: any) {
   return (
     <section>
       <div className="flex justify-center my-4">
-        <img src={"/assets/cheers.svg"} alt="jubilee" />
+        <Image src={Cheers} alt="jubilee" />
       </div>
       <div className="text-center text-[#9D94B8]">
         <h3 className="text-white font-bold my-2">
@@ -56,7 +59,7 @@ function SuccessModal({ path }: any) {
         <div className="flex items-center justify-center space-x-4">
           <p className="text-[#9D94B8] my-2 truncate">{`${origin}/mint/${path}`}</p>
           <div onClick={copyToClipBoardHandler} className="cursor-pointer">
-            <img src="/assets/copy.svg" alt="copy" />
+            <Image src={copy} alt="copy" />
           </div>
         </div>
       </div>

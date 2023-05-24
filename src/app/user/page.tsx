@@ -1,15 +1,18 @@
 import Link from "next/link";
-import React, { useState } from "react";
+// import { useState } from "react";
 import { CgArrowTopRight } from "react-icons/cg";
-import Modal from "react-modal";
+// import Modal from "react-modal";
 import {
   AiFillInstagram,
   AiFillRedditCircle,
   AiFillTwitterCircle,
 } from "react-icons/ai";
 import { FaTelegramPlane } from "react-icons/fa";
-import LayOut from "@layout/LayOut";
-import HeaderMetaData from "@common/MetaData/HeaderMetaData";
+import Image from "next/image";
+import Poly from '@public/assets/Poly.svg'
+import Hun from '@public/assets/hun.svg'
+import Polygon from '@public/assets/Polygon.svg'
+// import HeaderMetaData from "@common/MetaData/HeaderMetaData";
 
 const customStyles = {
   overlay: {
@@ -21,22 +24,21 @@ const customStyles = {
   },
 };
 
-Modal.setAppElement("#root");
+// Modal.setAppElement("#root");
 
 function Dashboard() {
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
 
-  const toggleModal = () => {
-    setShow(true);
-  };
-  const closeModal = () => {
-    setShow(false);
-  };
+  // const toggleModal = () => {
+  //   setShow(true);
+  // };
+  // const closeModal = () => {
+  //   setShow(false);
+  // };
 
   return (
-    <LayOut>
       <section className="container mx-auto mb-24 mt-24 p-4 md:p-8 lg:p-0">
-        <HeaderMetaData />
+        {/* <HeaderMetaData /> */}
         <div>
           <h3 className="text-[#EFF1F6] font-jakarta text-md md:text-3xl lg:text-5xl mb-4 font-bold">
             Welcome,
@@ -62,14 +64,14 @@ function Dashboard() {
             <div className="flex items-center space-x-6 cursor-pointer">
               <Link href="#">
                 <div className="cursor-pointer">
-                  <img src="/assets/Poly.svg" alt="poap" />
+                  <Image src={Poly} alt="poap"/>
                 </div>
               </Link>
               <Link href="#">
                 <div>
-                  <img
+                  <Image
                     className="cursor-pointer"
-                    src="/assets/hun.svg"
+                    src={Hun}
                     alt="poap"
                   />
                 </div>
@@ -82,23 +84,27 @@ function Dashboard() {
             <div className="flex items-center space-x-6 cursor-pointer">
               <Link className="cursor-pointer" href="#">
                 <div>
-                  <img src="/assets/Polygon.svg" alt="poap" />
+                  <Image src={Polygon} alt="poap" />
                 </div>
               </Link>
               {/* <button  className="cursor-pointer"> */}
-              <div onClick={toggleModal}>
-                <img src="/assets/hun.svg" alt="poap" />
+              <div 
+              // onClick={toggleModal}
+              >
+                <Image src={Hun} alt="poap" />
               </div>
               {/* </button> */}
             </div>
           </div>
         </div>
-        <Modal
+        {/* <Modal
           isOpen={show}
           className=" top-1/4  w-11/12 left-4 md:w-1/2 md:left-1/4 md:top-1/4 md:p-8 lg:w-1/2 lg:mx-auto absolute lg:left-1/4 lg:top-1/4 lg:p-4"
           style={customStyles}
-        >
-          <div className="cursor-pointer" onClick={closeModal}>
+        > */}
+          <div className="cursor-pointer" 
+          // onClick={closeModal}
+          >
             <div>
               <div className="h-24 bg-[#B5179E] left-0 w-full rounded-t-lg absolute top-0 "></div>
               <div className="my-36 p-4 md:my-32 lg:my-32">
@@ -146,15 +152,14 @@ function Dashboard() {
                 </div>
               </div>
             </div>
-            <img
-              src="/assets/hun.svg"
+            <Image
+              src={Hun}
               alt="poap"
               className="w-28 absolute  top-8 left-[41%] lg:left-[42%]"
             />
           </div>
-        </Modal>
+        {/* </Modal> */}
       </section>
-    </LayOut>
   );
 }
 

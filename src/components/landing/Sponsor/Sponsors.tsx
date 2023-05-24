@@ -1,9 +1,7 @@
-import React from "react";
 import Image from "next/image";
 
 function Sponsors() {
   return (
-    <React.Fragment>
       <div className="my-32 container mx-auto">
         <h3 className="text-[#F9F8FB] text-center font-bold text-xs md:text-base lg:text-medium  capitalize ">
           <span className="">Our tech partners</span>
@@ -38,7 +36,6 @@ function Sponsors() {
           </div>
         </div>
       </div>
-    </React.Fragment>
   );
 }
 

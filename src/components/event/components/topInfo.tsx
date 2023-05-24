@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import calendar from "../../../public/assets/calendar.png";
 import creamy from "../../../public/assets/rec.png";

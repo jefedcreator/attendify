@@ -1,9 +1,12 @@
 import Link from "next/link";
-import React, { useEffect } from "react";
-import { useWeb3React } from "@web3-react/core";
-import { injected, walletConnect } from "../../../web3/provider/connector";
-import { useToasts } from "react-toast-notifications";
-import { getConnectionError } from "../../../web3/helper";
+import { useEffect } from "react";
+import Image from "next/image";
+import metamask from "@public/assets/metamask.svg";
+import walletconnect from "@public/assets/walletconnect.svg";
+// import { useWeb3React } from "@web3-react/core";
+// import { injected, walletConnect } from "../../../web3/provider/connector";
+// import { useToasts } from "react-toast-notifications";
+// import { getConnectionError } from "../../../web3/helper";
 
 function Wallet({ closeModal }) {
   const { active, activate } = useWeb3React();
@@ -45,7 +48,7 @@ function Wallet({ closeModal }) {
             <p className="text-[#BEC9DA] font-normal font-jakarta">Metamask</p>
           </div>
           <div>
-            <img src="/assets/metamask.svg" alt="metamask" />
+            <Image src={metamask} alt="metamask" />
           </div>
         </div>
         <div
@@ -58,20 +61,20 @@ function Wallet({ closeModal }) {
             </p>
           </div>
           <div>
-            <img src="/assets/walletconnect.svg" alt="walletconnect" />
+            <Image src={walletconnect} alt="walletconnect" />
           </div>
         </div>
       </div>
       <p className="text-white">
-        Don't have a wallet? Get metamask{" "}
-        <a
+        Don&rsquo;t have a wallet? Get Metamask
+        <Link
           className="cursor-pointer text-blue-300"
           href="https://metamask.io/download/"
           target="_blank"
           rel="noopener"
         >
           here
-        </a>
+        </Link>
       </p>
     </section>
   );

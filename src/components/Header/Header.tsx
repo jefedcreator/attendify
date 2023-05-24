@@ -9,28 +9,28 @@ function Header() {
       <div className="hidden md:justify-end md:space-x-6 mb-4 md:flex lg:flex justify-end space-x-2">
         {headerIcon.map((icon, index) => {
           return (
-            <a href={icon.link} key={index}>
+            <Link href={icon.link} key={index}>
               {icon.icon}
-            </a>
+            </Link>
           );
         })}
       </div>
       <div className="flex items-center justify-between">
         <div>
-          <a href="/">
+          <Link href="/">
             <Image src={attendify} alt="attendify-logo" />
-          </a>
+          </Link>
         </div>
         <div className="hidden  md:flex md:items-center md:space-x-6  lg:flex lg:items-center lg:space-x-12 my-2">
           {headerNav.map((header, index) => {
             return (
               <li className="list-none" key={index}>
-                <a
+                <Link
                   className="text-gray-300 font-medium font-jarkata"
                   href={header.link}
                 >
                   {header.value}
-                </a>
+                </Link>
               </li>
             );
           })}

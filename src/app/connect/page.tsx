@@ -16,7 +16,7 @@ function WalletConnect() {
         <br /> browse through your collection of Preznts.
       </p>
       <div className="flex justify-center my-6">
-          <Switch />
+        <Switch />
       </div>
     </section>
   );

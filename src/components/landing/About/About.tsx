@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 // import poap from "@public/assets/POAPs.png";
 import poap from "../../../../public/assets/POAPs.png";

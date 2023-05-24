@@ -1,5 +1,3 @@
-import React from "react";
-
 const LocationInfo = () => {
   return (
     // <div className="px-8 py-8 sm:px-24 sm:py-16">

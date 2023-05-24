@@ -1,4 +1,3 @@
-import React from "react";
 import FeaturesCard from "../FeaturesCard";
 import nft from "@public/assets/nft.png";
 import paper from "@public/assets/paper.png";

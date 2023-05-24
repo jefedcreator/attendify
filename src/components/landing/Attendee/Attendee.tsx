@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 import Link from "next/link";
 // import Button from "@common/Button";
 import event from "@public/assets/event.png";

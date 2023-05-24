@@ -1,5 +1,4 @@
-import Button from "@common/Button";
-import React from "react";
+// import Button from "@common/Button";
 
 function Banner() {
   return (
@@ -27,10 +26,10 @@ function Banner() {
         <p className="text-[#BDB7CF] my-4">
           Want to create new NFTs for your project
         </p>
-        <Button
+        {/* <Button
           className="bg-[#6E4AE7] w-full md:w-[20%] lg:w-[20%] p-2 text-[#F9F8FB]"
           label="Contact us"
-        />
+        /> */}
       </div>
     </div>
   );

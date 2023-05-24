@@ -1,14 +1,14 @@
 import Image from "next/image";
 import { company, headerIcon} from "../../../static/data";
 import attendify from "@public/assets/attendify.svg"
-
+import Link from "next/link";
 function Footer() {
   return (
     <footer className="bg-footer p-4  lg:p-12 lg:flex lg:justify-around">
       <div className="mb-12 md:mb-0 lg:mb-0">
-        <a href="/">
+        <Link href="/">
           <Image src={attendify} alt="attendify-logo" />
-        </a>
+        </Link>
         <p className="text-gray-400 font-jarkata my-2">
           Discover events and communities that match your
           <br /> passion. Create events and issue NFTs for
@@ -18,9 +18,9 @@ function Footer() {
           Reach out for partnership
         </p>
         <span>
-          <a className="text-gray-400 font-jarkata mt-2" href="mailto:xyz.com">
+          <Link className="text-gray-400 font-jarkata mt-2" href="mailto:xyz.com">
             Attendify@gmail.com
-          </a>
+          </Link>
         </span>
       </div>
       <div className="my-4">
@@ -29,7 +29,7 @@ function Footer() {
           {company.map((item, idx) => {
             return (
               <li key={idx} className="list-none text-gray-400 mb-4 capitalize">
-                <a href={item.link}>{item.value}</a>
+                <Link href={item.link}>{item.value}</Link>
               </li>
             );
           })}
@@ -42,7 +42,7 @@ function Footer() {
           {socials.map((item, idx) => {
             return (
               <li key={idx} className="list-none text-gray-400 mb-4 capitalize">
-                <a href={item.link}>{item.value}</a>
+                <Link href={item.link}>{item.value}</Link>
               </li>
             );
           })}
@@ -51,16 +51,16 @@ function Footer() {
       <div className="hidden md:block lg:block">
         <p className="text-gray-400 font-jarkata font-semibold mb-2">Contact</p>
         <span>
-          <a className="text-gray-400 font-jarkata my-6" href="mailto:xyz.com">
+          <Link className="text-gray-400 font-jarkata my-6" href="mailto:xyz.com">
             Attendify@gmail.com
-          </a>
+          </Link>
         </span>
         <div className=" md:hidden lg:hidden flex lg:justify-end space-x-2">
           {headerIcon.map((icon, index) => {
             return (
-              <a href={icon.link} key={index}>
+              <Link href={icon.link} key={index}>
                 {icon.icon}
-              </a>
+              </Link>
             );
           })}
         </div>
@@ -72,9 +72,9 @@ function Footer() {
         <div className="flex lg:justify-end my-4 space-x-6">
           {headerIcon.map((icon, index) => {
             return (
-              <a href={icon.link} key={index}>
+              <Link href={icon.link} key={index}>
                 {icon.icon}
-              </a>
+              </Link>
             );
           })}
         </div>

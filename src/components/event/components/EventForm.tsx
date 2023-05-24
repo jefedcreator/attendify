@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useCreateEventContext } from "@context/eventContext/event";
 import { customStyles, epoch, ipfs, useIPFS } from "@utils/helper";
 import { useWeb3React } from "@web3-react/core";
@@ -9,6 +9,7 @@ import { usePrezent } from "web3/hooks/index";
 import { useRouter } from "next/router";
 import Modal from "react-modal";
 import SuccessModal from "./success";
+import Image from "next/image";
 
 const client = new NFTStorage({ token: process.env.NEXT_PUBLIC_NFT_KEY! });
 const EventForm = () => {
@@ -488,7 +489,7 @@ const EventForm = () => {
           </div>
           <div className="my-4">
             {banner && (
-              <img
+              <Image
                 className="text-gray-400"
                 src={prevBanner}
                 alt="preview"
@@ -527,7 +528,7 @@ const EventForm = () => {
 
           <div className="my-4">
             {preview && (
-              <img
+              <Image
                 className="text-gray-400"
                 src={preview}
                 alt="preview"

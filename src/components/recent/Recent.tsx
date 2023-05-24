@@ -1,11 +1,12 @@
-import React from "react";
-import HeaderMetaData from "@common/MetaData/HeaderMetaData";
+// import HeaderMetaData from "@common/MetaData/HeaderMetaData";
 import Banner from "./Banner";
+import Image from "next/image";
+import Hacker from '@public/assets/hacker.svg'
 
 function Recent() {
   return (
     <div>
-      <HeaderMetaData />
+      {/* <HeaderMetaData /> */}
 
       <Banner />
       <section className="container  mx-auto mt-24 mb-48 p-4 md:p-0 lg:p-0">
@@ -15,8 +16,11 @@ function Recent() {
         <div className="grid gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-12">
           <div className=" border border-[#3D33A9] p-2 relative rounded-lg md:border-0 md:p-0  md:block md:relative lg:border-0 lg:block lg:relative lg:p-0 bg-card">
             <div>
-              <img src="/assets/hacker.svg" className="w-full" />
-            </div>
+            <Image
+              src={Hacker}
+              className="w-full"
+              alt="hacker image"
+            />            </div>
             <div className="w-full md:border-b md:border-r md:border-l md:border-[#3D33A9] md:rounded-b-lg lg:border-b lg:border-r lg:border-l lg:border-[#3D33A9] lg:rounded-b-lg">
               <div className="p-4 relative">
                 <div>
@@ -36,8 +40,11 @@ function Recent() {
 
           <div className=" border border-[#3D33A9] p-2 relative rounded-lg md:border-0 md:p-0  md:block md:relative lg:border-0 lg:block lg:relative lg:p-0 bg-card">
             <div>
-              <img src="/assets/hacker.svg" className="w-full" />
-            </div>
+            <Image
+              src={Hacker}
+              className="w-full"
+              alt="hacker image"
+            />            </div>
             <div className="w-full md:border-b md:border-r md:border-l md:border-[#3D33A9] md:rounded-b-lg lg:border-b lg:border-r lg:border-l lg:border-[#3D33A9] lg:rounded-b-lg">
               <div className="p-4 relative">
                 <div>
@@ -57,8 +64,11 @@ function Recent() {
 
           <div className=" border border-[#3D33A9] p-2 relative rounded-lg md:border-0 md:p-0  md:block md:relative lg:border-0 lg:block lg:relative lg:p-0 bg-card">
             <div>
-              <img src="/assets/hacker.svg" className="w-full" />
-            </div>
+            <Image
+              src={Hacker}
+              className="w-full"
+              alt="hacker image"
+            />            </div>
             <div className="w-full md:border-b md:border-r md:border-l md:border-[#3D33A9] md:rounded-b-lg lg:border-b lg:border-r lg:border-l lg:border-[#3D33A9] lg:rounded-b-lg">
               <div className="p-4 relative">
                 <div>
@@ -78,8 +88,11 @@ function Recent() {
 
           <div className=" border border-[#3D33A9] p-2 relative rounded-lg md:border-0 md:p-0  md:block md:relative lg:border-0 lg:block lg:relative lg:p-0 bg-card">
             <div>
-              <img src="/assets/hacker.svg" className="w-full" />
-            </div>
+            <Image
+              src={Hacker}
+              className="w-full"
+              alt="hacker image"
+            />            </div>
             <div className="w-full md:border-b md:border-r md:border-l md:border-[#3D33A9] md:rounded-b-lg lg:border-b lg:border-r lg:border-l lg:border-[#3D33A9] lg:rounded-b-lg">
               <div className="p-4 relative">
                 <div>

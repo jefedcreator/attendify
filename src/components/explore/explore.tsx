@@ -39,8 +39,11 @@ function Explore() {
         </div>
         <div className=" border border-[#3D33A9] p-2 relative rounded-lg md:border-0 md:p-0  md:block md:relative lg:border-0 lg:block lg:relative lg:p-0 bg-card">
           <div>
-            <img src="/assets/hacker.svg" className="w-full" />
-          </div>
+          <Image
+              src={hacker}
+              className="w-full"
+              alt="hacker image"
+            />          </div>
           <div className="w-full md:border-b md:border-r md:border-l md:border-[#3D33A9] md:rounded-b-lg lg:border-b lg:border-r lg:border-l lg:border-[#3D33A9] lg:rounded-b-lg">
             <div className="p-4 relative">
               <div>
@@ -69,8 +72,11 @@ function Explore() {
         </div>
         <div className=" border border-[#3D33A9] p-2 relative rounded-lg md:border-0 md:p-0  md:block md:relative lg:border-0 lg:block lg:relative lg:p-0 bg-card">
           <div>
-            <img src="/assets/hacker.svg" className="w-full" />
-          </div>
+          <Image
+              src={hacker}
+              className="w-full"
+              alt="hacker image"
+            />          </div>
           <div className="w-full md:border-b md:border-r md:border-l md:border-[#3D33A9] md:rounded-b-lg lg:border-b lg:border-r lg:border-l lg:border-[#3D33A9] lg:rounded-b-lg">
             <div className="p-4 relative">
               <div>
@@ -99,8 +105,11 @@ function Explore() {
         </div>
         <div className=" border border-[#3D33A9] p-2 relative rounded-lg md:border-0 md:p-0  md:block md:relative lg:border-0 lg:block lg:relative lg:p-0 bg-card">
           <div>
-            <img src="/assets/hacker.svg" className="w-full" />
-          </div>
+          <Image
+              src={hacker}
+              className="w-full"
+              alt="hacker image"
+            />          </div>
           <div className="w-full md:border-b md:border-r md:border-l md:border-[#3D33A9] md:rounded-b-lg lg:border-b lg:border-r lg:border-l lg:border-[#3D33A9] lg:rounded-b-lg">
             <div className="p-4 relative">
               <div>
