@@ -5,8 +5,6 @@ import Organisers from "@components/landing/JoinUs/organisers";
 import Jumbotron from "@components/landing/Jumbotron/Jumbotron";
 import Attendee from "@components/landing/Attendee/Attendee";
 import Sponsors from "@components/landing/Sponsor/Sponsors";
-import Footer from "@layout/Footer/Footer";
-import Header from "@layout/Header/Header";
 import Features from "@components/landing/Features/Features";
 
 // import styles from '../styles/Home.module.css'
@@ -14,7 +12,6 @@ const Home = () => {
   return (
     <section>
       {/* <HeaderMetaData /> */}
-        <Header />
       <div className="p-6 md:p-0 lg:p-0">
         <Jumbotron />
         <Features />
@@ -23,7 +20,6 @@ const Home = () => {
         <Attendee />
         <Sponsors />
       </div>
-      <Footer />
     </section>
   );
 };
