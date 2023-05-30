@@ -1,22 +1,14 @@
 "use client";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
-// import { useRouter } from "next/router";
 import Link from "next/link";
 import { headerIcon, headerNav } from "../../../static/data";
 
 const Hamburger = () => {
   const [menu, setMenu] = useState(false);
-  //   const router = useRouter();
   const toggleMenu = () => {
     setMenu(!menu);
   };
-
-  //   const handleNavigate = () => {
-  //     router(
-  //       pathname: "/signin",
-  //     });
-  //   };
 
   return (
     <nav
@@ -48,11 +40,11 @@ const Hamburger = () => {
             className={`${
               !menu
                 ? "hidden"
-                : "bg-white font-medium text-[#23154C] py-2 jarkata	capitalize md:pr-6 md:pl-6 lg:pl-12 lg:pr-12 rounded-lg text-center"
+                : "bg-white font-medium text-[#23154C] py-2 jarkata capitalize rounded-lg text-center"
             }`}
             href="/connect"
           >
-            open app
+            connect wallet
           </Link>
         </ul>
         <RxHamburgerMenu
@@ -61,10 +53,10 @@ const Hamburger = () => {
           color="white"
         />
         <Link
-          className="hidden md:block bg-[#6E4AE7] font-medium text-white py-2 jarkata	capitalize md:pr-6 md:pl-6 lg:pl-12 lg:pr-12 rounded-lg"
+          className="hidden md:block bg-[#6E4AE7] font-medium text-white py-2 px-4 jarkata capitalize rounded-lg"
           href="/connect"
         >
-          open app
+          connect wallet
         </Link>
       </div>
     </nav>
