@@ -61,7 +61,7 @@ const Hamburger = () => {
           color="white"
         />
         <Link
-          className="hidden md:block bg-white font-medium text-[#23154C] py-2 jarkata	capitalize md:pr-6 md:pl-6 lg:pl-12 lg:pr-12 rounded-lg"
+          className="hidden md:block bg-[#6E4AE7] font-medium text-white py-2 jarkata	capitalize md:pr-6 md:pl-6 lg:pl-12 lg:pr-12 rounded-lg"
           href="/connect"
         >
           open app

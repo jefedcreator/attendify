@@ -12,6 +12,8 @@ import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { polygonMumbai } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+import { useAccount, useConnect } from "wagmi";
+import Connected from "@components/connected/Connected";
 
 const { chains, publicClient } = configureChains(
   [polygonMumbai],
@@ -64,12 +66,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { connector: activeConnector, isConnected } = useAccount();
+
   return (
     <html lang="en">
       <body className={jakarta.className}>
         <WagmiConfig config={wagmiConfig}>
           <RainbowKitProvider chains={chains}>
-            <Header />
+            {!isConnected ? <Header /> : <Connected />}
             {children}
             <Footer />
           </RainbowKitProvider>
