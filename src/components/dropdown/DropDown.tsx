@@ -12,13 +12,13 @@ const DropDown = () => {
     setShow(!show);
   };
 
-  const dropDownRef:React.RefObject<HTMLUListElement> = useRef(null);
+  const dropDownRef: React.RefObject<HTMLUListElement> = useRef(null);
 
-//   const handleClickOutside = (e: React.MouseEvent<HTMLElement>) =>{
-//     if(dropDownRef.current && !dropDownRef.current.contains(e.target as Node)){
-//         setShow(false)
-//     }
-//   }
+  //   const handleClickOutside = (e: React.MouseEvent<HTMLElement>) =>{
+  //     if(dropDownRef.current && !dropDownRef.current.contains(e.target as Node)){
+  //         setShow(false)
+  //     }
+  //   }
 
   return (
     <div
@@ -29,7 +29,10 @@ const DropDown = () => {
       <Image src={arrowDown} alt="arrow down icon" />
       <div>
         {show && (
-          <ul className="bg-navbar absolute w-48 backdrop-blur-lg  rounded-lg right-2 md:right-4 top-12 lg:-right-8" ref={dropDownRef} >
+          <ul
+            className="bg-navbar absolute w-48 backdrop-blur-lg  rounded-lg right-2 md:right-4 top-12 lg:-right-8"
+            ref={dropDownRef}
+          >
             {dropdownItem.map((item, idx) => {
               return (
                 <li

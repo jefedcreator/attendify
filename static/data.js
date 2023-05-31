@@ -172,12 +172,12 @@ export const company = [
 export const dropdownItem = [
   {
     value: "My Dashboard",
-    link: "/user/dashboard",
+    link: "/user",
   },
-  {
-    value: "Browse Event",
-    link: "/recentEvent",
-  },
+  // {
+  //   value: "Browse Event",
+  //   link: "/recent",
+  // },
   {
     value: "Favourites",
     link: "/user/favorites",
