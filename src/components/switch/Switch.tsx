@@ -72,7 +72,7 @@ const Switch = () => {
                       userSelect: "none",
                     },
                   })}
-                  className="w-1/3 mx-auto"
+                  className="md:w-1/3 w-[80%] mx-auto p-2"
                 >
                   {(() => {
                     if (!connected) {
