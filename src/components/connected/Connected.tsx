@@ -8,7 +8,7 @@ const Connected = () => {
   return (
     <header className="p-6 md:p-12 lg:p-12">
       <div className="flex items-center justify-between">
-        <div className="w-[30%] md:w-1/2">
+        <div className="w-[30%] md:w-1/2 object-contain">
           <Link href="/">
             <Image src={attendify} alt="attendify-logo" />
           </Link>

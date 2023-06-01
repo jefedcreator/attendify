@@ -7,7 +7,7 @@ const Events = () => {
   return (
     <div className="w-[90%] mx-auto">
       <div className="flex justify-between items-center w-full">
-        <div className="max-w-[70%] md:max-w-[40%] h-full flex flex-col gap-3">
+        <div className="max-w-[70%] md:max-w-[35%] h-full flex flex-col gap-3">
           <div className="w-full flex flex-wrap items-center gap-2 h-[60%]">
             <span className="font-syne font-bold md:text-4xl text-2xl leading-14 text-[#F9F8FB]">
               Its
@@ -15,7 +15,7 @@ const Events = () => {
             <span className="font-syne font-bold md:text-5xl text-2.5xl leading-14 text-[#F9F8FB]">
               All
             </span>{" "}
-            <hr className="w-[150px] h-1 bg-[#8D70EC]" />{" "}
+            <hr className="w-[150px] md:w-[180px] h-1 bg-[#8D70EC]" />{" "}
             <span className="font-syne font-bold md:text-3xl text-1.5xl leading-14 text-[#F9F8FB]">
               About
             </span>{" "}

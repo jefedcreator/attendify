@@ -4,8 +4,8 @@ export const headerNav = [
     link: "create",
   },
   {
-    value: "Explore",
-    link: "/explore",
+    value: "Events",
+    link: "/events",
   },
   {
     value: "About",
