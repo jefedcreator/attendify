@@ -39,7 +39,7 @@ const Events = () => {
             contact us
           </Link>
         </div>
-        <div className="max-w-[30%]">
+        <div className="max-w-[30%] md:max-w-[50%]">
           <Image src={people} alt="people image" />
         </div>
       </div>
