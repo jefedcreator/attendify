@@ -192,3 +192,21 @@ export const dropdownItem = [
     link: "/user/created",
   },
 ];
+
+export const collectionItem = [
+  {
+    name: "Attendify Launch Party",
+    organizer: "Attendify",
+    date: "October,2022",
+  },
+  {
+    name: "Web3 Community call",
+    organizer: "Attendify",
+    date: "November,2022",
+  },
+  {
+    name: "Conflux Hacker",
+    organizer: "Conflux",
+    date: "March,2022",
+  },
+];
