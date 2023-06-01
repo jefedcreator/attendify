@@ -1,15 +1,34 @@
+import { Dispatch, SetStateAction } from "react";
 import hacker from "@public/assets/hacker.svg";
 import Image from "next/image";
-
 interface ICollection {
   name: string;
   organizer: string;
   date: string;
+  modal: boolean;
+  setModal: Dispatch<SetStateAction<boolean>>;
+  setValue: Dispatch<SetStateAction<number>>;
+  id: number;
 }
 
-const Collection = ({ name, organizer, date }: ICollection) => {
+const Collection = ({
+  name,
+  organizer,
+  date,
+  setModal,
+  id,
+  setValue,
+}: ICollection) => {
+  const handleModal = () => {
+    setModal(true);
+    setValue(id);
+  };
+
   return (
-    <div className=" border border-[#3D33A9] p-2 rounded-lg md:border-0 md:p-0  md:block  lg:border-0 lg:block lg:p-0 bg-card">
+    <div
+      className="border border-[#3D33A9] p-2 rounded-lg md:border-0 md:p-0  md:block  lg:border-0 lg:block lg:p-0 bg-card cursor-pointer"
+      onClick={handleModal}
+    >
       <div>
         <Image src={hacker} className="w-full" alt="hacker image" />{" "}
       </div>

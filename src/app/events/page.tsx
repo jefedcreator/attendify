@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import people from "@public/assets/people.png";
-import { collectionItem } from "static/data";
-import Collection from "@components/collection/Collection";
+import Collections from "@components/collections/Collections";
 
 const Events = () => {
   return (
-    <div className="w-[90%] mx-auto">
+    <div className="w-[90%] mx-auto relative">
       <div className="flex justify-between items-center w-full">
         <div className="max-w-[70%] md:max-w-[35%] h-full flex flex-col gap-3">
           <div className="w-full flex flex-wrap items-center gap-2 h-[60%]">
@@ -47,11 +46,7 @@ const Events = () => {
       <h2 className="font-syne font-normal text-2xl leading-10 text-[#F8F9FB] py-2">
         Recent Events
       </h2>
-      <div className="grid gap-8 grid-cols-2 md:grid-cols-4 md:gap-12">
-        {collectionItem.map((collection, index) => (
-          <Collection key={index} {...collection} />
-        ))}
-      </div>
+      <Collections />
     </div>
   );
 };
