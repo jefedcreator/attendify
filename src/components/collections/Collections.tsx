@@ -4,14 +4,12 @@ import { collectionItem } from "static/data";
 import Collection from "@components/collection/Collection";
 import CollectionModal from "@components/collectionModal/CollectionModal";
 
-type ValueType = number | null;
-
 const Collections = () => {
   const [modal, setModal] = useState(false);
   const [value, setValue] = useState(0);
 
   return (
-    <div className="grid gap-8 md:grid-cols-4 md:gap-12">
+    <div className="grid gap-8 grid-cols-2 md:grid-cols-4 md:gap-12">
       {collectionItem.map((collection, index) => (
         <Collection
           key={index}

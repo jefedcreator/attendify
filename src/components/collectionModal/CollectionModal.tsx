@@ -34,7 +34,7 @@ const CollectionModal = ({ value, setModal }: IModal) => {
         </span>{" "}
         {item.organizer}
       </p>
-      <p className="font-jarkata font-normal text-sm leading-6 text-[#BDB7CF]">{`This Prezent confirms you were at ${item.name}`}</p>
+      <p className="font-jarkata font-normal text-sm leading-6 text-[#BDB7CF]">{`This Prezent confirms 0x123 was at ${item.name}`}</p>
       <span className="flex items-center justify-center gap-1">
         <p className="font-jarkata font-normal text-sm leading-6 text-[#BDB7CF]">
           view on opensea
