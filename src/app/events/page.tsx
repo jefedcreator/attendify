@@ -5,7 +5,7 @@ import Collections from "@components/collections/Collections";
 
 const Events = () => {
   return (
-    <div className="w-[90%] mx-auto relative">
+    <div className="relative w-[90%] mx-auto">
       <div className="flex justify-between items-center w-full">
         <div className="max-w-[70%] md:max-w-[35%] h-full flex flex-col gap-3">
           <div className="w-full flex flex-wrap items-center gap-2 h-[60%]">

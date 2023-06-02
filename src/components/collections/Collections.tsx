@@ -22,7 +22,7 @@ const Collections = () => {
           setValue={setValue}
         />
       ))}
-      {modal && <CollectionModal value={value} />}
+      {modal && <CollectionModal value={value} setModal={setModal}/>}
     </div>
   );
 };
