@@ -1,33 +1,50 @@
 import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
-import wallet from "@public/assets/wallets.png";
+import wallet from "@public/assets/banner-wallet.svg";
+import gift from "@public/assets/banner-gift.svg";
+interface IBanner {
+  header: string;
+  address: string;
+  isDashboard: boolean;
+}
 
-// import { useWeb3React } from "@web3-react/core";
-// import Button from "@common/Button";
-function Banner() {
-  // const { account } = useWeb3React();
+function Banner({ header, address, isDashboard }: IBanner) {
   return (
-    <div className="h-[30vh] flex justify-between items-start">
+    <div
+      className={`${
+        isDashboard ? "h-[10vh]" : "h-[15vh]"
+      } md:h-[30vh] flex justify-between items-start`}
+    >
       <div className="h-full">
-        <div className="flex items-center ">
-          <IoIosArrowBack size={30} color="#f9f9f9" />
-          <Link
-            className="text-[#F9F8FB] font-normal text-base leading-6 font-jarkata"
-            href="/"
+        {!isDashboard && (
+          <div className="flex items-center ">
+            <IoIosArrowBack size={30} color="#f9f9f9" />
+            <Link
+              className="text-[#F9F8FB] font-normal text-base leading-6 font-jarkata"
+              href="/"
+            >
+              Go back
+            </Link>
+          </div>
+        )}
+        <div className="flex items-center gap-1">
+          <Image
+            src={isDashboard ? gift : wallet}
+            alt="wallet"
+            className="h-10 w-10"
+          />
+          <h1
+            className={`text-[#F9F8FB] font-syne font-semibold ${
+              isDashboard ? "text-3xl" : "text-2xl"
+            } md:text-4xl leading-14`}
           >
-            Go back
-          </Link>
+            {header}
+          </h1>
         </div>
-        <h1 className="text-[#F9F8FB] font-syne font-semibold text-3xl md:text-4xl leading-14">
-          Explore Collection
-        </h1>
-        <div className="my-2">
-          <Image src={wallet} alt="wallet" className="h-6 w-6" />
-          <p className="text-[#BDB7CF] text-smallxxx leading-24 font-jakarta">
-            {`0x123`}
-          </p>
-        </div>
+        <p className="text-[#BDB7CF] text-smallxxx leading-24 font-jakarta w-1/2 mx-auto text-center">
+          {address}
+        </p>
       </div>
       <div className="bg-cta hidden h-[80%] w-[25%] md:flex flex-col justify-around rounded-lg border border-solid border-opacity-20 border-[#bba9f4] p-3">
         <p className="text-[#BDB7CF] text-smallxxx leading-24 font-jakarta">
