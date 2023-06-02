@@ -30,7 +30,7 @@ const DropDown = () => {
       <div>
         {show && (
           <ul
-            className="bg-navbar absolute w-48 backdrop-blur-lg  rounded-lg right-2 md:right-4 top-12 lg:-right-8"
+            className="bg-navbar absolute w-48 backdrop-blur-lg  rounded-lg right-2 md:right-4 top-12 lg:-right-8 z-30"
             ref={dropDownRef}
           >
             {dropdownItem.map((item, idx) => {
