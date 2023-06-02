@@ -4,6 +4,9 @@ import Image from "next/image";
 import { IoMdClose } from "react-icons/io";
 import { FiExternalLink } from "react-icons/fi";
 import { Dispatch, SetStateAction } from "react";
+import reddit from '@public/assets/reddit-icon.svg'
+import twitter from '@public/assets/twitter-icon.svg'
+import telegram from '@public/assets/telegram-icon.svg'
 
 interface IModal {
   value: number;
@@ -13,9 +16,9 @@ interface IModal {
 const CollectionModal = ({ value, setModal }: IModal) => {
   const item = collectionItem[value] ?? {}; // Use empty object as a fallback
   return (
-    <div className="bg-gradient-to-r from-[#00091F] to-[#1E0C5A] border border-solid border-blue-500 border-opacity-20 fixed md:absolute h-[70vh] w-80 text-white rounded-md md:top-10 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col item-center text-center p-3 gap-3">
+    <div className="bg-gradient-to-r from-[#00091F] to-[#1E0C5A] border border-solid border-blue-500 border-opacity-20 fixed md:absolute h-[70vh] md:w-[30vw] w-80 text-white rounded-lg md:top-10 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col item-center text-center p-3 gap-3 md:gap-2">
       <div className="w-full relative flex">
-        <Image src={hacker} alt="hacker image" className="w-[30%] mx-auto" />{" "}
+        <Image src={hacker} alt="hacker image" className="w-[50%] md:w-[30%] mx-auto" />{" "}
         <IoMdClose
           className="absolute right-0 cursor-pointer"
           onClick={() => setModal(false)}
@@ -44,6 +47,14 @@ const CollectionModal = ({ value, setModal }: IModal) => {
       <p className="font-jarkata font-normal text-sm leading-6 text-[#F9F8FB]">
         {item.date}
       </p>
+      <p className="font-jarkata font-normal text-smallxxx leading-6 text-[#9D94B8]">
+        Share on
+      </p>
+      <span className="flex items-center justify-center gap-2">
+        <Image src={twitter} alt="twitter icon"/>
+        <Image src={reddit} alt="reddit icon"/>
+        <Image src={telegram} alt="telegram icon"/>
+      </span>
     </div>
   );
 };
