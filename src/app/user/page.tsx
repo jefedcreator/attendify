@@ -2,7 +2,6 @@ import Link from "next/link";
 // import { useState } from "react";
 import { CgArrowTopRight } from "react-icons/cg";
 import Banner from "@components/explore/Banner";
-import { collectionItem } from "static/data";
 import Collections from "@components/collections/Collections";
 
 function Dashboard() {

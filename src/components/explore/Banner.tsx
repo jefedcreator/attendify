@@ -14,7 +14,7 @@ function Banner({ header, address, isDashboard }: IBanner) {
     <div
       className={`${
         isDashboard ? "h-[10vh]" : "h-[15vh]"
-      } md:h-[30vh] flex justify-between items-start`}
+      } py-1 md:py-0 md:h-[30vh] flex justify-between items-start`}
     >
       <div className="h-full">
         {!isDashboard && (
