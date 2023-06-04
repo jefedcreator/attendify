@@ -22,11 +22,6 @@ export const company: ILink[] = [
     value: "white paper",
     link: "#",
   },
-
-  {
-    value: "tokenomics",
-    link: "#",
-  },
   {
     value: "roadmap",
     link: "#",

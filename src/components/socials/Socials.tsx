@@ -6,9 +6,18 @@ import icon3 from "@public/assets/icon3.svg";
 import icon4 from "@public/assets/icon4.svg";
 import icon5 from "@public/assets/icon5.svg";
 import icon6 from "@public/assets/icon6.svg";
-const Socials = () => {
+
+interface ISocials {
+  isFooter: boolean;
+}
+
+const Socials = ({ isFooter }: ISocials) => {
   return (
-    <div className="hidden md:justify-end gap-3 md:flex items-center h-[40%]">
+    <div
+      className={`${
+        isFooter ? "flex" : "hidden"
+      } justify-start md:justify-end gap-3 md:flex items-center h-[40%]`}
+    >
       <Link href={"#"}>
         <Image src={icon1} alt="link icon" />
       </Link>

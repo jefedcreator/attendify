@@ -10,7 +10,11 @@ const Connected = () => {
       <div className="flex items-center justify-between">
         <div className="w-[30%] md:w-1/2 object-contain">
           <Link href="/">
-            <Image src={attendify} alt="attendify-logo" />
+            <Image
+              src={attendify}
+              alt="attendify-logo"
+              className="w-[70%] md:w-full object-cover"
+            />
           </Link>
         </div>
         <div className="w-[55%] md:w-[22%] flex items-center justify-end">
