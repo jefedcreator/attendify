@@ -68,3 +68,7 @@ export interface ICollectionItem {
   organizer: string;
   date: string;
 }
+
+export interface ISocials {
+  isFooter: boolean;
+}

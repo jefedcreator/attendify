@@ -6,10 +6,7 @@ import icon3 from "@public/assets/icon3.svg";
 import icon4 from "@public/assets/icon4.svg";
 import icon5 from "@public/assets/icon5.svg";
 import icon6 from "@public/assets/icon6.svg";
-
-interface ISocials {
-  isFooter: boolean;
-}
+import { ISocials } from "src/utils/types/types";
 
 const Socials = ({ isFooter }: ISocials) => {
   return (
