@@ -3,11 +3,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
 import wallet from "@public/assets/banner-wallet.svg";
 import gift from "@public/assets/banner-gift.svg";
-interface IBanner {
-  header: string;
-  address: string;
-  isDashboard: boolean;
-}
+import { IBanner } from "src/utils/types/types";
 
 function Banner({ header, address, isDashboard }: IBanner) {
   return (

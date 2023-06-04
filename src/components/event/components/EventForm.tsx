@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { useCreateEventContext } from "@context/eventContext/event";
-import { customStyles, epoch, ipfs, useIPFS } from "@utils/helper";
-import { useWeb3React } from "@web3-react/core";
-import axios from "axios";
-import { useToasts } from "react-toast-notifications";
-import { NFTStorage, File } from "nft.storage";
-import { usePrezent } from "web3/hooks/index";
+// import { customStyles, epoch, ipfs, useIPFS } from "@utils/helper";
+// import { useWeb3React } from "@web3-react/core";
+// import axios from "axios";
+// import { useToasts } from "react-toast-notifications";
+// import { NFTStorage, File } from "nft.storage";
+// import { usePrezent } from "web3/hooks/index";
 import { useRouter } from "next/router";
-import Modal from "react-modal";
-import SuccessModal from "./success";
+// import Modal from "react-modal";
+// import SuccessModal from "./success";
 import Image from "next/image";
 
-const client = new NFTStorage({ token: process.env.NEXT_PUBLIC_NFT_KEY! });
+// const client = new NFTStorage({ token: process.env.NEXT_PUBLIC_NFT_KEY! });
 const EventForm = () => {
   const [show, setShow] = useState(false);
   const [mintLink, setMintLink] = useState("");
@@ -24,10 +24,10 @@ const EventForm = () => {
     setShow(false);
   };
 
-  const { addToast } = useToasts();
-  const { CreateEvent } = usePrezent();
+  // const { addToast } = useToasts();
+  // const { CreateEvent } = usePrezent();
 
-  const { account } = useWeb3React();
+  // const { account } = useWeb3React();
   const [creating, setCreating] = useState(false);
 
   const { data, setData, preview, setPreview, prevBanner, setPrevBanner } =
@@ -227,7 +227,7 @@ const EventForm = () => {
       image: cover,
     };
     const format = await JSON.stringify(metadata);
-    const response = await ipfs.add(format);
+    // const response = await ipfs.add(format);
     return `${await response.path}`;
   };
 

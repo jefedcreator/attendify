@@ -1,7 +1,7 @@
-import UserCreatedEvent from "@components/users/CreatedEvent/created";
+// import UserCreatedEvent from "@components/users/CreatedEvent/created";
 
-function CreatedEvent() {
-  return <UserCreatedEvent />;
-}
+// function CreatedEvent() {
+//   return <UserCreatedEvent />;
+// }
 
-export default CreatedEvent;
+// export default CreatedEvent;

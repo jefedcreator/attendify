@@ -2,7 +2,7 @@
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
 import Link from "next/link";
-import { headerIcon, headerNav } from "../../../static/data";
+import { headerNav } from "../../../static/data";
 
 const Hamburger = () => {
   const [menu, setMenu] = useState(false);
@@ -14,7 +14,7 @@ const Hamburger = () => {
     <nav
       className={`{${
         menu ? "relative" : "static"
-      } ml-0 h-[10%] md:h-[15%] font-manrope leading-normal font-bold md:w-1/2`}
+      } ml-0 h-[10%] md:h-full font-manrope leading-normal font-bold md:w-[60%] flex items-center`}
     >
       <div className={`w-full flex justify-between items-center`}>
         <ul

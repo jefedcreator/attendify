@@ -1,18 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
 import hacker from "@public/assets/hacker.svg";
 import Image from "next/image";
-
-type ValueType = number | null;
-
-interface ICollection {
-  name: string;
-  organizer: string;
-  date: string;
-  modal: boolean;
-  setModal: Dispatch<SetStateAction<boolean>>;
-  setValue: Dispatch<SetStateAction<number>>;
-  id: number;
-}
+import { ICollection } from "src/utils/types/types";
 
 const Collection = ({
   name,

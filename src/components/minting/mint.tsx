@@ -1,16 +1,8 @@
-import Button from "@common/Button";
-import LayOut from "@layout/LayOut";
-import { useWeb3React } from "@web3-react/core";
-import axios from "axios";
+// import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useToasts } from "react-toast-notifications";
-import { usePrezent } from "web3/hooks";
-import Modal from "react-modal";
-import Wallet from "@components/walletPopUp/wallet";
 
-Modal.setAppElement("#root");
 function Mint() {
   const router = useRouter();
   const mint = router.query.mint;

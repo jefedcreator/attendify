@@ -34,6 +34,6 @@
       "@context/*":["context/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "static/data.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "static/data.ts"],
   "exclude": ["node_modules"]
 }

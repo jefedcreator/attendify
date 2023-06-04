@@ -1,7 +1,9 @@
 import Image from "next/image";
-import { company, headerIcon} from "../../../static/data";
-import attendify from "@public/assets/attendify.svg"
+import { company } from "../../../static/data";
+import attendify from "@public/assets/attendify.svg";
 import Link from "next/link";
+import Socials from "@components/socials/Socials";
+
 function Footer() {
   return (
     <footer className="bg-footer p-4  lg:p-12 lg:flex lg:justify-around">
@@ -18,7 +20,10 @@ function Footer() {
           Reach out for partnership
         </p>
         <span>
-          <Link className="text-gray-400 font-jarkata mt-2" href="mailto:xyz.com">
+          <Link
+            className="text-gray-400 font-jarkata mt-2"
+            href="mailto:xyz.com"
+          >
             Attendify@gmail.com
           </Link>
         </span>
@@ -51,18 +56,15 @@ function Footer() {
       <div className="hidden md:block lg:block">
         <p className="text-gray-400 font-jarkata font-semibold mb-2">Contact</p>
         <span>
-          <Link className="text-gray-400 font-jarkata my-6" href="mailto:xyz.com">
+          <Link
+            className="text-gray-400 font-jarkata my-6"
+            href="mailto:xyz.com"
+          >
             Attendify@gmail.com
           </Link>
         </span>
         <div className=" md:hidden lg:hidden flex lg:justify-end space-x-2">
-          {headerIcon.map((icon, index) => {
-            return (
-              <Link href={icon.link} key={index}>
-                {icon.icon}
-              </Link>
-            );
-          })}
+          <Socials />
         </div>
       </div>
       <div className="block md:hidden mt-12 lg:hidden">
@@ -70,13 +72,7 @@ function Footer() {
           Join Our Online Communities
         </p>
         <div className="flex lg:justify-end my-4 space-x-6">
-          {headerIcon.map((icon, index) => {
-            return (
-              <Link href={icon.link} key={index}>
-                {icon.icon}
-              </Link>
-            );
-          })}
+          <Socials />
         </div>
       </div>
     </footer>

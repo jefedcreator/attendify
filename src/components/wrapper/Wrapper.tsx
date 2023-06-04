@@ -8,6 +8,7 @@ import { polygonMumbai } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { useAccount, useConnect } from "wagmi";
+import { usePathname } from "next/navigation";
 // import attendify from '@components/'
 import Connected from "@components/connected/Connected";
 
@@ -28,13 +29,14 @@ const wagmiConfig = createConfig({
 });
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
   const { connector: activeConnector, isConnected } = useAccount();
-
+  const pathname = usePathname();  
+  const isCreate = pathname == '/create'
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}>
         {!isConnected ? <Header /> : <Connected />}
         {children}
-        <Footer />
+        {!isCreate && <Footer />}
       </RainbowKitProvider>
     </WagmiConfig>
   );
