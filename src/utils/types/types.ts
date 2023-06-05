@@ -34,6 +34,50 @@ export interface IProps {
 
 export type ConnectExploreType = "connect" | "explore";
 
+export interface IEventDetails {
+  title: string;
+  organizer: string;
+  symbol: string;
+  description: string;
+  date: string;
+  type: string;
+  category: string;
+  link: string;
+  flier: null | File;
+  flierImg: string | null;
+  prezent:  null | File;
+  prezentImg: string | null;
+}
+
+export interface ISetEventDetails {
+  setEventDetails: Dispatch<SetStateAction<IEventDetails>>;
+  title: string;
+  organizer: string;
+  symbol: string;
+  description: string;
+  date: string;
+  type: string;
+  category: string;
+  link: string;
+  flier: null | File;
+  flierImg: string | null;
+}
+export interface ISetUploadDetails {
+  setEventDetails: Dispatch<SetStateAction<IEventDetails>>;
+  prezent: null | File;
+  prezentImg: string | null;
+}
+export interface IPreview {
+  title: string;
+  organizer: string;
+  date: string;
+  type: string;
+  category: string;
+  link: string;
+  flierImg: string | null;
+  prezentImg: string | null;
+}
+
 interface SvgIconConstituentValues {
   strokeColor?: string;
   strokeWidth?: string;

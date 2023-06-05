@@ -3,9 +3,26 @@ import { useState } from "react";
 import Details from "./details/Details";
 import Upload from "./upload/Upload";
 import Preview from "./preview/Preview";
+import { IEventDetails } from "src/utils/types/types";
 
 const CreateEvent = () => {
   const [next, setNext] = useState<number>(0);
+  const [eventDetails, setEventDetails] = useState<IEventDetails>({
+    title: "",
+    organizer: "",
+    symbol: "",
+    description: "",
+    date: "",
+    type: "",
+    category: "",
+    link: "",
+    flier: null,
+    flierImg: null,
+    prezent: null,
+    prezentImg: null,
+  });
+
+  console.log("details", eventDetails);
 
   return (
     <section
@@ -16,13 +33,56 @@ const CreateEvent = () => {
       {(() => {
         switch (next) {
           case 0:
-            return <Details />;
+            return (
+              <Details
+                setEventDetails={setEventDetails}
+                title={eventDetails.title}
+                organizer={eventDetails.organizer}
+                symbol={eventDetails.symbol}
+                description={eventDetails.description}
+                date={eventDetails.date}
+                type={eventDetails.type}
+                category={eventDetails.category}
+                link={eventDetails.link}
+                flier={eventDetails.flier}
+                flierImg={eventDetails.flierImg}
+              />
+            );
           case 1:
-            return <Upload />;
+            return <Upload 
+            setEventDetails={setEventDetails}
+            prezent={eventDetails.prezent}
+            prezentImg={eventDetails.prezentImg}
+            />;
           case 2:
-            return <Preview />;
+            return (
+              <Preview
+                title={eventDetails.title}
+                organizer={eventDetails.organizer}
+                date={eventDetails.date}
+                type={eventDetails.type}
+                category={eventDetails.category}
+                link={eventDetails.link}
+                flierImg={eventDetails.flierImg}
+                prezentImg={eventDetails.prezentImg}
+              />
+            );
           default:
-            return <Details />;
+            return (
+              <Details
+                setEventDetails={setEventDetails}
+                title={eventDetails.title}
+                organizer={eventDetails.organizer}
+                symbol={eventDetails.symbol}
+                description={eventDetails.description}
+                date={eventDetails.date}
+                type={eventDetails.type}
+                category={eventDetails.category}
+                link={eventDetails.link}
+                flier={eventDetails.flier}
+                flierImg={eventDetails.flierImg}
+              />
+            );
         }
       })()}
       <button

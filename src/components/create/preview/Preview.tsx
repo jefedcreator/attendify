@@ -1,17 +1,27 @@
 import Image from "next/image";
-import conflux from "@public/assets/conflux.png";
-import flier from "@public/assets/flier.png";
+// import conflux from "@public/assets/conflux.png";
+// import fliers from "@public/assets/flier.png";
+import { IPreview } from "src/utils/types/types";
 
-const Preview = () => {
+const Preview = ({
+  title,
+  organizer,
+  date,
+  type,
+  category,
+  link,
+  flierImg,
+  prezentImg,
+}: IPreview) => {
   return (
-    <div className="bg-[#010C28] border border-[#09174A] h-[50%] md:h-[65%] w-full p-5 flex flex-col gap-1">
+    <div className="bg-[#010C28] border border-[#09174A] h-[50%] md:h-[70%] w-full p-5 flex flex-col gap-1">
       <div className="flex flex-wrap justify-between items-center gap-2">
         <span className="w-[45%]">
           <h2 className="text-xs leading-4 font-jarkata text-[#9D94B8]">
             Name of Event
           </h2>
           <p className="text-sm md:text-base leading-7 font-jarkata text-[#F9F8FB]">
-            Future of Web 3
+            {title}
           </p>
         </span>
         <span className="w-[45%]">
@@ -19,7 +29,7 @@ const Preview = () => {
             Organizer
           </h2>
           <p className="text-sm md:text-base leading-7 font-jarkata text-[#F9F8FB]">
-            Conflux Network
+            {organizer}
           </p>
         </span>
         <span className="w-[45%]">
@@ -27,7 +37,7 @@ const Preview = () => {
             Date
           </h2>
           <p className="text-sm md:text-base leading-7 font-jarkata text-[#F9F8FB]">
-            October 12, 2022
+            {date}
           </p>
         </span>
         <span className="w-[45%]">
@@ -35,7 +45,7 @@ const Preview = () => {
             Category
           </h2>
           <p className="text-sm md:text-base leading-7 font-jarkata text-[#F9F8FB]">
-            Hackathon
+            {category}
           </p>
         </span>
         <span className="w-[45%]">
@@ -43,7 +53,7 @@ const Preview = () => {
             Type
           </h2>
           <p className="text-sm md:text-base leading-7 font-jarkata text-[#F9F8FB]">
-            Virtual
+            {type}
           </p>
         </span>
         <span className="w-[45%]">
@@ -51,7 +61,7 @@ const Preview = () => {
             Link
           </h2>
           <p className="text-sm md:text-base leading-7 font-jarkata text-[#F9F8FB]">
-            zoom.com
+            {link}
           </p>
         </span>
       </div>
@@ -60,13 +70,29 @@ const Preview = () => {
           <h2 className="text-xs leading-4 font-jarkata text-[#9D94B8]">
             Flyer
           </h2>
-          <Image src={flier} alt="flyer image" className="h-12.5 w-12.5 object-contai"/>
+          {flierImg && (
+            <Image
+              src={flierImg}
+              alt="flyer image"
+              className="h-12.5 w-12.5 object-contain"
+              width={180}
+              height={150}
+            />
+          )}
         </div>
         <div className="w-[45%] h-1/2 flex flex-col items-start justify-center gap-2">
           <h2 className="text-xs leading-4 font-jarkata text-[#9D94B8]">
             Prezent
           </h2>
-          <Image src={conflux} alt="nft image" className="h-12.5 w-12.5 object-contain "/>
+          {prezentImg && (
+            <Image
+              src={prezentImg}
+              alt="nft image"
+              className="h-12.5 w-12.5 object-contain "
+              width={180}
+              height={150}
+            />
+          )}
         </div>
       </div>
     </div>
