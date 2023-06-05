@@ -10,7 +10,6 @@ export interface ICollection {
   setValue: Dispatch<SetStateAction<number>>;
   id: number;
 }
-
 export interface IModal {
   value: number;
   setModal: Dispatch<SetStateAction<boolean>>;
@@ -32,6 +31,8 @@ export interface IProps {
     mint: string;
   };
 }
+
+export type ConnectExploreType = "connect" | "explore";
 
 interface SvgIconConstituentValues {
   strokeColor?: string;

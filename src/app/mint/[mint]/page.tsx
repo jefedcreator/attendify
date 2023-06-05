@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { IProps } from "src/utils/types/types";
 import conflux from "@public/assets/conflux.png";
+import MintButton from "@components/mintButton/MintButton";
 
 const Mint = ({ params }: IProps) => {
   // console.log("router", params.mint);
@@ -15,12 +16,7 @@ const Mint = ({ params }: IProps) => {
         <br /> Web3 community call by Attendify.
       </p>
       <Image src={conflux} alt="nft image" />
-      <button className="bg-[#6E4AE7] text-[#F9F8FB] text-center w-[100%] md:w-[45%] px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6">
-        Mint Prezent
-      </button>
-      <p className="font-normal text-smallxxx md:text-sm leading-7 text-[#BDB7CF] font-jarkata">
-        Click the button to mint
-      </p>
+      <MintButton/>
     </section>
   );
 };
