@@ -2,8 +2,9 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import wallet from "@public/assets/empty-wallet.png";
+import { IConnect } from "src/utils/types/types";
 
-const Connect = ({ isMintPage }: { isMintPage: boolean }) => {
+const Connect = ({ isMintPage }: IConnect) => {
   return (
     <ConnectButton.Custom>
       {({

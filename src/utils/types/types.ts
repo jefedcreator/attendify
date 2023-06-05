@@ -73,3 +73,7 @@ export interface ICollectionItem {
 export interface ISocials {
   isFooter: boolean;
 }
+
+export interface IConnect {
+  isMintPage: boolean;
+}
