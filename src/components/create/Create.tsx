@@ -81,8 +81,33 @@ const CreateEvent = () => {
     ipfs = undefined;
   }
 
+  const fallbackCopyToClipBoard = (text:string):Promise<boolean> => {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+  
+    // Avoid scrolling to bottom
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.position = "fixed";
+  
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+  
+    try {
+        const successful = document.execCommand("copy");
+        return Promise.resolve(successful);
+    } catch (err) {
+        return Promise.resolve(false);
+    } finally {
+        document.body.removeChild(textArea);
+    }
+  };
+
   const copyToClipBoard = (text: string):Promise<boolean> => {
-    if (!navigator.clipboard) return Promise.resolve(false);
+    if (!navigator.clipboard) {
+      return fallbackCopyToClipBoard(text)
+    };
     return navigator.clipboard
       .writeText(text)
       .then(() => {
