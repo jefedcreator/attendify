@@ -8,6 +8,7 @@ import Image from "next/image";
 import { create } from "ipfs-http-client";
 import celebrate from "@public/assets/celebrate.svg";
 import copy from "@public/assets/copy.svg";
+import QRCode from "react-qr-code";
 
 const CreateEvent = () => {
   const [next, setNext] = useState<number>(0);
