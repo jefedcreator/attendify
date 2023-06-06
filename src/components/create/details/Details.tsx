@@ -122,7 +122,7 @@ const Details = ({
             onChange={handleInput}
             value={date}
             placeholder="Date of event"
-            className="bg-transparent focus:outline-none"
+            className="bg-transparent focus:outline-none cursor-pointer"
           />
         </label>
       </div>
@@ -137,7 +137,7 @@ const Details = ({
             onChange={handleInput}
             value={type}
             // className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata"
-            className="bg-transparent w-full h-full flex items-center justify-between focus:outline-none rounded-md text-[#BDB7CF] text-smallxxx leading-4 font-jarkata gap-1"
+            className="bg-transparent w-full h-full flex items-center justify-between focus:outline-none rounded-md text-[#BDB7CF] text-smallxxx leading-4 font-jarkata gap-1 cursor-pointer"
             placeholder="Type"
             required
           >
@@ -157,7 +157,7 @@ const Details = ({
             id="category"
             onChange={handleInput}
             value={category}
-            className="bg-transparent w-full h-full flex items-center justify-between focus:outline-none"
+            className="bg-transparent w-full h-full flex items-center justify-between focus:outline-none cursor-pointer"
             placeholder="Category"
             required
           >
@@ -203,7 +203,7 @@ const Details = ({
               <Image src={upload} alt="upload icon" />
 
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                SVG, PNG, JPG or GIF (MAX. 800x400px)
+                SVG, PNG, or JPG (MAX. 800x400px)
               </p>
             </div>
             <input
@@ -212,6 +212,7 @@ const Details = ({
               className="hidden"
               name="flier"
               // value={flier}
+              accept=".jpg, .jpeg, .png, .svg"
               onChange={onChangeCoverHandler}
             />
           </label>

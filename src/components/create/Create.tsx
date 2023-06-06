@@ -5,6 +5,7 @@ import Upload from "./upload/Upload";
 import Preview from "./preview/Preview";
 import { IEventDetails } from "src/utils/types/types";
 import Image from "next/image";
+import { IoMdClose } from "react-icons/io";
 import { create } from "ipfs-http-client";
 import celebrate from "@public/assets/celebrate.svg";
 import copy from "@public/assets/copy.svg";
@@ -142,28 +143,36 @@ const CreateEvent = () => {
             );
         }
       })()}
-      <button
-        className={`${
-          handleDisabled() ? "bg-gray-500" : "bg-[#6E4AE7]"
-        } text-[#F9F8FB] text-center w-full px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6`}
-        disabled={handleDisabled()}
-        onClick={next !== 2 ? () => setNext(next + 1) : () => setModal(true)}
-      >
-        {next == 2 ? "Create" : "Next"}
-      </button>
+      {!modal && (
+        <button
+          className={`${
+            handleDisabled() ? "bg-gray-500" : "bg-[#6E4AE7]"
+          } text-[#F9F8FB] text-center w-full px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6`}
+          disabled={handleDisabled()}
+          onClick={next !== 2 ? () => setNext(next + 1) : () => setModal(true)}
+        >
+          {next == 2 ? "Create" : "Next"}
+        </button>
+      )}
       {modal && (
-        <div className="bg-gradient-to-r from-[#00091F] to-[#1E0C5A] border border-solid border-blue-500 border-opacity-20 fixed md:absolute h-[50vh] md:w-[30vw] w-80 text-white rounded-lg md:top-10 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col item-center justify-start text-center p-3 gap-3 md:gap-2">
-          <Image
-            src={celebrate}
-            alt="celebration icon"
-            className="w-[20%] md:w-[10%] mx-auto"
-          />
+        <div className="bg-gradient-to-r from-[#00091F] to-[#1E0C5A] border border-solid border-blue-500 border-opacity-20 fixed md:absolute h-[70vh] md:w-[30vw] w-80 text-white rounded-lg md:top-10 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col item-center justify-start text-center p-3 gap-3 md:gap-2">
+          <div className="w-full relative flex">
+            <Image
+              src={celebrate}
+              alt="celebration icon"
+              className="w-[20%] md:w-[10%] mx-auto"
+            />
+            <IoMdClose
+              className="absolute right-0 cursor-pointer"
+              onClick={() => setModal(false)}
+            />
+          </div>
           <h2 className="font-syne font-medium text-xl leading-9 text-[#F9F8FB]">
             Event created successfully
           </h2>
           <p className="text-sm leading-6 font-jarkata text-[#9D94B8]">
-            You can now share the link for your attendees to mint preznts on
-            Attendify
+            You can now share the link or scan QR code for your attendees to
+            mint preznts on Attendify
           </p>
           <div className="bg-[#270F73] border border-dashed border-[#8D70EC] flex flex-col items-start justify-around px-2 py-1 rounded-md">
             <p className="font-light text-smallxxx leading-6 font-jarkata text-[#9D94B8]">
@@ -173,12 +182,25 @@ const CreateEvent = () => {
               <p className="font-semibold text-sm leading-6 font-jarkata text-[#9D94B8] w-[70%] whitespace-nowrap overflow-hidden">
                 https://www.attendify.ca/e/naija-c...
               </p>
-              <Image src={copy} alt="copy" />
+              <Image src={copy} alt="copy" width={20} />
             </span>
           </div>
-          <button className="bg-[#6E4AE7] text-[#F9F8FB] text-center w-full px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6 cursor-pointer">
+          {/* <div className="w-full items-center justify-center p-5"> */}
+          <QRCode
+            size={300}
+            bgColor="#ffff"
+            value={`https://www.attendify.ca/e/naija.com`}
+            style={{
+              padding: "10px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          />
+          {/* </div> */}
+          {/* <button className="bg-[#6E4AE7] text-[#F9F8FB] text-center w-full px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6 cursor-pointer">
             continue
-          </button>
+          </button> */}
         </div>
       )}
     </section>

@@ -78,7 +78,7 @@ const Upload = ({
           <Image src={upload} alt="upload icon" />
 
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            SVG, PNG, JPG or GIF (MAX. 800x400px)
+            SVG, PNG, or JPG (MAX. 800x400px)
           </p>
         </div>
         <input
@@ -86,6 +86,7 @@ const Upload = ({
           type="file"
           className="hidden"
           name="prezent"
+          accept=".jpg, .jpeg, .png, .svg"
           onChange={onChangeCoverHandler}
         />
       </label>
