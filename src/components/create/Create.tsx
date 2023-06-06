@@ -5,7 +5,9 @@ import Upload from "./upload/Upload";
 import Preview from "./preview/Preview";
 import { IEventDetails } from "src/utils/types/types";
 import Image from "next/image";
+import { create } from "ipfs-http-client";
 import celebrate from "@public/assets/celebrate.svg";
+import copy from "@public/assets/copy.svg";
 
 const CreateEvent = () => {
   const [next, setNext] = useState<number>(0);
@@ -51,6 +53,30 @@ const CreateEvent = () => {
         return true;
     }
   };
+
+  const authorization =
+    "Basic " +
+    btoa(
+      process.env.NEXT_PUBLIC_PROJECT_ID +
+        ":" +
+        process.env.NEXT_PUBLIC_PROJECT_SECRET
+    );
+
+  let ipfs;
+
+  try {
+    ipfs = create({
+      host: "ipfs.infura.io",
+      port: 5001,
+      protocol: "https",
+      headers: {
+        authorization: authorization,
+      },
+    });
+  } catch (error) {
+    console.error("IPFS error ", error);
+    ipfs = undefined;
+  }
 
   return (
     <section
@@ -142,9 +168,12 @@ const CreateEvent = () => {
             <p className="font-light text-smallxxx leading-6 font-jarkata text-[#9D94B8]">
               Mint Link
             </p>
-            <p className="font-semibold text-sm leading-6 font-jarkata text-[#9D94B8] w-[70%] whitespace-nowrap overflow-hidden">
-              https://www.attendify.ca/e/naija-c...
-            </p>
+            <span className="flex items-center justify-between">
+              <p className="font-semibold text-sm leading-6 font-jarkata text-[#9D94B8] w-[70%] whitespace-nowrap overflow-hidden">
+                https://www.attendify.ca/e/naija-c...
+              </p>
+              <Image src={copy} alt="copy" />
+            </span>
           </div>
           <button className="bg-[#6E4AE7] text-[#F9F8FB] text-center w-full px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6 cursor-pointer">
             continue
