@@ -106,42 +106,69 @@ const Details = ({
         placeholder="Description"
         className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata"
       />
-      <input
-        type="datetime-local"
-        name="date"
-        onChange={handleInput}
-        value={date}
-        className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata"
-        placeholder="Date of event"
-      />
+      <div className="flex flex-col items-center justify-center w-full text-smallxxx leading-4 font-jarkata text-[#BDB7CF]">
+        <label
+          htmlFor="event-date"
+          // className="flex flex-col items-center justify-center w-full h-[40] bg-[#04102B]"
+          className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata flex items-center justify-between"
+        >
+          <p className="text-xs text-[#BDB7CF] dark:text-gray-400">
+            Event date
+          </p>
+          <input
+            id="event-date"
+            type="date"
+            name="date"
+            onChange={handleInput}
+            value={date}
+            placeholder="Date of event"
+            className="bg-transparent focus:outline-none"
+          />
+        </label>
+      </div>
       <div className="flex gap-2 items-center">
-        <select
-          name="type"
-          id="type"
-          onChange={handleInput}
-          value={type}
-          className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata"
-          placeholder="Type"
-          required
+        <label
+          htmlFor="type"
+          className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata flex items-center justify-between"
         >
-          <option value="none">Select</option>
-          <option value="virtual">Virtual</option>
-          <option value="physical">Physical</option>
-        </select>
-        <select
-          name="category"
-          id="category"
-          onChange={handleInput}
-          value={category}
+          <select
+            name="type"
+            id="type"
+            onChange={handleInput}
+            value={type}
+            // className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata"
+            className="bg-transparent w-full h-full flex items-center justify-between focus:outline-none cursor-pointer rounded-md text-[#BDB7CF] text-smallxxx leading-4 font-jarkata gap-1"
+            placeholder="Type"
+            required
+          >
+            <option value="" disabled selected>
+              Event Type
+            </option>
+            <option value="virtual">Virtual</option>
+            <option value="physical">Physical</option>
+          </select>
+        </label>
+        <label
+          htmlFor="category"
           className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata"
-          placeholder="Category"
-          required
         >
-          <option value="none">Select</option>
-          <option value="hackathon">Hackathon</option>
-          <option value="hangout">Hangout</option>
-          <option value="conferences">Conference</option>
-        </select>
+          <select
+            name="category"
+            id="category"
+            onChange={handleInput}
+            value={category}
+            className="bg-transparent w-full h-full flex items-center justify-between focus:outline-none"
+            placeholder="Category"
+            required
+          >
+            <option value="" disabled selected>
+              Event Category
+            </option>
+            <option value="hackathon">Hackathon</option>
+            <option value="hangout">Hangout</option>
+            <option value="conferences">Conference</option>
+          </select>
+        </label>
       </div>
 
       <input
@@ -154,7 +181,13 @@ const Details = ({
       />
       {flierImg ? (
         <div className="flex flex-col items-center justify-center w-full h-22">
-          <Image src={flierImg} alt="flier image" width={400} height={120} className="object-cover"/>
+          <Image
+            src={flierImg}
+            alt="flier image"
+            width={400}
+            height={120}
+            className="object-cover"
+          />
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center w-full  text-smallxxx leading-4 font-jarkata text-[#BDB7CF]">

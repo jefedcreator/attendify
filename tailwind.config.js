@@ -1,14 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       color: {
-        cta:"red",
+        cta: "red",
       },
       backgroundImage: {
         "hero-pattern": "url('/assets/prezent.png')",
@@ -20,11 +20,11 @@ module.exports = {
           "linear-gradient(101.24deg, rgba(45, 51, 71, 0.9) -1.38%, rgba(45, 51, 71, 0) 105.06%)",
         card: "linear-gradient(117.29deg, rgba(234, 255, 254, 0.08) 2.63%, rgba(234, 255, 254, 0) 100%);",
         cta: " linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.056) 100%);",
-        "banner":"url('/assets/people.png')"
+        banner: "url('/assets/people.png')",
       },
-      backgroundPosition:{
-        'top-4': 'center top 11rem',
-        'bottom-4':"95%"
+      backgroundPosition: {
+        "top-4": "center top 11rem",
+        "bottom-4": "95%",
       },
       fontFamily: {
         jarkata: ["Plus Jakarta Sans", "sans-serif"],
@@ -44,30 +44,30 @@ module.exports = {
         "custom-leading": "72px",
         "custom-height": "66px",
         "sm-height": "45px",
-        "sm-small":"40px",
-        "sm-medium":"56px",
-        "sm-xx":"28px",
-        "sm-x":"32px",
-        "36":"36px",
-        "48":"48px",
-        "sm-smallxxx":"10px",
-        "24":"24px"
+        "sm-small": "40px",
+        "sm-medium": "56px",
+        "sm-xx": "28px",
+        "sm-x": "32px",
+        36: "36px",
+        48: "48px",
+        "sm-smallxxx": "10px",
+        24: "24px",
       },
       fontSize: {
         "7xl": "60px",
         small: "30px",
-        smallxx:"22px",
-        smallx:"34px",
+        smallxx: "22px",
+        smallx: "34px",
         minimal: "16px",
         "hero-text": "66px",
-        "medium":"42px",
-        "28":"28px",
-        "smallxxx":"12px"
+        medium: "42px",
+        28: "28px",
+        smallxxx: "12px",
       },
-      textUnderlineOffset:{
-        "12":"1.5rem"
-      }
+      textUnderlineOffset: {
+        12: "1.5rem",
+      },
     },
   },
   plugins: [],
-}
+};

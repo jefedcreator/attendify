@@ -1,6 +1,4 @@
 import Image from "next/image";
-// import conflux from "@public/assets/conflux.png";
-// import fliers from "@public/assets/flier.png";
 import { IPreview } from "src/utils/types/types";
 
 const Preview = ({
