@@ -8,6 +8,7 @@ import Image from "next/image";
 import { IoMdClose } from "react-icons/io";
 import { create } from "ipfs-http-client";
 import celebrate from "@public/assets/celebrate.svg";
+import { toast } from "react-toastify";
 import copy from "@public/assets/copy.svg";
 import QRCode from "react-qr-code";
 
@@ -79,6 +80,29 @@ const CreateEvent = () => {
     console.error("IPFS error ", error);
     ipfs = undefined;
   }
+
+  const copyToClipBoard = (text: string):Promise<boolean> => {
+    if (!navigator.clipboard) return Promise.resolve(false);
+    return navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        return true;
+      })
+      .catch((err) => {
+        console.error(err);
+        return false;
+      });
+  };
+
+  const copyToClipBoardHandler = async (copy:string) => {
+    // let path = window.location.href;
+    const success = await copyToClipBoard(copy);
+    if (success) {
+      toast.success("Copied to clipboard");
+    } else {
+      toast.error("Not Copied");
+    }
+  };
 
   return (
     <section
@@ -174,7 +198,7 @@ const CreateEvent = () => {
             You can now share the link or scan QR code for your attendees to
             mint preznts on Attendify
           </p>
-          <div className="bg-[#270F73] border border-dashed border-[#8D70EC] flex flex-col items-start justify-around px-2 py-1 rounded-md">
+          <div className="bg-[#270F73] border border-dashed border-[#8D70EC] flex flex-col items-start justify-around px-2 py-1 rounded-md cursor-pointer" onClick={() => copyToClipBoardHandler("https://www.attendify.ca/e/naija-c...")}>
             <p className="font-light text-smallxxx leading-6 font-jarkata text-[#9D94B8]">
               Mint Link
             </p>

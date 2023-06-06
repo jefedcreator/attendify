@@ -11,6 +11,9 @@ import { useAccount, useConnect } from "wagmi";
 import { usePathname } from "next/navigation";
 // import attendify from '@components/'
 import Connected from "@components/connected/Connected";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const { chains, publicClient } = configureChains(
   [polygonMumbai],
@@ -34,6 +37,7 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}>
+        <ToastContainer/>
         {!isConnected ? <Header /> : <Connected />}
         {children}
         {!isCreate && <Footer />}
