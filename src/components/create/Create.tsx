@@ -22,7 +22,32 @@ const CreateEvent = () => {
     prezentImg: null,
   });
 
-  console.log("details", eventDetails);
+  const handleDisabled = (): boolean => {
+    switch (next) {
+      case 0:
+        return !(
+          eventDetails.title.trim() !== "" &&
+          eventDetails.organizer.trim() !== "" &&
+          eventDetails.description.trim() !== "" &&
+          eventDetails.date.trim() !== "" &&
+          eventDetails.type.trim() !== "" &&
+          eventDetails.category.trim() !== "" &&
+          eventDetails.link.trim() !== "" &&
+          eventDetails.flier !== null &&
+          eventDetails.flierImg !== null
+        );
+      case 1:
+        return !(
+          eventDetails.prezent !== null && eventDetails.prezentImg !== null
+        );
+
+      case 2:
+        return false;
+
+      default:
+        return true;
+    }
+  };
 
   return (
     <section
@@ -49,11 +74,13 @@ const CreateEvent = () => {
               />
             );
           case 1:
-            return <Upload 
-            setEventDetails={setEventDetails}
-            prezent={eventDetails.prezent}
-            prezentImg={eventDetails.prezentImg}
-            />;
+            return (
+              <Upload
+                setEventDetails={setEventDetails}
+                prezent={eventDetails.prezent}
+                prezentImg={eventDetails.prezentImg}
+              />
+            );
           case 2:
             return (
               <Preview
@@ -86,8 +113,11 @@ const CreateEvent = () => {
         }
       })()}
       <button
-        className="bg-[#6E4AE7] text-[#F9F8FB] text-center w-full px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6"
-        onClick={() => setNext(next + 1)}
+        className={`${
+          handleDisabled() ? "bg-gray-500" : "bg-[#6E4AE7]"
+        } text-[#F9F8FB] text-center w-full px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6`}
+        disabled={handleDisabled()}
+        onClick={next !== 2 ? () => setNext(next + 1) : undefined}
       >
         {next == 2 ? "Create" : "Next"}
       </button>

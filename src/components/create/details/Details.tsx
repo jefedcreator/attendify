@@ -110,7 +110,7 @@ const Details = ({
         <label
           htmlFor="event-date"
           // className="flex flex-col items-center justify-center w-full h-[40] bg-[#04102B]"
-          className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata flex items-center justify-between"
+          className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata flex items-center justify-between cursor-pointer"
         >
           <p className="text-xs text-[#BDB7CF] dark:text-gray-400">
             Event date
@@ -129,7 +129,7 @@ const Details = ({
       <div className="flex gap-2 items-center">
         <label
           htmlFor="type"
-          className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata flex items-center justify-between"
+          className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full cursor-pointer text-[#BDB7CF] text-smallxxx leading-4 font-jarkata flex items-center justify-between"
         >
           <select
             name="type"
@@ -137,11 +137,11 @@ const Details = ({
             onChange={handleInput}
             value={type}
             // className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata"
-            className="bg-transparent w-full h-full flex items-center justify-between focus:outline-none cursor-pointer rounded-md text-[#BDB7CF] text-smallxxx leading-4 font-jarkata gap-1"
+            className="bg-transparent w-full h-full flex items-center justify-between focus:outline-none rounded-md text-[#BDB7CF] text-smallxxx leading-4 font-jarkata gap-1"
             placeholder="Type"
             required
           >
-            <option value="" disabled selected>
+            <option value="" disabled>
               Event Type
             </option>
             <option value="virtual">Virtual</option>
@@ -150,7 +150,7 @@ const Details = ({
         </label>
         <label
           htmlFor="category"
-          className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata"
+          className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata cursor-pointer"
         >
           <select
             name="category"
@@ -161,7 +161,7 @@ const Details = ({
             placeholder="Category"
             required
           >
-            <option value="" disabled selected>
+            <option value="" disabled>
               Event Category
             </option>
             <option value="hackathon">Hackathon</option>
