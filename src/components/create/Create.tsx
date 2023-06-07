@@ -15,6 +15,7 @@ import QRCode from "react-qr-code";
 const CreateEvent = () => {
   const [next, setNext] = useState<number>(0);
   const [modal, setModal] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [eventDetails, setEventDetails] = useState<IEventDetails>({
     title: "",
     organizer: "",
@@ -129,12 +130,25 @@ const CreateEvent = () => {
     }
   };
 
-  const handleCreateEvent = async (e: React.ChangeEvent<HTMLButtonElement>) => {
+  const handleCreateEvent = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      const coverIpfsUrl = await ipfs?.add(eventDetails.prezent);
-    } catch (error) {
-      
+      const eventNft = await ipfs?.add(eventDetails.prezent as File);
+      let data = JSON.stringify({
+        title: eventDetails.title,
+        description: eventDetails.description,
+        image: `https://jefedcreator.infura-ipfs.io/ipfs/${eventNft?.path}`,
+        // owner: address,
+      });
+      const getUri = await ipfs?.add(data);
+      let uri = `ipfs://${getUri?.path}`;
+      toast.success("event uri Uploaded to ipfs succesfully");
+      console.log("uri", uri);
+      setLoading(true);
+      setModal(true);
+    } catch (error: any) {
+      toast.error(error.message);
     }
   };
 
@@ -207,9 +221,11 @@ const CreateEvent = () => {
             handleDisabled() ? "bg-gray-500" : "bg-[#6E4AE7]"
           } text-[#F9F8FB] text-center w-full px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6`}
           disabled={handleDisabled()}
-          onClick={next !== 2 ? () => setNext(next + 1) : () => setModal(true)}
+          onClick={
+            next !== 2 ? () => setNext(next + 1) : (e) => handleCreateEvent(e)
+          }
         >
-          {next == 2 ? "Create" : "Next"}
+          {next == 2 ? (loading ? "Creating..." : "Create") : "Next"}
         </button>
       )}
       {modal && (

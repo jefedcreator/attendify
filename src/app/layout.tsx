@@ -9,6 +9,12 @@ const jakarta = Plus_Jakarta_Sans({ subsets: ["latin-ext"] });
 export const metadata: Metadata = {
   title: "Attendify",
   description: "The web3 event hub.",
+  viewport: {
+    width: "device-width",
+    initialScale: 1.0,
+    maximumScale: 1.0,
+    userScalable: false,
+  },
 };
 
 export default function RootLayout({

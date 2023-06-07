@@ -121,3 +121,8 @@ export interface ISocials {
 export interface IConnect {
   isMintPage: boolean;
 }
+
+export interface IError extends Error {
+  message: string;
+  // Add any additional properties or methods specific to your error context
+}
