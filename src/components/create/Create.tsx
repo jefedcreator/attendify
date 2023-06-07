@@ -6,7 +6,7 @@ import Preview from "./preview/Preview";
 import { IEventDetails } from "src/utils/types/types";
 import Image from "next/image";
 import { IoMdClose } from "react-icons/io";
-import { create } from "ipfs-http-client";
+import { create, IPFSHTTPClient } from "ipfs-http-client";
 import celebrate from "@public/assets/celebrate.svg";
 import { toast } from "react-toastify";
 import copy from "@public/assets/copy.svg";
@@ -65,7 +65,7 @@ const CreateEvent = () => {
         process.env.NEXT_PUBLIC_PROJECT_SECRET
     );
 
-  let ipfs;
+  let ipfs: IPFSHTTPClient | undefined;
 
   try {
     ipfs = create({
@@ -81,33 +81,33 @@ const CreateEvent = () => {
     ipfs = undefined;
   }
 
-  const fallbackCopyToClipBoard = (text:string):Promise<boolean> => {
+  const fallbackCopyToClipBoard = (text: string): Promise<boolean> => {
     const textArea = document.createElement("textarea");
     textArea.value = text;
-  
+
     // Avoid scrolling to bottom
     textArea.style.top = "0";
     textArea.style.left = "0";
     textArea.style.position = "fixed";
-  
+
     document.body.appendChild(textArea);
     textArea.focus();
     textArea.select();
-  
+
     try {
-        const successful = document.execCommand("copy");
-        return Promise.resolve(successful);
+      const successful = document.execCommand("copy");
+      return Promise.resolve(successful);
     } catch (err) {
-        return Promise.resolve(false);
+      return Promise.resolve(false);
     } finally {
-        document.body.removeChild(textArea);
+      document.body.removeChild(textArea);
     }
   };
 
-  const copyToClipBoard = (text: string):Promise<boolean> => {
+  const copyToClipBoard = (text: string): Promise<boolean> => {
     if (!navigator.clipboard) {
-      return fallbackCopyToClipBoard(text)
-    };
+      return fallbackCopyToClipBoard(text);
+    }
     return navigator.clipboard
       .writeText(text)
       .then(() => {
@@ -119,13 +119,22 @@ const CreateEvent = () => {
       });
   };
 
-  const copyToClipBoardHandler = async (copy:string) => {
+  const copyToClipBoardHandler = async (copy: string) => {
     // let path = window.location.href;
     const success = await copyToClipBoard(copy);
     if (success) {
       toast.success("Copied to clipboard");
     } else {
       toast.error("Not Copied");
+    }
+  };
+
+  const handleCreateEvent = async (e: React.ChangeEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    try {
+      const coverIpfsUrl = await ipfs?.add(eventDetails.prezent);
+    } catch (error) {
+      
     }
   };
 
@@ -223,7 +232,12 @@ const CreateEvent = () => {
             You can now share the link or scan QR code for your attendees to
             mint preznts on Attendify
           </p>
-          <div className="bg-[#270F73] border border-dashed border-[#8D70EC] flex flex-col items-start justify-around px-2 py-1 rounded-md cursor-pointer" onClick={() => copyToClipBoardHandler("https://www.attendify.ca/e/naija-c...")}>
+          <div
+            className="bg-[#270F73] border border-dashed border-[#8D70EC] flex flex-col items-start justify-around px-2 py-1 rounded-md cursor-pointer"
+            onClick={() =>
+              copyToClipBoardHandler("https://www.attendify.ca/e/naija-c...")
+            }
+          >
             <p className="font-light text-smallxxx leading-6 font-jarkata text-[#9D94B8]">
               Mint Link
             </p>
