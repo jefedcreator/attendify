@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import Details from "./details/Details";
-import Upload from "./upload/Upload";
-import Preview from "./preview/Preview";
+import Details from "@components/create/details/Details";
+import Upload from "@components/create/upload/Upload";
+import Preview from "@components/create/preview/Preview";
 import { IEventDetails } from "src/utils/types/types";
 import Image from "next/image";
 import { IoMdClose } from "react-icons/io";
@@ -257,26 +257,26 @@ const CreateEvent = () => {
             <p className="font-light text-smallxxx leading-6 font-jarkata text-[#9D94B8]">
               Mint Link
             </p>
-            <span className="flex items-center justify-between">
+            <span className="w-full flex items-center justify-between">
               <p className="font-semibold text-sm leading-6 font-jarkata text-[#9D94B8] w-[70%] whitespace-nowrap overflow-hidden">
                 https://www.attendify.ca/e/naija-c...
               </p>
               <Image src={copy} alt="copy" width={20} />
             </span>
           </div>
-          {/* <div className="w-full items-center justify-center p-5"> */}
-          <QRCode
-            size={300}
-            bgColor="#ffff"
-            value={`https://www.attendify.ca/e/naija.com`}
-            style={{
-              padding: "10px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          />
-          {/* </div> */}
+          <div className="w-full items-center mx-auto flex justify-center p-1">
+            <QRCode
+              size={180}
+              bgColor="#ffff"
+              value={`https://www.attendify.ca/e/naija.com`}
+              style={{
+                padding: "10px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            />
+          </div>
           {/* <button className="bg-[#6E4AE7] text-[#F9F8FB] text-center w-full px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6 cursor-pointer">
             continue
           </button> */}
