@@ -11,6 +11,10 @@ import celebrate from "@public/assets/celebrate.svg";
 import { toast } from "react-toastify";
 import copy from "@public/assets/copy.svg";
 import QRCode from "react-qr-code";
+import { useContractWrite } from "wagmi";
+import attendifyAbi from "src/utils/abi";
+import attendifyAddress from "src/utils/address";
+import { useAccount } from "wagmi";
 
 const CreateEvent = () => {
   const [next, setNext] = useState<number>(0);
@@ -22,13 +26,20 @@ const CreateEvent = () => {
     symbol: "",
     description: "",
     date: "",
-    type: "",
+    venue: "",
     category: "",
     link: "",
     flier: null,
     flierImg: null,
     prezent: null,
     prezentImg: null,
+  });
+  const { address } = useAccount();
+
+  const { data, isLoading, isSuccess, write } = useContractWrite({
+    address: attendifyAddress,
+    abi: attendifyAbi,
+    functionName: "createEvent",
   });
 
   const handleDisabled = (): boolean => {
@@ -39,7 +50,7 @@ const CreateEvent = () => {
           eventDetails.organizer.trim() !== "" &&
           eventDetails.description.trim() !== "" &&
           eventDetails.date.trim() !== "" &&
-          eventDetails.type.trim() !== "" &&
+          eventDetails.venue.trim() !== "" &&
           eventDetails.category.trim() !== "" &&
           eventDetails.link.trim() !== "" &&
           eventDetails.flier !== null &&
@@ -145,7 +156,20 @@ const CreateEvent = () => {
       let uri = `ipfs://${getUri?.path}`;
       toast.success("event uri Uploaded to ipfs succesfully");
       console.log("uri", uri);
-      setLoading(true);
+      write({
+        args: [
+          eventDetails.title,
+          eventDetails.symbol,
+          uri,
+          eventDetails.organizer,
+          eventDetails.date,
+          eventDetails.venue,
+          eventDetails.category,
+          eventDetails.link,
+        ],
+      });
+      {isSuccess && toast.success(JSON.stringify(data))}
+      setLoading(false);
       setModal(true);
     } catch (error: any) {
       toast.error(error.message);
@@ -169,7 +193,7 @@ const CreateEvent = () => {
                 symbol={eventDetails.symbol}
                 description={eventDetails.description}
                 date={eventDetails.date}
-                type={eventDetails.type}
+                venue={eventDetails.venue}
                 category={eventDetails.category}
                 link={eventDetails.link}
                 flier={eventDetails.flier}
@@ -190,7 +214,7 @@ const CreateEvent = () => {
                 title={eventDetails.title}
                 organizer={eventDetails.organizer}
                 date={eventDetails.date}
-                type={eventDetails.type}
+                venue={eventDetails.venue}
                 category={eventDetails.category}
                 link={eventDetails.link}
                 flierImg={eventDetails.flierImg}
@@ -206,7 +230,7 @@ const CreateEvent = () => {
                 symbol={eventDetails.symbol}
                 description={eventDetails.description}
                 date={eventDetails.date}
-                type={eventDetails.type}
+                venue={eventDetails.venue}
                 category={eventDetails.category}
                 link={eventDetails.link}
                 flier={eventDetails.flier}

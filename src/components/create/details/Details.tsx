@@ -9,7 +9,7 @@ const Details = ({
   symbol,
   description,
   date,
-  type,
+  venue,
   category,
   link,
   flier,
@@ -132,17 +132,17 @@ const Details = ({
           className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full cursor-pointer text-[#BDB7CF] text-smallxxx leading-4 font-jarkata flex items-center justify-between"
         >
           <select
-            name="type"
-            id="type"
+            name="venue"
+            id="venue"
             onChange={handleInput}
-            value={type}
+            value={venue}
             // className="bg-[#04102B] border border-[#2B304B] focus:outline-none rounded-md px-2 py-4 w-full text-[#BDB7CF] text-smallxxx leading-4 font-jarkata"
             className="bg-transparent w-full h-full flex items-center justify-between focus:outline-none rounded-md text-[#BDB7CF] text-smallxxx leading-4 font-jarkata gap-1 cursor-pointer"
-            placeholder="Type"
+            placeholder="venue"
             required
           >
             <option value="" disabled>
-              Event Type
+              Event venue
             </option>
             <option value="virtual">Virtual</option>
             <option value="physical">Physical</option>

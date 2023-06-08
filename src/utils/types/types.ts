@@ -40,7 +40,7 @@ export interface IEventDetails {
   symbol: string;
   description: string;
   date: string;
-  type: string;
+  venue: string;
   category: string;
   link: string;
   flier: null | File;
@@ -56,7 +56,7 @@ export interface ISetEventDetails {
   symbol: string;
   description: string;
   date: string;
-  type: string;
+  venue: string;
   category: string;
   link: string;
   flier: null | File;
@@ -71,7 +71,7 @@ export interface IPreview {
   title: string;
   organizer: string;
   date: string;
-  type: string;
+  venue: string;
   category: string;
   link: string;
   flierImg: string | null;

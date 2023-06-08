@@ -5,7 +5,7 @@ const Preview = ({
   title,
   organizer,
   date,
-  type,
+  venue,
   category,
   link,
   flierImg,
@@ -51,7 +51,7 @@ const Preview = ({
             Type
           </h2>
           <p className="text-sm md:text-base leading-7 font-jarkata text-[#F9F8FB]">
-            {type}
+            {venue}
           </p>
         </span>
         <span className="w-[45%]">
