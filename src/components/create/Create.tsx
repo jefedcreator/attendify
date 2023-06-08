@@ -138,7 +138,7 @@ const CreateEvent = () => {
       let data = JSON.stringify({
         title: eventDetails.title,
         description: eventDetails.description,
-        image: `https://jefedcreator.infura-ipfs.io/ipfs/${eventNft?.path}`,
+        image: `https://attendify.infura-ipfs.io/ipfs/${eventNft?.path}`,
         // owner: address,
       });
       const getUri = await ipfs?.add(data);
