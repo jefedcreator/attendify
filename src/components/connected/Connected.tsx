@@ -17,7 +17,7 @@ const Connected = () => {
             />
           </Link>
         </div>
-        <div className="w-[55%] md:w-[22%] flex items-center justify-end">
+        <div className="w-[70%] md:w-[30%] flex items-center justify-end">
           <ConnectButton.Custom>
             {({ account, openAccountModal, authenticationStatus, mounted }) => {
               // Note: If your app doesn't use authentication, you
@@ -34,7 +34,7 @@ const Connected = () => {
                       userSelect: "none",
                     },
                   })}
-                  className="w-[70%] md:w-[60%]"
+                  className="w-[50%]"
                 >
                   {(() => {
                     return (
@@ -45,12 +45,12 @@ const Connected = () => {
                         <button
                           onClick={openAccountModal}
                           type="button"
-                          className="bg-[#6E4AE7] text-[#F9F8FB] border-2 border-purple-400 rounded-lg font-jakarta p-2 md:p-3"
+                          className="bg-[#6E4AE7] text-sm text-[#F9F8FB] border-2 border-purple-400 rounded-lg font-jakarta p-2 md:p-3"
                         >
                           {account?.displayName}
-                          {account?.displayBalance
+                          {/* {account?.displayBalance
                             ? ` (${account.displayBalance})`
-                            : ""}
+                            : ""} */}
                         </button>
                       </div>
                     );

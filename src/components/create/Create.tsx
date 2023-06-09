@@ -11,15 +11,16 @@ import celebrate from "@public/assets/celebrate.svg";
 import { toast } from "react-toastify";
 import copy from "@public/assets/copy.svg";
 import QRCode from "react-qr-code";
-import { useContractWrite } from "wagmi";
+import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import attendifyAbi from "src/utils/abi";
 import attendifyAddress from "src/utils/address";
 import { useAccount } from "wagmi";
 
 const CreateEvent = () => {
   const [next, setNext] = useState<number>(0);
-  const [modal, setModal] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [modal, setModal] = useState<boolean>(true);
+  const [createLoading, setCreateLoading] = useState<boolean>(false);
+  const [uri, setUri] = useState("");
   const [eventDetails, setEventDetails] = useState<IEventDetails>({
     title: "",
     organizer: "",
@@ -36,11 +37,28 @@ const CreateEvent = () => {
   });
   const { address } = useAccount();
 
-  const { data, isLoading, isSuccess, write } = useContractWrite({
+  // const { data, isLoading, isSuccess, write } = useContractWrite({
+  //   address: attendifyAddress,
+  //   abi: attendifyAbi,
+  //   functionName: "createEvent",
+  // });
+
+  const { config } = usePrepareContractWrite({
     address: attendifyAddress,
     abi: attendifyAbi,
     functionName: "createEvent",
+    args: [
+      eventDetails.title,
+      eventDetails.symbol,
+      uri,
+      eventDetails.organizer,
+      eventDetails.date,
+      eventDetails.venue,
+      eventDetails.category,
+      eventDetails.link,
+    ],
   });
+  const { data, isLoading, isSuccess, write } = useContractWrite(config);
 
   const handleDisabled = (): boolean => {
     switch (next) {
@@ -141,40 +159,29 @@ const CreateEvent = () => {
     }
   };
 
+  console.log("epoch", Date.parse(eventDetails.date) / 1000);
+
   const handleCreateEvent = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setLoading(true);
+    setCreateLoading(true);
     try {
       const eventNft = await ipfs?.add(eventDetails.prezent as File);
-      let data = JSON.stringify({
+      let nftData = JSON.stringify({
         title: eventDetails.title,
         description: eventDetails.description,
         image: `https://attendify.infura-ipfs.io/ipfs/${eventNft?.path}`,
         // owner: address,
       });
-      const getUri = await ipfs?.add(data);
-      let uri = `ipfs://${getUri?.path}`;
+      const getUri = await ipfs?.add(nftData);
+      let ipfsUri = `ipfs://${getUri?.path}`;
       toast.success("event uri Uploaded to ipfs succesfully");
-      console.log("uri", uri);
-      write({
-        args: [
-          eventDetails.title,
-          eventDetails.symbol,
-          uri,
-          eventDetails.organizer,
-          eventDetails.date,
-          eventDetails.venue,
-          eventDetails.category,
-          eventDetails.link,
-        ],
-      });
-      {isSuccess && toast.success(JSON.stringify(data))}
-      setLoading(false);
-      setModal(true);
+      setUri(ipfsUri);
+      write?.()
     } catch (error: any) {
       toast.error(error.message);
     }
   };
+  console.log("data",data);
 
   return (
     <section
@@ -239,20 +246,20 @@ const CreateEvent = () => {
             );
         }
       })()}
-      {!modal && (
+      {modal && !isSuccess && (
         <button
           className={`${
             handleDisabled() ? "bg-gray-500" : "bg-[#6E4AE7]"
           } text-[#F9F8FB] text-center w-full px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6`}
-          disabled={handleDisabled()}
+          disabled={handleDisabled() || createLoading}
           onClick={
             next !== 2 ? () => setNext(next + 1) : (e) => handleCreateEvent(e)
           }
         >
-          {next == 2 ? (loading ? "Creating..." : "Create") : "Next"}
+          {next == 2 ? (createLoading || isLoading ? "Creating..." : "Create") : "Next"}
         </button>
       )}
-      {modal && (
+      {modal && isSuccess && (
         <div className="bg-gradient-to-r from-[#00091F] to-[#1E0C5A] border border-solid border-blue-500 border-opacity-20 fixed md:absolute h-[70vh] md:w-[30vw] w-80 text-white rounded-lg md:top-10 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col item-center justify-start text-center p-3 gap-3 md:gap-2">
           <div className="w-full relative flex">
             <Image

@@ -17,8 +17,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 const { chains, publicClient } = configureChains(
   [polygonMumbai],
-  [alchemyProvider({ apiKey: "process.env.ALCHEMY_ID" }), publicProvider()]
+  [alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID as string}), publicProvider()]
 );
+
 const { connectors } = getDefaultWallets({
   appName: "Attendify",
   projectId: "YOUR_PROJECT_ID",
