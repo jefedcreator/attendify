@@ -1,3 +1,3 @@
-const attendifyAddress = "0x75a1a751A02710C2abd10B83A44A480cB4C08068";
+const attendifyAddress = "0xa0A53090dF8b5d70fB5F8E332029aEbE03101534";
 
 export default attendifyAddress;

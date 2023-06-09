@@ -4,7 +4,7 @@ import conflux from "@public/assets/conflux.png";
 import MintButton from "@components/mintButton/MintButton";
 
 const Mint = ({ params }: IProps) => {
-  // console.log("router", params.mint);
+  console.log("router", params.mint);
 
   return (
     <section className="md:w-[50%] w-[80%] h-[80vh] mx-auto flex flex-col items-center justify-start text-center gap-4">

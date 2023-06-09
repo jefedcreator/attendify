@@ -14,13 +14,16 @@ import QRCode from "react-qr-code";
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import attendifyAbi from "src/utils/abi";
 import attendifyAddress from "src/utils/address";
-import { useAccount } from "wagmi";
+import { getLocationOrigin } from "next/dist/shared/lib/utils";
+import { ICreated } from "src/utils/types/types";
+
 
 const CreateEvent = () => {
   const [next, setNext] = useState<number>(0);
   const [modal, setModal] = useState<boolean>(true);
   const [createLoading, setCreateLoading] = useState<boolean>(false);
   const [uri, setUri] = useState("");
+  const [mintAddress, setMintAddress] = useState<ICreated | null>(null);
   const [eventDetails, setEventDetails] = useState<IEventDetails>({
     title: "",
     organizer: "",
@@ -35,13 +38,8 @@ const CreateEvent = () => {
     prezent: null,
     prezentImg: null,
   });
-  const { address } = useAccount();
 
-  // const { data, isLoading, isSuccess, write } = useContractWrite({
-  //   address: attendifyAddress,
-  //   abi: attendifyAbi,
-  //   functionName: "createEvent",
-  // });
+  const basepath = getLocationOrigin();
 
   const { config } = usePrepareContractWrite({
     address: attendifyAddress,
@@ -57,6 +55,10 @@ const CreateEvent = () => {
       eventDetails.category,
       eventDetails.link,
     ],
+    onSuccess(data) {
+      console.log("Success", data);
+      setMintAddress(data.result as ICreated);
+    },
   });
   const { data, isLoading, isSuccess, write } = useContractWrite(config);
 
@@ -176,12 +178,13 @@ const CreateEvent = () => {
       let ipfsUri = `ipfs://${getUri?.path}`;
       toast.success("event uri Uploaded to ipfs succesfully");
       setUri(ipfsUri);
-      write?.()
+      write?.();
     } catch (error: any) {
       toast.error(error.message);
-    }
+    } 
   };
-  console.log("data",data);
+
+  const mintLink = `${basepath}/mint/${mintAddress?.[1]}`;
 
   return (
     <section
@@ -256,7 +259,11 @@ const CreateEvent = () => {
             next !== 2 ? () => setNext(next + 1) : (e) => handleCreateEvent(e)
           }
         >
-          {next == 2 ? (createLoading || isLoading ? "Creating..." : "Create") : "Next"}
+          {next == 2
+            ? createLoading || isLoading
+              ? "Creating..."
+              : "Create"
+            : "Next"}
         </button>
       )}
       {modal && isSuccess && (
@@ -281,16 +288,14 @@ const CreateEvent = () => {
           </p>
           <div
             className="bg-[#270F73] border border-dashed border-[#8D70EC] flex flex-col items-start justify-around px-2 py-1 rounded-md cursor-pointer"
-            onClick={() =>
-              copyToClipBoardHandler("https://www.attendify.ca/e/naija-c...")
-            }
+            onClick={() => copyToClipBoardHandler(mintLink)}
           >
             <p className="font-light text-smallxxx leading-6 font-jarkata text-[#9D94B8]">
               Mint Link
             </p>
             <span className="w-full flex items-center justify-between">
               <p className="font-semibold text-sm leading-6 font-jarkata text-[#9D94B8] w-[70%] whitespace-nowrap overflow-hidden">
-                https://www.attendify.ca/e/naija-c...
+                {mintLink}
               </p>
               <Image src={copy} alt="copy" width={20} />
             </span>
@@ -299,7 +304,7 @@ const CreateEvent = () => {
             <QRCode
               size={180}
               bgColor="#ffff"
-              value={`https://www.attendify.ca/e/naija.com`}
+              value={mintLink}
               style={{
                 padding: "10px",
                 display: "flex",

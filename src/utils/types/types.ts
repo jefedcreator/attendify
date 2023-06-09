@@ -126,3 +126,8 @@ export interface IError extends Error {
   message: string;
   // Add any additional properties or methods specific to your error context
 }
+
+export interface ICreated {
+  0: boolean;
+  1: string;
+}
