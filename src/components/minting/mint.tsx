@@ -1,85 +1,40 @@
-// import axios from "axios";
+"use client";
 import Image from "next/image";
-// import { usePathname } from "next/navigation";
-// import { useEffect, useState } from "react";
 import conflux from "@public/assets/conflux.png";
+import MintButton from "@components/mintButton/MintButton";
+import { useEffect } from "react";
+import { useContractRead, useAccount } from "wagmi";
+import attendifyAbi from "src/utils/abi";
+import attendifyAddress from "src/utils/address";
 
-const Mint = () =>{
-  // const router = usePathname();
-  
-  // const mint = router.query.mint;
-  // const [data, setData] = useState(null);
-  // const [loading, setLoading] = useState(false);
+const Minting = ({ prezent }: { prezent: string }) => {
+  const { connector: activeConnector, isConnected, address } = useAccount();
 
-  // const [show, setShow] = useState(false);
+  const { data } = useContractRead({
+    address: attendifyAddress,
+    abi: attendifyAbi,
+    args: [prezent, address],
+    functionName: "prezentBalance",
+    onSuccess(data) {
+      console.log("Success", data);
+      // setMintAddress(data.result as ICreated);
+    },
+    // account: address
+  });
 
-  // const toggleModal = () => {
-  //   setShow(true);
-  //   console.log("Open modal");
-  // };
-  // const closeModal = () => {
-  //   setShow(false);
-  // };
-
-  // const fetchData = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const result: any = await axios.get(
-  //       `https://attendify.onrender.com/${mint}`
-  //     );
-  //     setData(result?.data?.event);
-  //     setLoading(false);
-  //   } catch (error) {
-  //     setLoading(false);
-  //     throw error;
-  //   }
-  // };
-
-
-  // const claimNFT = async () => {
-  //   try {
-
-  //     await claim(address, async (res: any) => {
-  //       if (!res.hash) {
-  //         addToast(res.message, { appearance: "error" });
-  //       }
-  //       await res.wait();
-  //       addToast("You have successfully minted", { appearance: "success" });
-  //       router.push(`https://testnets.opensea.io/${account}`)
-  //     });
-  //   } catch (error) {}
-  // };
-
-  // useEffect(() => {
-  //   router.isReady ? fetchData() : null;
-  // }, [active, account, mint]);
+  console.log("balance", data);
+  const balance = parseInt(data as string, 16);
 
   return (
-      <section className="container w-[50%] mx-auto">
-        <h3 className="text-white text-center font-bold font-syne text-medium leading-sm-medium">
-          Welcome to Attendify
-        </h3>
-        <p className="text-[#9D94B8] text-center font-medium font-jakarta text-minimal leading-sm-xx">
-          You’re about to mint your Preznt for attending
-          <br /> Web3 community call by Attendify.
-        </p>
-        <div className="w-full md:w-[50%] lg:w-[30%] my-12 mx-auto">
-          {/* <div> */}
-          <div>
-            {/* <p className="font-bold my-2 text-[#9D94B8] text-center text-2xl">{name}</p> */}
-          </div>
-          <div>
-            <div className="flex justify-center my-6">
-              <Image src={conflux} alt="nft image" />
-            </div>
-            
-
-            {/* </div> */}
-          </div>
-        </div>
-
-      </section>
+    <div className="w-full mx-auto flex flex-col items-center text-center gap-4">
+      <p className="font-normal text-smallxxx md:text-sm leading-7 text-[#BDB7CF] font-jarkata">
+        You’re about to mint your Preznt for attending
+        <br /> Web3 community call by Attendify.
+      </p>
+      <Image src={conflux} alt="nft image" />
+      <MintButton prezent={prezent} balance={balance == 1} />
+    </div>
   );
-}
+};
 
-export default Mint;
+export default Minting;

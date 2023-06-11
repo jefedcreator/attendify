@@ -1,24 +1,5 @@
 const attendifyAbi = [
 	{
-		"inputs": [
-			{
-				"internalType": "contract Attendify",
-				"name": "prezent",
-				"type": "address"
-			}
-		],
-		"name": "claimPrezent",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -84,6 +65,75 @@ const attendifyAbi = [
 		],
 		"name": "createdEvents",
 		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "poap",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "collector",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "eventUri",
+				"type": "string"
+			}
+		],
+		"name": "favouritePrezents",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "poap",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "collector",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "eventUri",
+				"type": "string"
+			}
+		],
+		"name": "mintedPrezents",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "contract Attendify",
+				"name": "prezent",
+				"type": "address"
+			}
+		],
+		"name": "claimPrezent",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"inputs": [
@@ -158,60 +208,15 @@ const attendifyAbi = [
 		"type": "function"
 	},
 	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "poap",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "collector",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "eventUri",
-				"type": "string"
-			}
-		],
-		"name": "favouritePrezents",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "poap",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "collector",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "eventUri",
-				"type": "string"
-			}
-		],
-		"name": "mintedPrezents",
-		"type": "event"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "contract Attendify",
 				"name": "prezent",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "user",
 				"type": "address"
 			}
 		],
@@ -251,4 +256,5 @@ const attendifyAbi = [
 		"type": "function"
 	}
 ]
+
 export default attendifyAbi;
