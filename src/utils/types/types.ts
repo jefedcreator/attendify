@@ -45,7 +45,7 @@ export interface IEventDetails {
   link: string;
   flier: null | File;
   flierImg: string | null;
-  prezent:  null | File;
+  prezent: null | File;
   prezentImg: string | null;
 }
 
@@ -124,10 +124,34 @@ export interface IConnect {
 
 export interface IError extends Error {
   message: string;
-  // Add any additional properties or methods specific to your error context
 }
 
 export interface ICreated {
   0: boolean;
   1: string;
+}
+
+export interface ICreatedEvent {
+  poap: string;
+  creator: string;
+  eventName: string;
+  eventSymbol: string;
+  eventUri: string;
+  organizer: string;
+  date: string;
+  venue: string;
+  category: string;
+  link: string;
+}
+
+export interface IMintedEvent {
+  poap: string;
+  collector: string;
+  eventUri: string;
+}
+
+export interface IFavoritesEvent {
+  poap: string;
+  collector: string;
+  eventUri: string;
 }

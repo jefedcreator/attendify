@@ -7,32 +7,18 @@ import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { polygonMumbai } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-import { useAccount, useConnect, useContractEvent } from "wagmi";
+import { useAccount, useContractEvent } from "wagmi";
 import { usePathname } from "next/navigation";
 import Connected from "@components/connected/Connected";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import attendifyAbi from "src/utils/abi";
 import attendifyAddress from "src/utils/address";
-import { BlockTag, createPublicClient, http } from "viem";
-import { parseAbiItem } from "viem";
 import {
   attendifyContext,
   Attendify,
 } from "@components/AttendifyContext/AttendifyContext";
 
-interface ICreated {
-  poap: string;
-  creator: string;
-  eventName: string;
-  eventSymbol: string;
-  eventUri: string;
-  organizer: string;
-  date: string;
-  venue: string;
-  category: string;
-  link: string;
-}
 
 const { chains, publicClient } = configureChains(
   [polygonMumbai],
