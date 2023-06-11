@@ -4,6 +4,7 @@ import people from "@public/assets/people.png";
 import { collectionItem } from "static/data";
 import hacker from "@public/assets/hacker.svg";
 
+
 const Events = () => {
   return (
     <div className="relative w-[90%] mx-auto">

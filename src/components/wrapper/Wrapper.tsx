@@ -7,17 +7,39 @@ import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { polygonMumbai } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-import { useAccount, useConnect } from "wagmi";
+import { useAccount, useConnect, useContractEvent } from "wagmi";
 import { usePathname } from "next/navigation";
-// import attendify from '@components/'
 import Connected from "@components/connected/Connected";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import attendifyAbi from "src/utils/abi";
+import attendifyAddress from "src/utils/address";
+import { BlockTag, createPublicClient, http } from "viem";
+import { parseAbiItem } from "viem";
+import {
+  attendifyContext,
+  Attendify,
+} from "@components/AttendifyContext/AttendifyContext";
 
+interface ICreated {
+  poap: string;
+  creator: string;
+  eventName: string;
+  eventSymbol: string;
+  eventUri: string;
+  organizer: string;
+  date: string;
+  venue: string;
+  category: string;
+  link: string;
+}
 
 const { chains, publicClient } = configureChains(
   [polygonMumbai],
-  [alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID as string}), publicProvider()],
+  [
+    alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID as string }),
+    publicProvider(),
+  ]
 );
 
 const { connectors } = getDefaultWallets({
@@ -31,17 +53,30 @@ const wagmiConfig = createConfig({
   connectors,
   publicClient,
 });
+
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
   const { connector: activeConnector, isConnected } = useAccount();
-  const pathname = usePathname();  
-  const isCreate = pathname == '/create'
+  const pathname = usePathname();
+  const isCreate = pathname == "/create";
+  useContractEvent({
+    address: attendifyAddress,
+    abi: attendifyAbi,
+    eventName: "createdEvents",
+
+    listener(log) {
+      console.log("createdEvents", log);
+    },
+  });
+
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}>
-        <ToastContainer/>
-        {!isConnected ? <Header /> : <Connected />}
-        {children}
-        {!isCreate && <Footer />}
+        <Attendify>
+          <ToastContainer />
+          {!isConnected ? <Header /> : <Connected />}
+          {children}
+          {!isCreate && <Footer />}
+        </Attendify>
       </RainbowKitProvider>
     </WagmiConfig>
   );

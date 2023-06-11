@@ -22,7 +22,6 @@ const Minting = ({ prezent }: { prezent: string }) => {
     // account: address
   });
 
-  console.log("balance", data);
   const balance = parseInt(data as string, 16);
 
   return (

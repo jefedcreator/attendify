@@ -176,8 +176,8 @@ const CreateEvent = () => {
       });
       const getUri = await ipfs?.add(nftData);
       let ipfsUri = `ipfs://${getUri?.path}`;
-      toast.success("event uri Uploaded to ipfs succesfully");
       setUri(ipfsUri);
+      toast.success("event uri Uploaded to ipfs succesfully");
       write?.();
     } catch (error: any) {
       toast.error(error.message);

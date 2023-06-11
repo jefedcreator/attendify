@@ -1,11 +1,7 @@
 "use client";
 import { useAccount } from "wagmi";
 import Connect from "@components/connectButton/ConnectButton";
-import {
-  useContractWrite,
-  usePrepareContractWrite,
-  useContractRead,
-} from "wagmi";
+import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import attendifyAbi from "src/utils/abi";
 import attendifyAddress from "src/utils/address";
 
@@ -33,7 +29,9 @@ const MintButton = ({
     return (
       <div className="w-full flex flex-col items-center justify-start gap-4">
         <button
-          className={`${balance || isSuccess ? "bg-[#1b56ea]":"bg-[#6E4AE7]" }  text-[#F9F8FB] text-center w-[100%] md:w-[45%] px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6`}
+          className={`${
+            balance || isSuccess ? "bg-[#1b56ea]" : "bg-[#6E4AE7]"
+          }  text-[#F9F8FB] text-center w-[100%] md:w-[45%] px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6`}
           onClick={write}
           disabled={balance || isSuccess}
         >
