@@ -3,7 +3,7 @@ import { useState } from "react";
 import Details from "@components/create/details/Details";
 import Upload from "@components/create/upload/Upload";
 import Preview from "@components/create/preview/Preview";
-import { IEventDetails } from "src/utils/types/types";
+import { IEventDetails, ICreated } from "src/utils/types/types";
 import Image from "next/image";
 import { IoMdClose } from "react-icons/io";
 import { create, IPFSHTTPClient } from "ipfs-http-client";
@@ -15,8 +15,6 @@ import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import attendifyAbi from "src/utils/abi";
 import attendifyAddress from "src/utils/address";
 import { getLocationOrigin } from "next/dist/shared/lib/utils";
-import { ICreated } from "src/utils/types/types";
-
 
 const CreateEvent = () => {
   const [next, setNext] = useState<number>(0);
@@ -56,10 +54,10 @@ const CreateEvent = () => {
       eventDetails.link,
     ],
     onSuccess(data) {
-      console.log("Success", data);
       setMintAddress(data.result as ICreated);
     },
   });
+
   const { data, isLoading, isSuccess, write } = useContractWrite(config);
 
   const handleDisabled = (): boolean => {
@@ -152,7 +150,6 @@ const CreateEvent = () => {
   };
 
   const copyToClipBoardHandler = async (copy: string) => {
-    // let path = window.location.href;
     const success = await copyToClipBoard(copy);
     if (success) {
       toast.success("Copied to clipboard");
@@ -161,11 +158,9 @@ const CreateEvent = () => {
     }
   };
 
-  console.log("epoch", Date.parse(eventDetails.date) / 1000);
+  // console.log("epoch", Date.parse(eventDetails.date) / 1000);
 
-  const handleCreateEvent = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setCreateLoading(true);
+  const handleIpfsUpload = async () => {
     try {
       const eventNft = await ipfs?.add(eventDetails.prezent as File);
       let nftData = JSON.stringify({
@@ -176,12 +171,22 @@ const CreateEvent = () => {
       });
       const getUri = await ipfs?.add(nftData);
       let ipfsUri = `ipfs://${getUri?.path}`;
-      setUri(ipfsUri);
       toast.success("event uri Uploaded to ipfs succesfully");
+      setUri(ipfsUri);
+      setNext(next + 1);
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleCreateEvent = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setCreateLoading(true);
+    try {
       write?.();
     } catch (error: any) {
       toast.error(error.message);
-    } 
+    }
   };
 
   const mintLink = `${basepath}/mint/${mintAddress?.[1]}`;
@@ -256,7 +261,11 @@ const CreateEvent = () => {
           } text-[#F9F8FB] text-center w-full px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6`}
           disabled={handleDisabled() || createLoading}
           onClick={
-            next !== 2 ? () => setNext(next + 1) : (e) => handleCreateEvent(e)
+            next === 0
+              ? () => setNext(next + 1)
+              : next === 1
+              ? () => handleIpfsUpload()
+              : (e) => handleCreateEvent(e)
           }
         >
           {next == 2
