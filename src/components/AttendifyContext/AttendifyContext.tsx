@@ -4,16 +4,35 @@ import attendifyAddress from "src/utils/address";
 import { createPublicClient, http } from "viem";
 import { parseAbiItem } from "viem";
 import { polygonMumbai } from "wagmi/chains";
+import axios from "axios";
 import {
   ICreatedEvent,
   IMintedEvent,
   IFavoritesEvent,
 } from "src/utils/types/types";
 
+interface IMetaData {
+  name: string;
+  description: string;
+  image: string;
+}
+
 const viemPublicClient = createPublicClient({
   chain: polygonMumbai,
   transport: http(),
 });
+
+const fetchNftMeta = async (ipfsUrl: string): Promise<IMetaData | null> => {
+  try {
+    if (!ipfsUrl) return null;
+    const response = await axios.get(ipfsUrl);
+    const meta: IMetaData = response.data;
+    return meta;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
 
 const getCreated = async (): Promise<ICreatedEvent[]> => {
   const from: bigint = BigInt(36759335);
@@ -25,7 +44,18 @@ const getCreated = async (): Promise<ICreatedEvent[]> => {
     fromBlock: from,
   });
 
-  const events = logs.map((log) => log.args);
+  const events = await Promise.all(
+    logs.map(async (log) => {
+      const ipfsRes = log?.args?.eventUri
+        ? `https://ipfs.io/ipfs/${log.args.eventUri.slice(7)}`
+        : "";
+      let ipfsMeta = await fetchNftMeta(ipfsRes);
+      return {
+        ...log.args,
+        eventUri: ipfsMeta?.image,
+      };
+    })
+  );
   return events as ICreatedEvent[];
 };
 
@@ -39,7 +69,19 @@ const getMinted = async (): Promise<IMintedEvent[]> => {
     fromBlock: from,
   });
 
-  const events = logs.map((log) => log.args);
+  const events = await Promise.all(
+    logs.map(async (log) => {
+      const ipfsRes = log?.args?.eventUri
+        ? `https://ipfs.io/ipfs/${log.args.eventUri.slice(7)}`
+        : "";
+      let ipfsMeta = await fetchNftMeta(ipfsRes);
+      return {
+        ...log.args,
+        eventUri: ipfsMeta?.image,
+      };
+    })
+  );
+
   return events as IMintedEvent[];
 };
 
@@ -53,7 +95,18 @@ const getFavourites = async (): Promise<IFavoritesEvent[]> => {
     fromBlock: from,
   });
 
-  const events = logs.map((log) => log.args);
+  const events = await Promise.all(
+    logs.map(async (log) => {
+      const ipfsRes = log?.args?.eventUri
+        ? `https://ipfs.io/ipfs/${log.args.eventUri.slice(7)}`
+        : "";
+      let ipfsMeta = await fetchNftMeta(ipfsRes);
+      return {
+        ...log.args,
+        eventUri: ipfsMeta?.image,
+      };
+    })
+  );
   return events as IFavoritesEvent[];
 };
 
