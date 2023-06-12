@@ -16,7 +16,7 @@ const viemPublicClient = createPublicClient({
 });
 
 const getCreated = async (): Promise<ICreatedEvent[]> => {
-  const from: bigint = BigInt(36695496);
+  const from: bigint = BigInt(36759335);
   const logs = await viemPublicClient.getLogs({
     address: attendifyAddress,
     event: parseAbiItem(
@@ -30,7 +30,7 @@ const getCreated = async (): Promise<ICreatedEvent[]> => {
 };
 
 const getMinted = async (): Promise<IMintedEvent[]> => {
-  const from: bigint = BigInt(36695496);
+  const from: bigint = BigInt(36759335);
   const logs = await viemPublicClient.getLogs({
     address: attendifyAddress,
     event: parseAbiItem(
@@ -44,7 +44,7 @@ const getMinted = async (): Promise<IMintedEvent[]> => {
 };
 
 const getFavourites = async (): Promise<IFavoritesEvent[]> => {
-  const from: bigint = BigInt(36695496);
+  const from: bigint = BigInt(36759335);
   const logs = await viemPublicClient.getLogs({
     address: attendifyAddress,
     event: parseAbiItem(
