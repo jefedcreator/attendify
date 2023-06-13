@@ -2,7 +2,6 @@
 import Image from "next/image";
 import conflux from "@public/assets/conflux.png";
 import MintButton from "@components/mintButton/MintButton";
-import { useEffect } from "react";
 import { useContractRead, useAccount } from "wagmi";
 import attendifyAbi from "src/utils/abi";
 import attendifyAddress from "src/utils/address";

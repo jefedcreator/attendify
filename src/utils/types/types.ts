@@ -28,7 +28,7 @@ export interface ILink {
 
 export interface IProps {
   params: {
-    mint: string;
+    page: string;
   };
 }
 

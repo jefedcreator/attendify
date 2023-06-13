@@ -141,8 +141,6 @@ export const Attendify = ({ children }: { children: React.ReactNode }) => {
     return () => {};
   }, []);
 
-  console.log("createdEvents", createdEvents);
-
   return (
     <attendifyContext.Provider
       value={{

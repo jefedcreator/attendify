@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import Details from "@components/create/details/Details";
-import Upload from "@components/create/upload/Upload";
-import Preview from "@components/create/preview/Preview";
+import Details from "@components/createEvent/details/Details";
+import Upload from "@components/createEvent/upload/Upload";
+import Preview from "@components/createEvent/preview/Preview";
 import { IEventDetails, ICreated } from "src/utils/types/types";
 import Image from "next/image";
 import { IoMdClose } from "react-icons/io";

@@ -10,7 +10,7 @@ const Mint = ({ params }: IProps) => {
       <h1 className="font-syne font-semibold text-2xl md:text-4xl leading-14 text-[#F9F8FB]">
         Welcome to Attendify
       </h1>
-      <Minting prezent={params.mint} />
+      <Minting prezent={params.page} />
     </section>
   );
 };

@@ -7,11 +7,9 @@ import Attendee from "@components/landing/Attendee/Attendee";
 import Sponsors from "@components/landing/Sponsor/Sponsors";
 import Features from "@components/landing/Features/Features";
 
-// import styles from '../styles/Home.module.css'
 const Home = () => {
   return (
     <section>
-      {/* <HeaderMetaData /> */}
       <div className="p-6 md:p-0 lg:p-0">
         <Jumbotron />
         <Features />
