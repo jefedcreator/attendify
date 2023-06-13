@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { ICollectionItem, ILink } from "src/utils/types/types";
+import { ILink } from "src/utils/types/types";
 import icon1 from '@public/assets/icon1.svg'
 
 export const headerNav: ILink[] = [
@@ -81,20 +81,3 @@ export const dropdownItem: ILink[] = [
   },
 ];
 
-export const collectionItem: ICollectionItem[] = [
-  {
-    name: "Attendify Launch Party",
-    organizer: "Attendify",
-    date: "October,2022",
-  },
-  {
-    name: "Web3 Community call",
-    organizer: "Attendify",
-    date: "November,2022",
-  },
-  {
-    name: "Conflux Hacker",
-    organizer: "Conflux",
-    date: "March,2022",
-  },
-];

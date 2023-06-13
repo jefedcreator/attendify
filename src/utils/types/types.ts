@@ -106,13 +106,6 @@ export interface IHeaderIcon {
   icon: JsxElement;
   link: string;
 }
-
-export interface ICollectionItem {
-  name: string;
-  organizer: string;
-  date: string;
-}
-
 export interface ISocials {
   isFooter: boolean;
 }

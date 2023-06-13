@@ -7,7 +7,6 @@ import Collections from "@components/collections/Collections";
 export const dynamic = "force-static";
 
 function Dashboard() {
-
   return (
     <section className="container w-[90%] mx-auto mb-32 relative">
       <Banner header="Your Collection" isDashboard={true} />
