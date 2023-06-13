@@ -3,6 +3,8 @@ import Link from "next/link";
 import people from "@public/assets/people.png";
 import EventsContainer from "@components/events/Events";
 
+export const dynamic = 'force-static'
+
 const Events = () => {
   return (
     <div className="relative w-[90%] mx-auto">

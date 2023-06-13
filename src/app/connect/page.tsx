@@ -2,6 +2,8 @@ import Image from "next/image";
 import connect from "@public/assets/wallets.png";
 import Switch from "@components/switch/Switch";
 
+export const dynamic = 'force-static'
+
 function WalletConnect() {
   return (
     <section className="container mx-auto mb-48 p-4 md:p-12">

@@ -1,5 +1,7 @@
 import CreateEvent from "@components/create/Create";
 
+export const dynamic = "force-static";
+
 const Create = () => {
   return (
     <div className="container w-[90%] mx-auto">
