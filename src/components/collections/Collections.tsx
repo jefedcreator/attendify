@@ -10,8 +10,12 @@ const Collections = () => {
   const [modal, setModal] = useState(false);
   const [value, setValue] = useState(0);
 
+  if (!mintedEvents) {
+    return <p className="text-white text-center">Loading...</p>
+  }
+
   return (
-    <div className="grid gap-8 grid-cols-2 md:grid-cols-4 md:gap-12">
+    <div className="grid gap-8 grid-cols-2 md:grid-cols-4 md:gap-12 min-h-[50vh]">
       {mintedEvents &&
         mintedEvents.map((collection: ICreatedEvent, index: number) => (
           <Collection

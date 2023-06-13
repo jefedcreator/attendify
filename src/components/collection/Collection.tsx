@@ -1,8 +1,8 @@
-import hacker from "@public/assets/hacker.svg";
 import Image from "next/image";
 import { ICollection } from "src/utils/types/types";
 
 const Collection = ({
+  eventUri,
   eventName,
   organizer,
   date,
@@ -21,7 +21,7 @@ const Collection = ({
       onClick={handleModal}
     >
       <div>
-        <Image src={hacker} className="w-full" alt="hacker image" />{" "}
+        <Image src={eventUri} className="w-full" alt="nft image" width={100} height={100}/>
       </div>
       <div className="w-full md:border-b md:border-r md:border-l md:border-[#3D33A9] md:rounded-b-lg lg:border-b lg:border-r lg:border-l lg:border-[#3D33A9] lg:rounded-b-lg">
         <div className="p-2 md:p-4">

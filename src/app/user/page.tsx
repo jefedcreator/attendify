@@ -7,9 +7,10 @@ import Collections from "@components/collections/Collections";
 export const dynamic = "force-static";
 
 function Dashboard() {
+
   return (
-    <section className="container w-[90%] mx-auto mb-32 p-4 md:p-4 lg:p-0 relative">
-      <Banner header="Your Collection" address="0x123" isDashboard={true} />
+    <section className="container w-[90%] mx-auto mb-32 relative">
+      <Banner header="Your Collection" isDashboard={true} />
       <Collections />
     </section>
   );

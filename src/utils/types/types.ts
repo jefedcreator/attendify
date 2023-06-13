@@ -14,7 +14,6 @@ export interface IModal {
 
 export interface IBanner {
   header: string;
-  address: string;
   isDashboard: boolean;
 }
 

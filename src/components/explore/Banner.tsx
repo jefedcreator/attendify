@@ -1,11 +1,15 @@
+"use client"
 import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
 import wallet from "@public/assets/banner-wallet.svg";
 import gift from "@public/assets/banner-gift.svg";
 import { IBanner } from "src/utils/types/types";
+import { useAccount } from "wagmi";
 
-function Banner({ header, address, isDashboard }: IBanner) {
+function Banner({ header, isDashboard }: IBanner) {
+  const { connector: activeConnector, isConnected, address } = useAccount();
+
   return (
     <div
       className={`${
@@ -38,7 +42,7 @@ function Banner({ header, address, isDashboard }: IBanner) {
             {header}
           </h1>
         </div>
-        <p className="text-[#BDB7CF] text-smallxxx leading-24 font-jakarta w-1/2 mx-auto text-center">
+        <p className="text-[#BDB7CF] text-smallxxx leading-24 font-jakarta w-full text-center">
           {address}
         </p>
       </div>
