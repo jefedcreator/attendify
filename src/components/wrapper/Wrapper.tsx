@@ -12,8 +12,6 @@ import { usePathname } from "next/navigation";
 import Connected from "@components/connected/Connected";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import attendifyAbi from "src/utils/abi";
-import attendifyAddress from "src/utils/address";
 import {
   attendifyContext,
   Attendify,
@@ -44,15 +42,6 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
   const { connector: activeConnector, isConnected } = useAccount();
   const pathname = usePathname();
   const isCreate = pathname == "/create";
-  useContractEvent({
-    address: attendifyAddress,
-    abi: attendifyAbi,
-    eventName: "createdEvents",
-
-    listener(log) {
-      console.log("createdEvents", log);
-    },
-  });
 
   return (
     <WagmiConfig config={wagmiConfig}>

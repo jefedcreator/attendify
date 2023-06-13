@@ -1,10 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { JsxElement } from "typescript";
 
-export interface ICollection {
-  name: string;
-  organizer: string;
-  date: string;
+export interface ICollection extends ICreatedEvent{
   modal: boolean;
   setModal: Dispatch<SetStateAction<boolean>>;
   setValue: Dispatch<SetStateAction<number>>;
@@ -28,7 +25,7 @@ export interface ILink {
 
 export interface IProps {
   params: {
-    page: string;
+    mint: string;
   };
 }
 

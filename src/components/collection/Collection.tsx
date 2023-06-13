@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ICollection } from "src/utils/types/types";
 
 const Collection = ({
-  name,
+  eventName,
   organizer,
   date,
   setModal,
@@ -29,7 +29,7 @@ const Collection = ({
             Name of Event
           </h2>
           <p className="font-jakarta text-smallxxx md:text-sm leading-sm font-semibold mb-1 text-[#F9F8FB]">
-            {name}
+            {eventName}
           </p>
           <h2 className="font-minimal text-smallxxx leading-sm text-[#9D94B8] font-jakarta">
             Organisers

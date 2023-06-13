@@ -4,6 +4,7 @@ import attendifyAddress from "src/utils/address";
 import { createPublicClient, http } from "viem";
 import { parseAbiItem } from "viem";
 import { polygonMumbai } from "wagmi/chains";
+import { useAccount } from "wagmi";
 import axios from "axios";
 import {
   ICreatedEvent,
@@ -122,10 +123,16 @@ const getEvents = async () => {
 export const attendifyContext = createContext<any>(null);
 
 export const Attendify = ({ children }: { children: React.ReactNode }) => {
+  const { address } = useAccount();
   const [createdEvents, setCreatedEvents] = useState<ICreatedEvent[] | null>(
     null
   );
-  const [mintedEvents, setMintedEvents] = useState<IMintedEvent[] | null>(null);
+  const [userCreatedEvents, setUserCreatedEvents] = useState<
+    ICreatedEvent[] | null
+  >(null);
+  const [mintedEvents, setMintedEvents] = useState<ICreatedEvent[] | null>(
+    null
+  );
   const [favoriteEvents, setFavoriteEvents] = useState<
     IFavoritesEvent[] | null
   >(null);
@@ -134,12 +141,22 @@ export const Attendify = ({ children }: { children: React.ReactNode }) => {
     const handleGetEvents = async () => {
       const { created, minted, favourites } = await getEvents();
       setCreatedEvents(created);
-      setMintedEvents(minted);
+      setMintedEvents(
+        created.filter((event) =>
+          minted
+            .filter((mint) => mint.collector == address)
+            .some((mint) => mint.poap == event.poap)
+        )
+      );
       setFavoriteEvents(favourites);
+      setUserCreatedEvents(created.filter((event) => event.creator == address));
     };
     handleGetEvents();
     return () => {};
-  }, []);
+  }, [address]);
+
+  console.log("mintedEvents", mintedEvents);
+  console.log("createdEvents", createdEvents);
 
   return (
     <attendifyContext.Provider
@@ -150,6 +167,8 @@ export const Attendify = ({ children }: { children: React.ReactNode }) => {
         setMintedEvents,
         favoriteEvents,
         setFavoriteEvents,
+        userCreatedEvents,
+        setUserCreatedEvents,
       }}
     >
       {children}
