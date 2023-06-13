@@ -9,12 +9,14 @@ import { IoMdClose } from "react-icons/io";
 import { create, IPFSHTTPClient } from "ipfs-http-client";
 import celebrate from "@public/assets/celebrate.svg";
 import { toast } from "react-toastify";
+import { copyToClipBoardHandler } from "src/utils/helper";
 import copy from "@public/assets/copy.svg";
 import QRCode from "react-qr-code";
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import attendifyAbi from "src/utils/abi";
 import attendifyAddress from "src/utils/address";
 import { getLocationOrigin } from "next/dist/shared/lib/utils";
+import Link from "next/link";
 
 const CreateEvent = () => {
   const [next, setNext] = useState<number>(0);
@@ -110,53 +112,6 @@ const CreateEvent = () => {
     console.error("IPFS error ", error);
     ipfs = undefined;
   }
-
-  const fallbackCopyToClipBoard = (text: string): Promise<boolean> => {
-    const textArea = document.createElement("textarea");
-    textArea.value = text;
-
-    // Avoid scrolling to bottom
-    textArea.style.top = "0";
-    textArea.style.left = "0";
-    textArea.style.position = "fixed";
-
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-
-    try {
-      const successful = document.execCommand("copy");
-      return Promise.resolve(successful);
-    } catch (err) {
-      return Promise.resolve(false);
-    } finally {
-      document.body.removeChild(textArea);
-    }
-  };
-
-  const copyToClipBoard = (text: string): Promise<boolean> => {
-    if (!navigator.clipboard) {
-      return fallbackCopyToClipBoard(text);
-    }
-    return navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        return true;
-      })
-      .catch((err) => {
-        console.error(err);
-        return false;
-      });
-  };
-
-  const copyToClipBoardHandler = async (copy: string) => {
-    const success = await copyToClipBoard(copy);
-    if (success) {
-      toast.success("Copied to clipboard");
-    } else {
-      toast.error("Not Copied");
-    }
-  };
 
   // console.log("epoch", Date.parse(eventDetails.date) / 1000);
 
@@ -303,7 +258,7 @@ const CreateEvent = () => {
               Mint Link
             </p>
             <span className="w-full flex items-center justify-between">
-              <p className="font-semibold text-sm leading-6 font-jarkata text-[#9D94B8] w-[70%] whitespace-nowrap overflow-hidden">
+              <p className="font-semibold text-sm leading-6 font-jarkata text-[#9D94B8] w-[90%] whitespace-nowrap overflow-hidden">
                 {mintLink}
               </p>
               <Image src={copy} alt="copy" width={20} />
@@ -322,9 +277,12 @@ const CreateEvent = () => {
               }}
             />
           </div>
-          {/* <button className="bg-[#6E4AE7] text-[#F9F8FB] text-center w-full px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6 cursor-pointer">
+          <Link
+            href={"/user/created"}
+            className="bg-[#6E4AE7] text-[#F9F8FB] text-center w-full px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6 cursor-pointer"
+          >
             continue
-          </button> */}
+          </Link>
         </div>
       )}
     </section>

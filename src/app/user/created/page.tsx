@@ -1,16 +1,19 @@
-// import UserCreatedEvent from "@components/users/CreatedEvent/created";
-
-// function CreatedEvent() {
-//   return <UserCreatedEvent />;
-// }
-
-// export default CreatedEvent;
-
+import Banner from "@components/explore/Banner";
+import Created from "@components/created/Created";
 
 const created = () => {
   return (
-    <div>created</div>
-  )
-}
+    <section className="container w-[90%] mx-auto mb-32 relative">
+      <Banner
+        header="Your Events"
+        message="Create more events to get them listed on Attendify"
+        link="Create Events"
+        url="/create"
+        isDashboard={true}
+      />
+      <Created />
+    </section>
+  );
+};
 
-export default created
+export default created;

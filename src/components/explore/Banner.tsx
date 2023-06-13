@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
@@ -7,7 +7,7 @@ import gift from "@public/assets/banner-gift.svg";
 import { IBanner } from "src/utils/types/types";
 import { useAccount } from "wagmi";
 
-function Banner({ header, isDashboard }: IBanner) {
+function Banner({ header, isDashboard, message, link, url }: IBanner) {
   const { connector: activeConnector, isConnected, address } = useAccount();
 
   return (
@@ -48,13 +48,15 @@ function Banner({ header, isDashboard }: IBanner) {
       </div>
       <div className="bg-cta hidden h-[80%] w-[25%] md:flex flex-col justify-around rounded-lg border border-solid border-opacity-20 border-[#bba9f4] p-3">
         <p className="text-[#BDB7CF] text-smallxxx leading-24 font-jakarta">
-          Attend upcoming events listed on Attendify to get more Prezents
+          {message ??
+            `Attend upcoming events listed on Attendify to get more Prezents
+`}{" "}
         </p>
         <Link
-          href="/events"
+          href={url ?? "/events"}
           className="font-jarkata w-[70%] p-2 text-center text-[#F9F8FB] bg-gradient-to-t from-white-opacity-8 via-white-opacity-6 to-transparent border border-solid border-purple-300 border-opacity-30 font-bold text-smallxxx leading-6 rounded-md"
         >
-          View Events
+          {link ?? `View Events`}{" "}
         </Link>
       </div>
     </div>
