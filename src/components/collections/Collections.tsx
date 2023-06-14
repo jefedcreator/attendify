@@ -4,6 +4,7 @@ import Collection from "@components/collection/Collection";
 import CollectionModal from "@components/collectionModal/CollectionModal";
 import { attendifyContext } from "@components/AttendifyContext/AttendifyContext";
 import { ICreatedEvent } from "src/utils/types/types";
+import Loader from "@components/loading/loading";
 
 const Collections = () => {
   const { mintedEvents } = useContext(attendifyContext);
@@ -11,7 +12,11 @@ const Collections = () => {
   const [value, setValue] = useState(0);
 
   if (!mintedEvents) {
-    return <p className="text-white text-center">Loading...</p>
+    return (
+      <div className="min-h-[50vh] ">
+        <Loader />;
+      </div>
+    );
   }
 
   return (

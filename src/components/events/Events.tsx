@@ -6,6 +6,7 @@ import { ICreatedEvent } from "src/utils/types/types";
 import { useContractEvent } from "wagmi";
 import attendifyAbi from "src/utils/abi";
 import attendifyAddress from "src/utils/address";
+import Loader from "@components/loading/loading";
 
 const EventsContainer = () => {
   const { createdEvents, setCreatedEvents } = useContext(attendifyContext);
@@ -20,6 +21,13 @@ const EventsContainer = () => {
       });
     },
   });
+  if (!createdEvents) {
+    return (
+      <div className="min-h-[50vh] ">
+        <Loader />;
+      </div>
+    );
+  }
   return (
     <div className="grid gap-8 md:grid-cols-4 md:gap-12 min-h-[50vh] my-5">
       {createdEvents &&

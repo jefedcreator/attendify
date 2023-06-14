@@ -4,6 +4,7 @@ import Collection from "@components/collection/Collection";
 import { attendifyContext } from "@components/AttendifyContext/AttendifyContext";
 import { ICreatedEvent, IMintedEvent } from "src/utils/types/types";
 import UserCollectionModal from "@components/UserCollectionModal/UserCollectionModal";
+import Loader from "@components/loading/loading";
 
 const ExploreCollections = ({ address }: { address: string }) => {
   const { createdEvents, allMintedEvents } = useContext(attendifyContext);
@@ -26,7 +27,11 @@ const ExploreCollections = ({ address }: { address: string }) => {
   }, [allMintedEvents, createdEvents, address]);
 
   if (!createdEvents || !allMintedEvents || !userCollection) {
-    return <p className="text-white text-center">Loading...</p>;
+    return (
+      <div className="min-h-[50vh] ">
+        <Loader />;
+      </div>
+    );
   }
 
   return (

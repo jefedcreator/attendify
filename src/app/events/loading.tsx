@@ -1,5 +1,7 @@
+import Loader from "@components/loading/loading";
+
 const Loading = () => {
-  return <div className="text-white">Loading...</div>;
+  return <Loader />;
 };
 
 export default Loading;
