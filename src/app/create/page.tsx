@@ -1,4 +1,4 @@
-import CreateEvent from "@components/createEvent/create/CreateEvent";
+import CreateEvent from "@components/createEvent";
 
 export const dynamic = "force-static";
 
