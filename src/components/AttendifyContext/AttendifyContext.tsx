@@ -133,6 +133,9 @@ export const Attendify = ({ children }: { children: React.ReactNode }) => {
   const [mintedEvents, setMintedEvents] = useState<ICreatedEvent[] | null>(
     null
   );
+  const [allMintedEvents, setAllMintedEvents] = useState<IMintedEvent[] | null>(
+    null
+  );
   const [favoriteEvents, setFavoriteEvents] = useState<
     IFavoritesEvent[] | null
   >(null);
@@ -148,6 +151,7 @@ export const Attendify = ({ children }: { children: React.ReactNode }) => {
             .some((mint) => mint.poap == event.poap)
         )
       );
+      setAllMintedEvents(minted);
       setFavoriteEvents(favourites);
       setUserCreatedEvents(created.filter((event) => event.creator == address));
     };
@@ -169,6 +173,7 @@ export const Attendify = ({ children }: { children: React.ReactNode }) => {
         setFavoriteEvents,
         userCreatedEvents,
         setUserCreatedEvents,
+        allMintedEvents,
       }}
     >
       {children}

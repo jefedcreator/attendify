@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { JsxElement } from "typescript";
 
-export interface ICollection extends ICreatedEvent{
+export interface ICollection extends ICreatedEvent {
   modal: boolean;
   setModal: Dispatch<SetStateAction<boolean>>;
   setValue: Dispatch<SetStateAction<number>>;
@@ -10,11 +10,14 @@ export interface ICollection extends ICreatedEvent{
 export interface IModal {
   value: number;
   setModal: Dispatch<SetStateAction<boolean>>;
+  userCollection?: ICreatedEvent[];
+  address?: string;
 }
 
 export interface IBanner {
   header: string;
   isDashboard?: boolean;
+  add?: string;
   message?: string;
   link?: string;
   url?: string;

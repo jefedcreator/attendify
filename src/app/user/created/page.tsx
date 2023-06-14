@@ -1,4 +1,4 @@
-import Banner from "@components/explore/Banner";
+import Banner from "@components/banner/Banner";
 import Created from "@components/created/Created";
 
 const created = () => {

@@ -7,7 +7,7 @@ import gift from "@public/assets/banner-gift.svg";
 import { IBanner } from "src/utils/types/types";
 import { useAccount } from "wagmi";
 
-function Banner({ header, isDashboard, message, link, url }: IBanner) {
+function Banner({ header, isDashboard, add ,message, link, url }: IBanner) {
   const { connector: activeConnector, isConnected, address } = useAccount();
 
   return (
@@ -43,7 +43,7 @@ function Banner({ header, isDashboard, message, link, url }: IBanner) {
           </h1>
         </div>
         <p className="text-[#BDB7CF] text-smallxxx leading-24 font-jakarta w-full text-center">
-          {address}
+          {add ?? address}
         </p>
       </div>
       <div className="bg-cta hidden h-[80%] w-[25%] md:flex flex-col justify-around rounded-lg border border-solid border-opacity-20 border-[#bba9f4] p-3">

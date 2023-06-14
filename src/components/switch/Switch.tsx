@@ -3,7 +3,7 @@ import { useState } from "react";
 // import Explore from "@components/walletConnect/Explore/explore";
 import Connect from "@components/connectButton/ConnectButton";
 import { ConnectExploreType } from "src/utils/types/types";
-
+import Explore from "@components/explore/Explore";
 
 const Switch = () => {
   const [mySwitch, setMySwitch] = useState<ConnectExploreType>("connect");
@@ -33,15 +33,13 @@ const Switch = () => {
         </h2>
       </div>
       <div className="flex flex-col items-center justify-center p-5">
-        {mySwitch == "explore" ? (
-          <h3 className="text-white">Explore</h3>
-        ) : (
-          <Connect isMintPage={false}/>
-        )}
+        {mySwitch == "explore" ? <Explore /> : <Connect isMintPage={false} />}
       </div>
-      <p className="text-[#9D94B8] font-jarkata">
-        Connect your wallet to view your collection
-      </p>
+      {mySwitch == "connect" && (
+        <p className="text-[#9D94B8] font-jarkata">
+          Connect your wallet to view your collection
+        </p>
+      )}
     </div>
   );
 };
