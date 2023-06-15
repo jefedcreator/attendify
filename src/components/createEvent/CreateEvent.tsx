@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import Details from "@components/createEvent/details/Details";
-import Upload from "@components/createEvent/upload/Upload";
-import Preview from "@components/createEvent/preview/Preview";
+import Details from "@components/details/Details";
+import Upload from "@components/upload/Upload";
+import Preview from "@components/preview/Preview";
 import { IEventDetails, ICreated } from "src/utils/types/types";
 import Image from "next/image";
 import { IoMdClose } from "react-icons/io";
@@ -17,6 +17,7 @@ import attendifyAbi from "src/utils/abi";
 import attendifyAddress from "src/utils/address";
 import { getLocationOrigin } from "next/dist/shared/lib/utils";
 import Link from "next/link";
+import { BiArrowBack } from "react-icons/bi";
 
 const CreateEvent = () => {
   const [next, setNext] = useState<number>(0);
@@ -125,8 +126,23 @@ const CreateEvent = () => {
         // owner: address,
       });
       const getUri = await ipfs?.add(nftData);
+      toast.promise(
+        () => {
+          return new Promise((resolve, reject) => {
+            if (getUri) {
+              resolve(getUri);
+            }
+            reject();
+          });
+        },
+        {
+          pending: " uploading to ipfs...",
+          success: " uploaded to ipfs succesfully",
+          error: "error uploading to ipfs",
+        }
+      );
       let ipfsUri = `ipfs://${getUri?.path}`;
-      toast.success("event uri Uploaded to ipfs succesfully");
+      // toast.success("event uri Uploaded to ipfs succesfully");
       setUri(ipfsUri);
       setNext(next + 1);
     } catch (error: any) {
@@ -144,6 +160,12 @@ const CreateEvent = () => {
     }
   };
 
+  const handleBack = () => {
+    if (next > 0) {
+      setNext(next - 1);
+    }
+  };
+
   const mintLink = `${basepath}/mint/${mintAddress?.[1]}`;
 
   return (
@@ -152,6 +174,17 @@ const CreateEvent = () => {
         next == 0 ? "h-[150vh]" : "h-[100vh]"
       } relative mx-auto flex justify-start flex-col gap-3`}
     >
+      {next > 0 && (
+        <div
+          onClick={handleBack}
+          className="flex items-center w-[20%] md:w-[10%] gap-1 cursor-pointer"
+        >
+          <BiArrowBack color="white" width={200} height={200} />
+          <p className="font-jarkata md:text-sm text-smallxxx font-bold text-white">
+            Back
+          </p>
+        </div>
+      )}
       {(() => {
         switch (next) {
           case 0:

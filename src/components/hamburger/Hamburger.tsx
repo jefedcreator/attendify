@@ -1,13 +1,20 @@
 "use client";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { headerNav } from "../../../static/data";
+import { useRouter } from "next/navigation";
 
 const Hamburger = () => {
   const [menu, setMenu] = useState(false);
   const toggleMenu = () => {
     setMenu(!menu);
+  };
+
+  const handleLinkClick = () => {
+    setTimeout(() => {
+      setMenu(false);
+    }, 1000);
   };
 
   return (
@@ -30,6 +37,7 @@ const Hamburger = () => {
                 <Link
                   className="text-gray-300 font-medium font-jarkata"
                   href={header.link}
+                  onClick={handleLinkClick}
                 >
                   {header.value}
                 </Link>

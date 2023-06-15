@@ -12,11 +12,8 @@ const Created = () => {
   const [value, setValue] = useState(0);
 
   if (!userCreatedEvents) {
-    return (
-        <div className="min-h-[50vh] ">
-          <Loader />;
-        </div>
-      );  }
+    return <Loader />;
+  }
 
   return (
     <div className="grid gap-8 grid-cols-2 md:grid-cols-4 md:gap-12 min-h-[50vh]">

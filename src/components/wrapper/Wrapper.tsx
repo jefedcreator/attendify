@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import Header from "@components/Header/Header";
 import Footer from "@components/Footer/Footer";
 import "@rainbow-me/rainbowkit/styles.css";
@@ -7,16 +8,12 @@ import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { polygonMumbai } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-import { useAccount, useContractEvent } from "wagmi";
-import { usePathname } from "next/navigation";
+import { useAccount } from "wagmi";
+import { usePathname, useRouter } from "next/navigation";
 import Connected from "@components/connected/Connected";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  attendifyContext,
-  Attendify,
-} from "@components/AttendifyContext/AttendifyContext";
-
+import { Attendify } from "@components/AttendifyContext/AttendifyContext";
 
 const { chains, publicClient } = configureChains(
   [polygonMumbai],
@@ -39,16 +36,28 @@ const wagmiConfig = createConfig({
 });
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
-  const { connector: activeConnector, isConnected } = useAccount();
+  const { connector: activeConnector, isConnected, address } = useAccount();
   const pathname = usePathname();
+  const router = useRouter();
   const isCreate = pathname == "/create";
+  const isExplore = pathname == "/explore";
+  const isUser = pathname == "/user";
+  const isCreated = pathname == "/user/created";
+  const shouldRedirect =
+    (isCreate || isExplore || isUser || isCreated) && !isConnected;
+
+  useEffect(() => {
+    if (shouldRedirect) {
+      router.push("/connect");
+    }
+  }, [shouldRedirect, router]);
 
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}>
         <Attendify>
           <ToastContainer />
-          {!isConnected ? <Header /> : <Connected />}
+          {!isConnected ? <Header /> : <Connected address={address as string}/>}
           {children}
           {!isCreate && <Footer />}
         </Attendify>

@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { dropdownItem } from "../../../static/data";
 
-const DropDown = () => {
+const DropDown = ({address}:{address:string}) => {
   const [show, setShow] = useState(false);
   const dropdownHandler = () => {
     setShow(!show);

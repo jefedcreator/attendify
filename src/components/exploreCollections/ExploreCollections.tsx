@@ -27,11 +27,7 @@ const ExploreCollections = ({ address }: { address: string }) => {
   }, [allMintedEvents, createdEvents, address]);
 
   if (!createdEvents || !allMintedEvents || !userCollection) {
-    return (
-      <div className="min-h-[50vh] ">
-        <Loader />;
-      </div>
-    );
+    return <Loader />;
   }
 
   return (

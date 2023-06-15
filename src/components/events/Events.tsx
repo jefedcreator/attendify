@@ -22,12 +22,9 @@ const EventsContainer = () => {
     },
   });
   if (!createdEvents) {
-    return (
-      <div className="min-h-[50vh] ">
-        <Loader />;
-      </div>
-    );
+    return <Loader />;
   }
+  
   return (
     <div className="grid gap-8 md:grid-cols-4 md:gap-12 min-h-[50vh] my-5">
       {createdEvents &&

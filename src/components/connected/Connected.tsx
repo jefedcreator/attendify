@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import DropDown from "@components/dropdown/DropDown";
 
-const Connected = () => {
+const Connected = ({address}:{address: string}) => {
   return (
     <header className="w-[90%] mx-auto py-5 h-[15vh] md:h-[20vh]">
       <div className="flex items-center justify-between">
@@ -59,7 +59,7 @@ const Connected = () => {
               );
             }}
           </ConnectButton.Custom>
-          <DropDown />
+          <DropDown address={address}/>
         </div>
       </div>
     </header>

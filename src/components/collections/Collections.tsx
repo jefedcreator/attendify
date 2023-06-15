@@ -12,11 +12,7 @@ const Collections = () => {
   const [value, setValue] = useState(0);
 
   if (!mintedEvents) {
-    return (
-      <div className="min-h-[50vh] ">
-        <Loader />;
-      </div>
-    );
+    return <Loader />;
   }
 
   return (

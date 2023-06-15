@@ -1,6 +1,4 @@
-//@ts-nocheck
 import { ILink } from "src/utils/types/types";
-import icon1 from '@public/assets/icon1.svg'
 
 export const headerNav: ILink[] = [
   {
@@ -32,52 +30,22 @@ export const company: ILink[] = [
   },
 ];
 
-// export const socials = [
-//   {
-//     value: "twitter",
-//     link: "#",
-//   },
-
-//   {
-//     value: "instagram",
-//     link: "#",
-//   },
-//   {
-//     value: "telegram",
-//     link: "#",
-//   },
-//   {
-//     value: "discord",
-//     link: "#",
-//   },
-
-//   {
-//     value: "youtube",
-//     link: "#",
-//   }
-// ];
-
 export const dropdownItem: ILink[] = [
   {
-    value: "My Dashboard",
+    value: "Create",
+    link: "/create",
+  },
+  {
+    value: "Dashboard",
     link: "/user",
   },
-  // {
-  //   value: "Browse Event",
-  //   link: "/recent",
-  // },
   {
-    value: "Favourites",
-    link: "/user/favorites",
-  },
-  // {
-  //   value:'Contact Us',
-  //   link:'#'
-  // },
-
-  {
-    value: "Manage my Events",
+    value: "Events",
     link: "/user/created",
+  },
+  {
+    value: "Explore",
+    link: "/explore",
   },
 ];
 

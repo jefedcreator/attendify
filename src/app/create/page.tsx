@@ -1,6 +1,11 @@
-import CreateEvent from "@components/createEvent";
+// import CreateEvent from "@components/createEvent/CreateEvent";
 
-export const dynamic = "force-static";
+import dynamic from "next/dynamic";
+
+const CreateEvent = dynamic(() =>
+  import("@components/createEvent/CreateEvent"), {
+  ssr: false 
+});
 
 const Create = () => {
   return (
