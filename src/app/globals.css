@@ -5,6 +5,16 @@
 @tailwind components;
 @tailwind utilities;
 *,
+
+:root {
+  --toastify-color-success: #6e4ae7;
+  --toastify-font-family: "Plus Jakarta Sans", sans-serif;
+  --toastify-color-progress-success: var(--toastify-color-success);
+  --toastify-text-color-light: #6e4ae7;
+  --toastify-icon-color-success: var(--toastify-color-success);
+  --toastify-spinner-color: #6e4ae7;
+}
+
 ::after,
 ::before {
   box-sizing: border-box;
@@ -50,29 +60,7 @@ body {
   /* text-decoration-color:#B5179E; */
 }
 
-@media only screen and (min-width: 1024px) {
-  .search-icon {
-    right: 33rem !important;
-  }
-}
-
-@media only screen and (min-width: 1280px) {
-  .search-icon {
-    right: 49rem !important;
-  }
-}
-
-@layer utilities {
-  .clip-vr {
-    clip-path: polygon(
-      20% 0%,
-      80% 0%,
-      100% 20%,
-      100% 80%,
-      100% 99%,
-      20% 100%,
-      0 100%,
-      0 0
-    );
-  }
+.clip-vr {
+  -webkit-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
 }

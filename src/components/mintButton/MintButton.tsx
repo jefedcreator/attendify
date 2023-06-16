@@ -4,6 +4,8 @@ import Connect from "@components/connectButton/ConnectButton";
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import attendifyAbi from "src/utils/abi";
 import attendifyAddress from "src/utils/address";
+import { toast } from "react-toastify";
+import Link from "next/link";
 
 const MintButton = ({
   prezent,
@@ -20,6 +22,19 @@ const MintButton = ({
     args: [prezent],
     onSuccess(data) {
       console.log("Success", data);
+      toast.success(
+        <>
+          {`minted succesfully`}
+          <Link
+            href={`https://testnets.opensea.io/assets/mumbai/${prezent}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline"
+          >
+            View on opensea
+          </Link>
+        </>
+      );
       // setMintAddress(data.result as ICreated);
     },
   });
@@ -31,7 +46,7 @@ const MintButton = ({
       <div className="w-full flex flex-col items-center justify-start gap-4">
         <button
           className={`${
-            balance || isSuccess ? "bg-[#1b56ea]" : "bg-[#6E4AE7]"
+            balance || isSuccess ? "bg-purple-600" : "bg-[#6E4AE7]"
           }  text-[#F9F8FB] text-center w-[100%] md:w-[45%] px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6`}
           onClick={() => write?.()}
           disabled={balance || isSuccess}

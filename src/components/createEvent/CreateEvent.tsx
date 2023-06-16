@@ -123,16 +123,21 @@ const CreateEvent = () => {
         title: eventDetails.title,
         description: eventDetails.description,
         image: `https://attendify.infura-ipfs.io/ipfs/${eventNft?.path}`,
-        // owner: address,
+        background_color: "010A20",
       });
       const getUri = await ipfs?.add(nftData);
       toast.promise(
         () => {
           return new Promise((resolve, reject) => {
             if (getUri) {
-              resolve(getUri);
+              return setTimeout(() => {
+                resolve(getUri);
+              }, 3000);
             }
             reject();
+          }).then(() => {
+            setUri(ipfsUri);
+            setNext(next + 1);
           });
         },
         {
@@ -143,8 +148,6 @@ const CreateEvent = () => {
       );
       let ipfsUri = `ipfs://${getUri?.path}`;
       // toast.success("event uri Uploaded to ipfs succesfully");
-      setUri(ipfsUri);
-      setNext(next + 1);
     } catch (error: any) {
       toast.error(error.message);
     }

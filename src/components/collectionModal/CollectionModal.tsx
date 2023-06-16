@@ -9,6 +9,7 @@ import twitter from "@public/assets/twitter-icon.svg";
 import telegram from "@public/assets/telegram-icon.svg";
 import { IModal, ICreatedEvent } from "src/utils/types/types";
 import { useAccount } from "wagmi";
+import Link from "next/link";
 
 const CollectionModal = ({ value, setModal }: IModal) => {
   const { address } = useAccount();
@@ -19,7 +20,7 @@ const CollectionModal = ({ value, setModal }: IModal) => {
     <div
       className={`bg-gradient-to-r from-[#00091F] to-[#1E0C5A] border border-solid border-blue-500 border-opacity-20 ${
         value > 4 ? "md:-translate-y-1/8" : "md:-translate-y-1/4"
-      } fixed md:absolute h-[90vh] md:h-[80vh] md:w-[30vw] w-80 text-white rounded-lg md:top-10 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col item-center text-center p-3 gap-3 md:gap-2`}
+      } fixed md:absolute h-[70vh] md:h-[80vh] md:w-[30vw] w-80 text-white rounded-lg md:top-10 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col item-center text-center p-3 gap-3 md:gap-2`}
     >
       <div className="w-full relative flex">
         <Image
@@ -45,12 +46,17 @@ const CollectionModal = ({ value, setModal }: IModal) => {
         {item.organizer}
       </p>
       <p className="font-jarkata font-normal md:text-sm text-smallxxx md:leading-6 leading-2 text-[#BDB7CF]">{`This Prezent confirms ${address} was at ${item.eventName}`}</p>
-      <span className="flex items-center justify-center gap-1">
+      <Link
+        href={`https://testnets.opensea.io/assets/mumbai/${item?.poap}`}
+        className="flex items-center justify-center gap-1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <p className="font-jarkata font-normal text-sm leading-6 text-[#BDB7CF]">
           view on opensea
         </p>
         <FiExternalLink />
-      </span>
+      </Link>
       <p className="font-jarkata font-normal text-smallxxx leading-6 text-[#9D94B8]">
         Date
       </p>

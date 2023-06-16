@@ -64,6 +64,7 @@ const Minting = ({ prezent }: { prezent: string }) => {
             alt="nft image"
             width={200}
             height={200}
+            className="clip-vr"
           />
           <MintButton prezent={prezent} balance={balance == 1} />
         </div>
