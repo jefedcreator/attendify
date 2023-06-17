@@ -7,6 +7,7 @@ import attendifyAbi from "src/utils/abi";
 import attendifyAddress from "src/utils/address";
 import { attendifyContext } from "@components/AttendifyContext/AttendifyContext";
 import { ICreatedEvent } from "src/utils/types/types";
+import Loader from "@components/loading/loading";
 
 const Minting = ({ prezent }: { prezent: string }) => {
   const { connector: activeConnector, isConnected, address } = useAccount();
@@ -48,7 +49,7 @@ const Minting = ({ prezent }: { prezent: string }) => {
   const balance = parseInt(data as string, 16);
 
   if (loading) {
-    return <p className="text-white">Loading...</p>;
+    return <Loader/>;
   }
 
   return (

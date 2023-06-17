@@ -20,11 +20,15 @@ const MintButton = ({
     abi: attendifyAbi,
     functionName: "claimPrezent",
     args: [prezent],
-    onSuccess(data) {
-      console.log("Success", data);
+  });
+
+  const { data, isLoading, isSuccess, writeAsync } = useContractWrite(config);
+
+  const handleMint = () => {
+    writeAsync?.().then(() => {
       toast.success(
         <>
-          {`minted succesfully`}
+          {`minted succesfully`} <br/>
           <Link
             href={`https://testnets.opensea.io/assets/mumbai/${prezent}`}
             target="_blank"
@@ -35,11 +39,8 @@ const MintButton = ({
           </Link>
         </>
       );
-      // setMintAddress(data.result as ICreated);
-    },
-  });
-
-  const { data, isLoading, isSuccess, write } = useContractWrite(config);
+    });
+  };
 
   if (isConnected) {
     return (
@@ -48,7 +49,7 @@ const MintButton = ({
           className={`${
             balance || isSuccess ? "bg-purple-600" : "bg-[#6E4AE7]"
           }  text-[#F9F8FB] text-center w-[100%] md:w-[45%] px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6`}
-          onClick={() => write?.()}
+          onClick={handleMint}
           disabled={balance || isSuccess}
         >
           {isLoading
