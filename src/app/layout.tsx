@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import Wrapper from "@components/wrapper/Wrapper";
 import { IProps } from "src/utils/types/types";
+import { getURL } from "next/dist/shared/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin-ext"] });

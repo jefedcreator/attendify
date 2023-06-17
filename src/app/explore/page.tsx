@@ -1,5 +1,10 @@
+import { Metadata } from "next";
 import Banner from "@components/banner/Banner";
 import Collections from "@components/collections/Collections";
+
+export const metadata: Metadata = {
+  title: "Attendify - Explore",
+};
 
 function Explore() {
   return (

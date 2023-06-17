@@ -1,11 +1,14 @@
-// import CreateEvent from "@components/createEvent/CreateEvent";
-
+import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
 const CreateEvent = dynamic(() =>
   import("@components/createEvent/CreateEvent"), {
   ssr: false 
 });
+
+export const metadata: Metadata = {
+  title: "Attendify - Create",
+};
 
 const Create = () => {
   return (

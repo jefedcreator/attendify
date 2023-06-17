@@ -1,8 +1,13 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import connect from "@public/assets/wallets.png";
 import Switch from "@components/switch/Switch";
 
 export const dynamic = 'force-static'
+
+export const metadata: Metadata = {
+  title: "Attendify - Connect"
+};
 
 function WalletConnect() {
   return (

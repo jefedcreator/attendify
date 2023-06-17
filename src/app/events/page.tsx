@@ -1,9 +1,14 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import people from "@public/assets/people.png";
 import EventsContainer from "@components/events/Events";
 
 export const dynamic = 'force-static'
+
+export const metadata: Metadata = {
+  title: "Attendify - Events",
+};
 
 const Events = () => {
   return (
