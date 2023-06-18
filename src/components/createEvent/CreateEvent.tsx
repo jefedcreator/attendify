@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Details from "@components/details/Details";
 import Upload from "@components/upload/Upload";
 import Preview from "@components/preview/Preview";
-import { IEventDetails, ICreated } from "src/utils/types/types";
+import { IEventDetails, ICreated, ICreatedEvent } from "src/utils/types/types";
 import Image from "next/image";
 import { IoMdClose } from "react-icons/io";
 import { create, IPFSHTTPClient } from "ipfs-http-client";
@@ -12,12 +12,18 @@ import { toast } from "react-toastify";
 import { copyToClipBoardHandler } from "src/utils/helper";
 import copy from "@public/assets/copy.svg";
 import QRCode from "react-qr-code";
-import { useContractWrite, usePrepareContractWrite } from "wagmi";
+import {
+  useContractWrite,
+  usePrepareContractWrite,
+  useContractEvent,
+} from "wagmi";
 import attendifyAbi from "src/utils/abi";
 import attendifyAddress from "src/utils/address";
+import { attendifyContext } from "@components/AttendifyContext/AttendifyContext";
 import { getLocationOrigin } from "next/dist/shared/lib/utils";
 import Link from "next/link";
 import { BiArrowBack } from "react-icons/bi";
+import { fetchNftMeta } from "src/utils/helper";
 
 const CreateEvent = () => {
   const [next, setNext] = useState<number>(0);
@@ -38,6 +44,39 @@ const CreateEvent = () => {
     flierImg: null,
     prezent: null,
     prezentImg: null,
+  });
+  const { setCreatedEvents, setUserCreatedEvents } =
+    useContext(attendifyContext);
+
+  useContractEvent({
+    address: attendifyAddress,
+    abi: attendifyAbi,
+    eventName: "createdEvents",
+    async listener(log: any) {
+      console.log("createdEvents", log[0].args);
+      const ipfsRes = log[0].args.eventUri
+        ? `https://ipfs.io/ipfs/${log[0].args.eventUri.slice(7)}`
+        : "";
+      let ipfsMeta = await fetchNftMeta(ipfsRes);
+      setCreatedEvents((prev: ICreatedEvent[]) => {
+        return [
+          ...prev,
+          {
+            ...log[0].args,
+            eventUri: ipfsMeta?.image,
+          },
+        ];
+      });
+      setUserCreatedEvents((prev: ICreatedEvent[]) => {
+        return [
+          ...prev,
+          {
+            ...log[0].args,
+            eventUri: ipfsMeta?.image,
+          },
+        ];
+      });
+    },
   });
 
   const basepath = getLocationOrigin();
@@ -314,7 +353,7 @@ const CreateEvent = () => {
             />
           </div>
           <Link
-            href={"/user/created"}
+            href={"/events"}
             className="bg-[#6E4AE7] text-[#F9F8FB] text-center w-full px-3 py-2 border border-[#A48DF0] font-jarkata rounded-md font-bold text-sm leading-6 cursor-pointer"
           >
             continue

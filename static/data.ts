@@ -36,7 +36,7 @@ export const dropdownItem: ILink[] = [
     link: "/create",
   },
   {
-    value: "Dashboard",
+    value: "Collection",
     link: "/user",
   },
   {

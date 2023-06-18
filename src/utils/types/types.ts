@@ -150,3 +150,9 @@ export interface IFavoritesEvent {
   collector: string;
   eventUri: string;
 }
+
+export interface IMetaData {
+  name: string;
+  description: string;
+  image: string;
+}

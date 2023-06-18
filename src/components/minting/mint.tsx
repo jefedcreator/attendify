@@ -6,7 +6,8 @@ import { useContractRead, useAccount, useContractEvent } from "wagmi";
 import attendifyAbi from "src/utils/abi";
 import attendifyAddress from "src/utils/address";
 import { attendifyContext } from "@components/AttendifyContext/AttendifyContext";
-import { ICreatedEvent } from "src/utils/types/types";
+import { ICreatedEvent, IMintedEvent } from "src/utils/types/types";
+import { fetchNftMeta } from "src/utils/helper";
 import Loader from "@components/loading/loading";
 
 const Minting = ({ prezent }: { prezent: string }) => {
@@ -27,10 +28,20 @@ const Minting = ({ prezent }: { prezent: string }) => {
     address: attendifyAddress,
     abi: attendifyAbi,
     eventName: "mintedPrezents",
-    listener(log) {
+    async listener(log: any) {
       console.log("mintedPrezents", log[0].topics);
+      const ipfsRes = log[0].args.eventUri
+        ? `https://ipfs.io/ipfs/${log[0].args.eventUri.slice(7)}`
+        : "";
+      let ipfsMeta = await fetchNftMeta(ipfsRes);
       setMintedEvents((prev: ICreatedEvent[]) => {
-        return [...prev, log[0].topics];
+        return [
+          ...prev,
+          {
+            ...created,
+            eventUri: ipfsMeta?.image,
+          },
+        ];
       });
     },
   });
@@ -49,7 +60,7 @@ const Minting = ({ prezent }: { prezent: string }) => {
   const balance = parseInt(data as string, 16);
 
   if (loading) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   return (

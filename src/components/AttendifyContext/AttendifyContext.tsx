@@ -5,35 +5,18 @@ import { createPublicClient, http } from "viem";
 import { parseAbiItem } from "viem";
 import { polygonMumbai } from "wagmi/chains";
 import { useAccount } from "wagmi";
-import axios from "axios";
 import {
   ICreatedEvent,
   IMintedEvent,
   IFavoritesEvent,
 } from "src/utils/types/types";
-
-interface IMetaData {
-  name: string;
-  description: string;
-  image: string;
-}
+import { fetchNftMeta } from "src/utils/helper";
 
 const viemPublicClient = createPublicClient({
   chain: polygonMumbai,
   transport: http(),
 });
 
-const fetchNftMeta = async (ipfsUrl: string): Promise<IMetaData | null> => {
-  try {
-    if (!ipfsUrl) return null;
-    const response = await axios.get(ipfsUrl);
-    const meta: IMetaData = response.data;
-    return meta;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
 
 const getCreated = async (): Promise<ICreatedEvent[]> => {
   const from: bigint = BigInt(36759335);

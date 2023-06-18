@@ -1,5 +1,7 @@
 // utils/getURL.ts
 import { toast } from "react-toastify";
+import { IMetaData } from "./types/types";
+import axios from "axios";
 
 const IS_SERVER = typeof window === "undefined";
 export default function getURL(path: string) {
@@ -53,5 +55,17 @@ export const copyToClipBoardHandler = async (copy: string) => {
     toast.success("Copied to clipboard");
   } else {
     toast.error("Not Copied");
+  }
+};
+
+export const fetchNftMeta = async (ipfsUrl: string): Promise<IMetaData | null> => {
+  try {
+    if (!ipfsUrl) return null;
+    const response = await axios.get(ipfsUrl);
+    const meta: IMetaData = response.data;
+    return meta;
+  } catch (error) {
+    console.log(error);
+    return null;
   }
 };
