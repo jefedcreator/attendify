@@ -1,34 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## ATTENDIFY | [DEPLOYED ON POLYGON TESTNET](https://mumbai.polygonscan.com/address/0x13dF778f88fEEcf7f653d03B42d91C6C3bDe7D89) | [WEBSITE](https://attendifyonchain.vercel.app/)
 
-## Getting Started
+![attendify](./attendify.png)
 
-First, run the development server:
+### Why Attendify
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Attendify has developed a Proof of Attendance Protocol (POAP).
+Proof of Attendance Protocol are modern badges or identifiers known as **Prezents** that authenticate the participatory actions of a person at an event or activity. After the closure of events, some form of badges, identity cards, or certificates are issued to people for their participation in that event. All of these identifiers go well to show the zeal committed by individuals to the success of that event.
+With the Attendify system coming to the fore, this proof of attendance brought into the blockchain ecosystem makes it easier to issue certificates or badges to individuals who participate in events such as hackathons, summits, and livestreams. For instance, in 2019, the POA system was used at ETHDenver. This issuance gives a long-lasting memory of peoples' participation in an event that redefines the dignity of man.
+This product allows for easy minting of NFTs from just a click. This form of minting is thereafter confirmable on the Polygon network. The process of minting begins with users identifying the images, videos, or other media content to have on the network. After it has been uploaded to the IPFS which is going to be integrated into the web application, Attendify allows one click for successful mint.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Use case
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Prezents as incentives
+- Attendify is designed to address problems with attendance, reliable records and distribution of rewards
+- Encourage learners/ participants to attend more often, thus resulting in an improved retention rates for such organisation
+- Allows event organisers to track progress and attendees easily, such information useful for marketing and promotions.
+- Community members benefit from reputation and incentive reward by taking part in communities with a track record.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Built with These Tech Stack
 
-## Learn More
+- Nextjs 13
+- Etherjs
+- Wagmi.js
+- solidity ([Deployed on Polygon Mumbai Testnet](https://mumbai.polygonscan.com/address/0x13dF778f88fEEcf7f653d03B42d91C6C3bDe7D89))
+- Rainbowkit
+- Website [here](https://attendifyonchain.vercel.app/)
 
-To learn more about Next.js, take a look at the following resources:
+Event organisers, often a time, are marvelled when their anticipated events happen. Hosting events requires much more effort to thrive; the time to plan, the ideation period, the tension that follows each day as the date of the event approaches, and the unfolding heat of the D-day. Every time and moment, for the event organisers, are precious and for this reason, having Attendify’ prezents gives event organisers the feel of accomplishment.
+Attendify hopes to serve as an identity of one’s presence in an occasion. This, for event planners and organisers, is a certification of accomplishment. The prezents issued through the form of a minted NFT, authenticates that their sleepless nights and unflinching efforts for the success of the events will not easily slide off their minds. It also does establish the abilities of the event organisers to hold more successful events with high hopes and less fears.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### HOW DO EVENT ORGANISERS USE ATTENDIFY?
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Event organisers who hope to issue out prezents to their beloved speakers, guests, and attendants simply have to go to the Attendify webpage to create a link. The Attendify user interface is made so simple to navigate and create prezents for one’s event. All that is required is a wallet and details about the events; a link to the prezents is generated, which the event organisers make available to their attendants before or after the events to mint their prezents.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Building communities requires a kind of recognition for community’s participation; this proof of attendance or participation can serve as a method of recognition.
+Attendify prezent tokens can serve as incentives to participants and attendees of various events. In addition, they can be useful in tracking attendance in the case of accountability or future reference. The utility of these tokens extends beyond participating in events.
+Attendify is designed to solve issues of event attendance and accountability, reward distribution and verifiable records, having a verifiable record stored on the blockchain will help prove which party is correct in their assertion in cases of dispute.
+The tokens can be distributed by organisations that run seminars and workshops to their participants. This will motivate learners and encourage them to attend more frequently, thus resulting in improved retention rates for the company running these events.
