@@ -53,7 +53,6 @@ const CreateEvent = () => {
     abi: attendifyAbi,
     eventName: "createdEvents",
     async listener(log: any) {
-      console.log("createdEvents", log[0].args);
       const ipfsRes = log[0].args.eventUri
         ? `https://ipfs.io/ipfs/${log[0].args.eventUri.slice(7)}`
         : "";
@@ -153,8 +152,6 @@ const CreateEvent = () => {
     ipfs = undefined;
   }
 
-  // console.log("epoch", Date.parse(eventDetails.date) / 1000);
-
   const handleIpfsUpload = async () => {
     try {
       const eventNft = await ipfs?.add(eventDetails.prezent as File);
@@ -186,7 +183,6 @@ const CreateEvent = () => {
         }
       );
       let ipfsUri = `ipfs://${getUri?.path}`;
-      // toast.success("event uri Uploaded to ipfs succesfully");
     } catch (error: any) {
       toast.error(error.message);
     }

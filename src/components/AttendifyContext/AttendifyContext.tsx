@@ -142,9 +142,6 @@ export const Attendify = ({ children }: { children: React.ReactNode }) => {
     return () => {};
   }, [address]);
 
-  console.log("mintedEvents", mintedEvents);
-  console.log("createdEvents", createdEvents);
-
   return (
     <attendifyContext.Provider
       value={{

@@ -29,7 +29,6 @@ const Minting = ({ prezent }: { prezent: string }) => {
     abi: attendifyAbi,
     eventName: "mintedPrezents",
     async listener(log: any) {
-      console.log("mintedPrezents", log[0].topics);
       const ipfsRes = log[0].args.eventUri
         ? `https://ipfs.io/ipfs/${log[0].args.eventUri.slice(7)}`
         : "";
@@ -51,15 +50,11 @@ const Minting = ({ prezent }: { prezent: string }) => {
     abi: attendifyAbi,
     args: [prezent, address],
     functionName: "prezentBalance",
-    onSuccess(data) {
-      console.log("Success", data);
-      // setMintAddress(data.result as ICreated);
-    },
   });
 
   const balance = parseInt(data as string, 16);
 
-  if (loading) {
+  if (loading || !createdEvents) {
     return <Loader />;
   }
 

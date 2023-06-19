@@ -17,11 +17,7 @@ const CollectionModal = ({ value, setModal }: IModal) => {
 
   const item: ICreatedEvent = mintedEvents[value] ?? {}; // Use empty object as a fallback
   return (
-    <div
-      className={`bg-gradient-to-r from-[#00091F] to-[#1E0C5A] border border-solid border-blue-500 border-opacity-20 ${
-        value > 4 ? "md:-translate-y-1/8" : "md:-translate-y-1/4"
-      } fixed md:absolute h-[70vh] md:h-[80vh] md:w-[30vw] w-80 text-white rounded-lg md:top-10 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col item-center text-center p-3 gap-3 md:gap-2`}
-    >
+    <div className="bg-gradient-to-r from-[#00091F] to-[#1E0C5A] border border-solid border-blue-500 border-opacity-20 fixed h-[70vh] md:h-[80vh] md:w-[30vw] w-80 text-white rounded-lg top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col item-center text-center p-3 gap-3 md:gap-2">
       <div className="w-full relative flex">
         <Image
           src={item.eventUri}
@@ -29,7 +25,7 @@ const CollectionModal = ({ value, setModal }: IModal) => {
           className="w-[50%] md:w-[30%] mx-auto"
           width={100}
           height={100}
-        />{" "}
+        />
         <IoMdClose
           className="absolute right-0 cursor-pointer"
           onClick={() => setModal(false)}

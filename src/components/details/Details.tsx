@@ -67,7 +67,6 @@ const Details = ({
 
       // setCover("https://jefedcreator.infura-ipfs.io/ipfs/" + result.path)
     } catch (error) {
-      console.log("error", error);
       // toast.error("error uploading cover to ipfs");
     }
   };

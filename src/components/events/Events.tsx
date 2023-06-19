@@ -17,7 +17,6 @@ const EventsContainer = () => {
     abi: attendifyAbi,
     eventName: "createdEvents",
     listener(log) {
-      console.log("createdEvents", log);
       setCreatedEvents((prev: ICreatedEvent[]) => {
         return [...prev, log];
       });

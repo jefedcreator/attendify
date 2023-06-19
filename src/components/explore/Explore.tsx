@@ -6,7 +6,7 @@ const Explore = () => {
   const [address, setAddress] = useState<string>("");
   const router = useRouter();
   const handleDisabled = () => {
-    return address.length !== 42;
+    return address.trim().length !== 42;
   };
 
   const handleExplore = (e: React.MouseEvent<HTMLButtonElement>) => {
