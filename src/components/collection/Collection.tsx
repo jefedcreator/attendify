@@ -22,7 +22,7 @@ const Collection = ({
     >
       <Image
         src={eventUri}
-        className="w-full min-h-[300px] object-cover h-[50%] max-h-[50%] overflow-hidden"
+        className="w-full min-h-[50%] object-cover h-[50%]"
         alt="nft image"
         width={100}
         height={100}
