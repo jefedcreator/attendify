@@ -22,22 +22,23 @@ const EventsContainer = () => {
       });
     },
   });
+
   if (!createdEvents) {
     return <Loader />;
   }
 
   return (
-    <div className="grid gap-8 md:grid-cols-4 md:gap-12 min-h-[50vh] my-5">
+    <div className="grid gap-8 md:grid-cols-4 md:gap-12 min-h-[50vh] h-auto my-5">
       {createdEvents &&
         createdEvents.map((collection: ICreatedEvent, index: number) => (
           <div
-            className="border border-[#3D33A9] p-2 rounded-lg md:p-0 md:block bg-card"
+            className="border border-[#3D33A9] p-2 rounded-lg md:p-0 md:block bg-card min-h-full"
             key={index}
           >
             <Image
               src={collection.eventUri}
-              className="w-full min-h-[50%] object-cover h-[50%]"
-              alt="hacker image"
+              className="w-full min-h-[300px] object-cover h-[50%] max-h-[50%] overflow-hidden"
+              alt="nft image"
               width={100}
               height={100}
             />
