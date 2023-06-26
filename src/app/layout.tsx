@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://attendifyonchain.vercel.app/",
-    title: "Attendify - The web3 event hub",
-    siteName: "Attendify - The web3 event hub",
+    title: "Attendify",
+    siteName: "Attendify",
     description: "Attendify - The web3 event hub ",
     images: [
       {
