@@ -1,11 +1,7 @@
 import "./globals.css";
 import { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import Wrapper from "@components/wrapper/Wrapper";
-import { IProps } from "src/utils/types/types";
-import { getURL } from "next/dist/shared/lib/utils";
-
-const inter = Inter({ subsets: ["latin"] });
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin-ext"] });
 
 export const metadata: Metadata = {
@@ -16,6 +12,25 @@ export const metadata: Metadata = {
     initialScale: 1.0,
     maximumScale: 1.0,
     userScalable: false,
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "https://attendifyonchain.vercel.app/",
+    images: "./twitter-image.png",
+    description: "Attendify - The web3 event hub ",
+    title: "Attendify",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://attendifyonchain.vercel.app/",
+    title: "Attendify",
+    siteName: "Attendify",
+    description: "Attendify - The web3 event hub ",
+    images: [
+      {
+        url: "./twitter-image.png",
+      },
+    ],
   },
 };
 
