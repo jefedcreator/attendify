@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     site: "https://attendifyonchain.vercel.app/",
     images: "./twitter-image.png",
     description: "Attendify - The web3 event hub ",
-    title: "Attendify",
+    title: "Attendify - The web3 event hub",
   },
   openGraph: {
     type: "website",
     url: "https://attendifyonchain.vercel.app/",
-    title: "Attendify",
-    siteName: "Attendify",
+    title: "Attendify - The web3 event hub",
+    siteName: "Attendify - The web3 event hub",
     description: "Attendify - The web3 event hub ",
     images: [
       {
