@@ -14,7 +14,6 @@ export const metadata: Metadata = {
     userScalable: false,
   },
   twitter: {
-    card: "player",
     site: "https://attendifyonchain.vercel.app/",
     images: "./twitter-image.png",
     description: "Attendify - The web3 event hub ",
